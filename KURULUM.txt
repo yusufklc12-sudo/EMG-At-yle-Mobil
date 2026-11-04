@@ -1,0 +1,27 @@
+EMG Atölyesi — kurulum
+======================
+
+Bu klasör kurulabilir bir web uygulamasıdır (PWA). Kurulunca telefonda ya da
+bilgisayarda "EMG Atölyesi" simgesiyle görünür, tam ekran açılır ve ilk
+açılıştan sonra internetsiz de çalışır.
+
+1) Klasörü bir web adresine yükleyin
+   Uygulamanın kurulabilmesi için https:// ile başlayan bir adreste durması
+   gerekir. Ücretsiz statik barındırma hizmetlerinden biri yeterlidir:
+   GitHub Pages, Netlify, Cloudflare Pages vb. Klasörün içindekileri
+   (index.html, manifest.webmanifest, sw.js ve icons klasörü) olduğu gibi
+   yükleyin.
+
+2) Kurun
+   - Android (Chrome): adresi açın → sağ üstte "Uygulamayı yükle" düğmesi
+     ya da menü (⋮) → "Ana ekrana ekle / Uygulamayı yükle".
+   - iPhone / iPad (Safari): adresi açın → Paylaş → "Ana Ekrana Ekle".
+   - Bilgisayar (Chrome / Edge): adres çubuğundaki yükle simgesi ya da sağ
+     üstteki "Uygulamayı yükle" düğmesi.
+
+Güncelleme: index.html'i değiştirirseniz sw.js içindeki
+CACHE='emg-atolyesi-mobil-v1' satırındaki sürüm numarasını artırın (v2, v3...);
+böylece kurulu uygulamalar yeni sürümü indirir.
+
+Not: index.html dosyasına bilgisayarda çift tıklayarak da açılabilir; bu
+durumda uygulama çalışır ama "kurulum" ve çevrimdışı önbellek devreye girmez.
