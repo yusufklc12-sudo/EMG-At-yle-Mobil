@@ -212,6 +212,25 @@ tr.ref td:first-child{font-weight:700;font-style:normal;color:var(--ac)}
 #db tr.ref td{font-size:14px}
 
 #ders{display:none}
+.srch{position:relative;flex:1 1 220px;max-width:380px;min-width:180px}
+.srch input{width:100%;font:inherit;font-size:13.5px;padding:7px 12px 7px 34px;border-radius:999px;border:1.5px solid var(--b2);background:var(--card);color:var(--tx);outline:none}
+.srch input:focus{border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 18%,transparent)}
+.srch .qi{position:absolute;left:11px;top:50%;width:16px;height:16px;transform:translateY(-50%);fill:none;stroke:var(--tx3);stroke-width:2.2;stroke-linecap:round;pointer-events:none}
+#qres{position:absolute;top:calc(100% + 6px);right:0;width:min(560px,92vw);max-height:72vh;overflow:auto;background:var(--card);border:1px solid var(--b);border-radius:14px;box-shadow:0 18px 50px rgba(20,10,60,.22);z-index:60;padding:8px}
+.qeng{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:4px 4px 10px;border-bottom:1px solid var(--b);margin-bottom:6px}
+.qeng span{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--tx3);margin-right:2px}
+.qeng a{font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;border:1.5px solid var(--b2);color:var(--tx);text-decoration:none}
+.qeng a:hover{border-color:var(--ac);color:var(--ac)}
+.qh{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--tx3);padding:6px 6px 4px}
+.qr{display:block;width:100%;text-align:left;border:0;border-radius:10px;padding:8px 10px;background:none;font-size:13px;line-height:1.45}
+.qr:hover,.qr:focus{background:color-mix(in srgb,var(--ac) 8%,transparent)}
+.qr b{display:block;font-size:13.5px;color:var(--tx)}.qr small{display:block;font-size:11.5px;color:var(--ac);font-weight:600;margin:1px 0}
+.qr span{display:block;color:var(--tx2)}.qr mark,.qflash mark{background:color-mix(in srgb,#E8962E 35%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.qflash{animation:qf 2.2s ease}@keyframes qf{0%,40%{background:color-mix(in srgb,#E8962E 30%,transparent)}100%{background:transparent}}
+@media (prefers-reduced-motion:reduce){.qflash{animation:none;outline:2px solid #E8962E}}
+.tocp{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ac);padding:14px 10px 4px}
+.dpart{max-width:820px;margin:0 auto;padding:44px 40px 0;font-size:26px;font-weight:800;letter-spacing:-.01em;color:var(--tx)}
+.dpart span{display:block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:2px}
 body.ders #grid,body.ders #chips{display:none}
 body.ders #ders{display:grid;grid-template-columns:280px minmax(0,1fr);gap:14px;flex:1;min-height:0}
 #toc{background:var(--card);border:1px solid var(--b);border-radius:16px;padding:12px 8px;overflow:auto}
@@ -372,7 +391,16 @@ dialog{width:100vw;max-width:100vw;height:100vh;height:100dvh;max-height:100dvh;
 #db .sum{font-size:18px}
 #db .more p,#db .more li,#db .row,.pearl,.quiz{font-size:16px}
 #db .mcols{column-count:1}
-/* konu anlatımı: iç içe bölümler */
+/* konu anlatımı: iç içe kısımlar ve bölümler */
+.prt{border:1px solid var(--b);border-radius:16px;background:var(--card);margin:0 0 10px;scroll-margin-top:calc(var(--bh,58px) + 76px)}
+.prt .dpart{max-width:none;margin:0;padding:14px 44px 14px 14px;font-size:18px;cursor:pointer;position:relative;user-select:none;-webkit-user-select:none}
+.prt .dpart small{display:block;font-size:12.5px;font-weight:500;color:var(--tx3);margin-top:2px}
+.prt .dpart::after{content:"";position:absolute;right:20px;top:50%;width:10px;height:10px;border-right:2.5px solid var(--tx3);border-bottom:2.5px solid var(--tx3);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.prt:not(.cl) .dpart::after{transform:translateY(-30%) rotate(-135deg);border-color:var(--ac)}
+.prt:not(.cl){border-color:color-mix(in srgb,var(--ac) 45%,var(--b))}
+.prb{padding:0 8px 8px}.prt.cl .prb{display:none}
+.prb .ch{background:var(--bg)}
+.prb .ch:not(.cl){background:var(--card)}
 .sec #ders{display:block!important}
 #toc,.dprog{display:none!important}
 #dart{overflow:visible;border:0;border-radius:0;background:none}
@@ -403,11 +431,18 @@ table.dt td,table.dt th{padding:8px 10px}
 .dfoot{padding:20px 10px}
 @media (min-width:760px){.sb{padding:12px 14px 16px}.svgw,#srcsvg{height:520px}.scopewrap{height:340px}}
 @media (orientation:landscape) and (max-height:520px){.svgw,#srcsvg{height:82vh}.scopewrap{height:62vh}}
+
+.msrch{max-width:none;min-width:0;flex:none}
+.msrch input{font-size:16px!important;padding:12px 14px 12px 40px;border-radius:14px;background:var(--card)}
+.msrch .qi{left:14px;width:18px;height:18px}
+.msrch #qres{left:0;right:0;width:auto;max-height:65vh;padding:8px}
+.qeng a{padding:8px 13px;font-size:14px}
+.qr{padding:10px 10px;font-size:14px}.qr b{font-size:14.5px}
 </style>
 </head>
 <body>
 <header class="mbar"><img src="icons/icon-192.png" alt="" class="appico"><h1>EMG Atölyesi</h1><span class="sp"></span><button id="inst" hidden>📲 Yükle</button><button id="snd" aria-pressed="false">🔇 Ses</button></header>
-<main id="acc"><div class="hero"><p>Bir bölüme dokunun, açılsın. Başlığa yeniden dokununca kapanır. Açılan bölümün içindeki paneller de aynı şekilde açılıp kapanır.</p></div>
+<main id="acc"><div class="srch msrch" role="search"><svg class="qi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Ara: latans, fibrilasyon, KTS…" aria-label="Uygulamada ve web'de ara" autocomplete="off" enterkeyhint="search"><div id="qres" hidden></div></div><div class="hero"><p>Bir bölüme dokunun, açılsın. Başlığa yeniden dokununca kapanır. Açılan bölümün içindeki paneller de aynı şekilde açılıp kapanır.</p></div>
 <section class="sec" data-m="needle" style="--c:#E5484D"><button class="sh" aria-expanded="false"><span class="si"><svg viewBox="0 0 24 24"><path d="M4 20l9-9"/><path d="M13 11l5-5 2 2-5 5z"/><path d="M3 21l1-1"/></svg></span><span class="st"><b>İğne EMG</b><small>Spontan aktivite, MUP ve rekrutman · her dalganın sesi</small></span><i class="chev"></i></button><div class="sb"></div></section><section class="sec" data-m="motor" style="--c:#2F7DE1"><button class="sh" aria-expanded="false"><span class="si"><svg viewBox="0 0 24 24"><path d="M13 2L5 13h6l-1 9 8-12h-6z"/></svg></span><span class="st"><b>Motor iletim</b><small>BKAP, distal latans, ileti hızı, blok · üst ve alt ekstremite</small></span><i class="chev"></i></button><div class="sb"></div></section><section class="sec" data-m="sensory" style="--c:#12A39A"><button class="sh" aria-expanded="false"><span class="si"><svg viewBox="0 0 24 24"><path d="M2 12h3l2-5 3 10 3-14 3 12 2-3h4"/></svg></span><span class="st"><b>Duyu iletim</b><small>SNAP amplitüdü, duyu latansı ve ileti hızı</small></span><i class="chev"></i></button><div class="sb"></div></section><section class="sec" data-m="late" style="--c:#E8962E"><button class="sh" aria-expanded="false"><span class="si"><svg viewBox="0 0 24 24"><path d="M4 18V8a4 4 0 0 1 8 0v8a4 4 0 0 0 8 0V6"/><path d="M17 9l3-3 3 3"/></svg></span><span class="st"><b>F dalgası ve H refleksi</b><small>Proksimal segment ve kök değerlendirmesi</small></span><i class="chev"></i></button><div class="sb"></div></section><section class="sec" data-m="ders" style="--c:#7F5AF0"><button class="sh" aria-expanded="false"><span class="si"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M8 7h7M8 11h7"/></svg></span><span class="st"><b>Konu anlatımı</b><small>Temelden ileriye EMG, şekillerle ve örneklerle</small></span><i class="chev"></i></button><div class="sb"></div></section>
 </main>
 <div id="park" hidden><nav class="tabs" id="tabs"><button data-m="needle">İğne EMG</button><button data-m="motor">Motor iletim</button><button data-m="sensory">Duyu iletim</button><button data-m="late">F / H</button><button data-m="ders">Konu anlatımı</button></nav>
@@ -1506,193 +1541,760 @@ rek:()=>{const row=(y,t,us,s)=>`<text class="flab" x="110" y="${y+4}" text-ancho
 return SV(720,190,`<rect x="120" y="14" width="440" height="160" rx="10" class="scr"/>`+row(50,'Normal',[10,9],'2 ünite · ~10 Hz')+row(100,'Nörojenik',[26],'1 ünite · 26 Hz')+row(150,'Miyopatik',[8,8,7,7,7,6],'çok ünite, erken')+`<text class="fsm" x="400" y="188">Aynı hafif kuvvette 0,6 saniyelik ateşleme dizileri (her renk bir ünite)</text>`,'Rekrutman')}};
 
 /* ================= KONU ANLATIMI: metin ================= */
+
+/* ================= KONU ANLATIMI: ek şekiller ================= */
+Object.assign(FIG,{
+ortanti:()=>{const pan=(Y,t,anti)=>{const sx=anti?470:120,rx=anti?120:470,A=anti?36:13,K=anti?1.15:2.6;
+const f=snapF(2.9,A,.42),mus=t=>anti?-34*gs(t,6.2,1.05)+18*gs(t,8.4,1.4):0;
+return`<text class="flab" x="16" y="${Y+14}" text-anchor="start">${t}</text>
+<rect x="40" y="${Y+40}" width="560" height="44" rx="22" class="skn"/><path d="M40,${Y+62} L600,${Y+62}" stroke="#e3c48e" stroke-width="5" stroke-linecap="round"/>
+<text class="fsm" x="70" y="${Y+104}">parmak (D2)</text><text class="fsm" x="560" y="${Y+104}">bilek</text>
+${anti?`<g><rect x="${sx-28}" y="${Y+20}" width="56" height="24" rx="8" class="stim"/><circle cx="${sx-12}" cy="${Y+32}" r="6" class="cat"/><circle cx="${sx+12}" cy="${Y+32}" r="6" class="ano"/></g>
+<rect x="${rx-34}" y="${Y+38}" width="8" height="48" rx="3" fill="#1d1b29"/><rect x="${rx+6}" y="${Y+38}" width="8" height="48" rx="3" fill="#8a8a99"/><text class="fsm" x="${rx-30}" y="${Y+30}">G1</text><text class="fsm" x="${rx+10}" y="${Y+30}">G2</text>`
+:`<rect x="${sx-34}" y="${Y+38}" width="8" height="48" rx="3" class="cat"/><rect x="${sx+6}" y="${Y+38}" width="8" height="48" rx="3" fill="#d9363e"/><text class="fsm" x="${sx-10}" y="${Y+30}">uyarı halkaları</text>
+<circle cx="${rx-14}" cy="${Y+62}" r="7" fill="#1d1b29" stroke="#fff"/><circle cx="${rx+18}" cy="${Y+62}" r="7" fill="#8a8a99" stroke="#fff"/><text class="fsm" x="${rx}" y="${Y+30}">G1   G2</text>`}
+<path d="M${anti?440:160},${Y+124} L${anti?160:440},${Y+124}" class="pr" marker-end="url(#da)"/><text class="fsm" x="300" y="${Y+144}">${anti?'impuls fizyolojik yönün TERSİNE gider (merkezden çevreye)':'impuls fizyolojik yönde gider (çevreden merkeze)'}</text>
+<rect x="612" y="${Y+20}" width="100" height="110" rx="8" class="scr"/><path d="${wp(t=>f(t)+mus(t),0,11,616,Y+80,92,K)}" class="trc"/>
+<text class="tlab" x="662" y="${Y+124}" text-anchor="middle">${anti?'~35–50 µV':'~10–20 µV'}</text>${anti?`<text class="fsm" x="662" y="${Y+12}">SNAP + kas artefaktı</text>`:`<text class="fsm" x="662" y="${Y+12}">saf duyu, küçük</text>`}`};
+return SV(720,330,`${AR}${pan(0,'Ortodromik',false)}${pan(170,'Antidromik',true)}`,'Ortodromik ve antidromik duyu iletimi')},
+trif:()=>{const tr=(X,t,f,s)=>`<text class="flab" x="${X+105}" y="20">${t}</text><rect x="${X}" y="30" width="210" height="120" rx="10" class="scr"/><line x1="${X+8}" y1="90" x2="${X+202}" y2="90" stroke="#24493f"/><path d="${wp(f,0,6,X+8,90,194,1)}" class="trc"/><text class="fsm" x="${X+105}" y="172">${s}</text>`;
+const a=t=>34*gs(t,1.6,.38)-46*gs(t,2.6,.42)+22*gs(t,3.7,.7),b=t=>-50*gs(t,1.3,.42)+24*gs(t,2.6,.9),c=t=>32*gs(t,2.4,.8);
+return SV(720,330,`${AR}${tr(10,'Yaklaşan dalga',a,'+ / − / + : trifazik')}${tr(255,'Elektrot altında başlayan',b,'başlangıç negatif (yukarı)')}${tr(500,'Uzaklaşan / uzak kaynak',c,'yalnızca pozitif (aşağı)')}
+<rect x="40" y="226" width="640" height="34" rx="17" fill="color-mix(in srgb,#E5484D 18%,var(--card))" stroke="#E5484D"/><text class="fsm" x="360" y="248">kas lifi / akson boyunca yayılan depolarizasyon (dipol: önde +, ortada −, arkada +)</text>
+<path d="M120,286 L300,286" class="pr" marker-end="url(#da)"/><circle cx="360" cy="214" r="8" fill="#1d1b29" stroke="#fff"/><text class="fsm" x="360" y="200">G1</text>
+<text class="fsm" x="530" y="292" text-anchor="start">EMG kuralı: negatif = yukarı</text>`,'Hacim iletimi ve dalga şekli')},
+faz:()=>{const pan=(X,t,d,s)=>{const F=[0,.25,.5,.75,1].map(k=>({o:1.4+k*d,w:.32+k*d*.05})),f=t=>F.reduce((v,q)=>v+snapF(q.o,7,q.w)(t),0);
+return`<text class="flab" x="${X+165}" y="20">${t}</text><rect x="${X}" y="30" width="330" height="200" rx="10" class="scr"/>
+${F.map(q=>`<path d="${wp(snapF(q.o,7,q.w),0,7,X+8,92,314,2.4)}" fill="none" stroke="#7cc8ff" stroke-width="1" opacity=".7"/>`).join('')}
+<path d="${wp(f,0,7,X+8,175,314,1.5)}" class="trc"/><text class="tlab" x="${X+14}" y="128" text-anchor="start">toplam SNAP</text><text class="fsm" x="${X+165}" y="252">${s}</text>`};
+return SV(720,270,pan(10,'Kısa mesafe',.35,'lifler senkron → büyük toplam yanıt')+pan(380,'Uzun mesafe',1.25,'hızlı lifin pozitifi yavaşın negatifini siler'),'Faz iptali')},
+mga:()=>SV(720,280,`${AR}<rect x="30" y="40" width="660" height="150" rx="70" class="skn" opacity=".55"/>
+<path d="M60,90 L640,90" stroke="#e3c48e" stroke-width="6" stroke-linecap="round"/><path d="M60,150 L640,150" stroke="#e3c48e" stroke-width="6" stroke-linecap="round"/>
+<path d="M230,90 C280,100 320,140 380,150" fill="none" stroke="#E5484D" stroke-width="3.2" stroke-dasharray="7 4"/>
+<text class="fsm" x="70" y="78" text-anchor="start">median sinir</text><text class="fsm" x="70" y="174" text-anchor="start">ulnar sinir</text>
+<text class="fsm" x="400" y="118" text-anchor="start" style="fill:#c22d33;font-weight:700">Martin-Gruber anastomozu</text><text class="fsm" x="400" y="132" text-anchor="start" style="fill:#c22d33">median → ulnar, önkolda</text>
+<text class="fsm" x="80" y="214">dirsek</text><text class="fsm" x="600" y="214">bilek → el</text>
+<rect x="60" y="226" width="300" height="46" rx="10" fill="color-mix(in srgb,#2F7DE1 10%,var(--card))" stroke="#2F7DE1"/><text class="fsm" x="210" y="244">Median (APB) dirsek BKAP &gt; bilek BKAP</text><text class="fsm" x="210" y="262">başlangıçta pozitif sapma</text>
+<rect x="370" y="226" width="320" height="46" rx="10" fill="color-mix(in srgb,#12A39A 10%,var(--card))" stroke="#12A39A"/><text class="fsm" x="530" y="244">Ulnar (ADM/FDI) dirsek BKAP &lt; bilek</text><text class="fsm" x="530" y="262">önkolda yalancı ileti bloğu</text>`,'Martin-Gruber anastomozu'),
+jit:()=>{seed=11;const X=90,W=540,rows=8;let h='';for(let i=0;i<rows;i++){const y=40+i*22,j=.18*nrm();const f=t=>-38*gs(t,1.2,.12)+20*gs(t,1.5,.18)-34*gs(t,2.6+j,.12)+18*gs(t,2.9+j,.18);h+=`<path d="${wp(f,0,4,X,y,W,.32,300)}" class="trc" stroke-width="1.4"/>`}
+return SV(720,250,`${AR}<rect x="${X-10}" y="22" width="${W+20}" height="188" rx="10" class="scr"/>${h}
+<line x1="${X+W*1.2/4}" y1="26" x2="${X+W*1.2/4}" y2="206" stroke="#ffd166" stroke-dasharray="3 3"/><text class="tlab2" x="${X+W*1.2/4}" y="232" text-anchor="middle">tetik lif (sabit)</text>
+<rect x="${X+W*2.35/4}" y="26" width="${W*.5/4}" height="180" fill="#ff7a93" opacity=".14"/><text class="anlt" x="${X+W*2.6/4}" y="232">jitter: ikinci lifin oynaması</text>`,'Tek lif EMG jitter')}
+});
+
 const DF=(k,cap)=>`<figure>${FIG[k]()}<figcaption>${cap}</figcaption></figure>`;
 const BX=(c,t,b)=>`<div class="bx ${c==='pearl'?'prl':c}"><b>${t}</b><span>${b}</span></div>`;
 const TRY=(go,t)=>`<button class="try" data-go="${go}">▶ ${t}</button>`;
 const DERS=[
-{id:'giris',t:'EMG nedir, ne işe yarar?',lv:'Temel',h:()=>`
-<p class="lead">Elektrodiagnostik inceleme, sinir ve kasın elektriksel etkinliğini kaydederek <b>periferik sinir sistemindeki</b> bir sorunun <b>yerini</b>, <b>türünü</b> ve <b>şiddetini</b> ortaya koyar. Muayenenin uzantısıdır; klinik soruya göre planlanır.</p>
-<p>İki ana bölümü vardır:</p>
-<ul><li><b>Sinir iletim çalışmaları (SİÇ):</b> Siniri ciltten elektrikle uyarır, oluşan yanıtı kas ya da sinir üzerinden kaydederiz. Motor ve duyu lifleri ayrı ayrı değerlendirilir.</li>
-<li><b>İğne EMG:</b> Kasın içine ince bir iğne elektrot yerleştirip istirahatte ve kasılırken kasın kendi elektriksel etkinliğini dinler ve izleriz.</li></ul>
-${DF('yol','Şekil 1 · Motor yol boyunca lezyonun olabileceği düzeyler. EMG bu yedi düzeyden hangisinin tutulduğunu ayırt etmeye çalışır.')}
-${BX('def','Lokalizasyon sorusu','Her incelemede sorulan soru şudur: Sorun ön boynuz hücresinde mi, kökte mi, pleksusta mı, periferik sinirde mi, nöromüsküler kavşakta mı, yoksa kasın kendisinde mi?')}
-<p>Bu soruyu cevaplarken iki şeyden yararlanırız: duyu yanıtlarının (SNAP) davranışı ve hangi kasların, hangi sinir ya da kök dağılımında etkilendiği. Bunları ilerleyen bölümlerde adım adım göreceğiz.</p>`},
-{id:'fizyo',t:'Temel fizyoloji: aksiyon potansiyeli ve miyelin',lv:'Temel',h:()=>`
-<p>Sinir ve kas hücrelerinin zarı istirahatte içi negatif (~−70 ile −90 mV) bir potansiyel taşır. Zar eşiğe kadar depolarize olursa voltaj kapılı Na⁺ kanalları açılır ve kısa, kendini yayan bir <b>aksiyon potansiyeli</b> oluşur.</p>
-<p>Kalın motor ve duyu aksonları <b>miyelin</b> kılıfla sarılıdır. Miyelin, akımın yalnızca <b>Ranvier düğümlerinde</b> zarı geçmesine izin verir; aksiyon potansiyeli düğümden düğüme "atlar". Buna <b>saltatorik ileti</b> denir ve hızı 10–20 kat artırır.</p>
-${DF('salt','Şekil 2 · Miyelinli aksonda ileti düğümden düğüme atlar; miyelinsiz aksonda sürekli ve yavaştır.')}
-${BX('pearl','Akılda kalsın','<b>Akson</b> sayısı yanıtın <b>büyüklüğünü</b> (amplitüd), <b>miyelin</b> ise <b>hızını</b> (latans, iletim hızı) belirler. EMG yorumunun neredeyse tamamı bu iki fikre dayanır.')}
-<p>Kas lifleri de uyarılabilir hücrelerdir. Sinir terminalinden salınan asetilkolin, kas lifinin son plağında reseptörlere bağlanır, son plak potansiyeli eşiği aşınca kas lifi boyunca bir aksiyon potansiyeli yayılır ve kasılma başlar.</p>`},
-{id:'mu',t:'Motor ünite',lv:'Temel',h:()=>`
-<p><b>Motor ünite</b>, bir ön boynuz motor nöronu, onun aksonu ve bu aksonun innerve ettiği tüm kas liflerinden oluşur. Bir motor nöron ateşlediğinde ünitesindeki tüm lifler birlikte kasılır.</p>
-${DF('mu','Şekil 3 · İki motor ünitenin lifleri kas içinde birbirine karışık dağılmıştır; bu dağılım iğne EMG yorumunda önemlidir.')}
-<ul><li><b>İnnervasyon oranı:</b> İnce hareket yapan kaslarda düşük (göz kasında ~10 lif), kaba kuvvet üreten kaslarda yüksektir (gastroknemiusta binlerce).</li>
-<li><b>Boyut ilkesi (Henneman):</b> Kasılma gücü arttıkça önce küçük, düşük eşikli üniteler, sonra büyük üniteler devreye girer.</li>
-<li><b>Ateşleme hızı:</b> Bir ünite ~5–10 Hz ile ateşlemeye başlar; kuvvet arttıkça hem hızı artar hem de yeni üniteler katılır (rekrutman).</li></ul>`},
-{id:'kayit',t:'Kayıt temelleri: elektrotlar, amplifikatör, ekran',lv:'Temel',h:()=>`
-<p>EMG cihazı iki elektrot arasındaki <b>farkı</b> ölçer. Bu yüzden her kayıtta üç elektrot vardır:</p>
-<ul><li><b>G1 (aktif):</b> Sinyalin kaynağına, örneğin kasın motor noktasına konur.</li><li><b>G2 (referans):</b> Görece sessiz bir yere, örneğin tendona konur.</li><li><b>Toprak:</b> Hasta ile cihazı aynı potansiyele getirir, parazitleri azaltır. Genellikle uyarıcı ile kayıt elektrotları arasına konur.</li></ul>
-${DF('amp','Şekil 4 · Diferansiyel amplifikatör iki girişin farkını büyütür; ikisine de eşit gelen parazit birbirini götürür.')}
-${BX('def','Negatif yukarı','EMG\'de geleneksel olarak <b>G1\'in negatif olduğu sapma yukarı</b> çizilir. Bu yüzden BKAP\'ın ilk sapması "yukarı", fibrilasyonun ilk pozitif fazı ise "aşağı" görünür.')}
-<p>Ekranda iki ayar sürekli değiştirilir:</p>
-<ul><li><b>Duyarlılık (kazanç):</b> Bir dikey karenin kaç µV ya da mV olduğu. Küçük SNAP\'lar için 10–20 µV/div, BKAP için 2–5 mV/div, fibrilasyon için 50 µV/div kullanılır.</li>
-<li><b>Zaman tabanı (tarama hızı):</b> Bir yatay karenin kaç ms olduğu.</li>
-<li><b>Filtreler:</b> Duyu çalışmasında ~20 Hz–2 kHz, motor çalışmada ~2 Hz–10 kHz, iğne EMG\'de ~10 Hz–10 kHz civarındadır. Filtre değişikliği amplitüdü ve latansı etkiler; laboratuvar ayarı sabit tutulmalıdır.</li></ul>
-`},
-{id:'uyari',t:'Uyarı: katot, anot ve supramaksimal uyarı',lv:'Temel',h:()=>`
-<p>Uyarıcının iki ucu vardır. Akım ciltten geçerken <b>katodun (−)</b> altında akson zarı depolarize olur ve aksiyon potansiyeli burada başlar. <b>Anodun (+)</b> altında ise zar hiperpolarize olur.</p>
-${DF('stim','Şekil 5 · Aksiyon potansiyeli katot altında başlar ve iki yöne yayılır.')}
-<ul><li>Motor ve duyu çalışmalarında <b>katot kayıt elektroduna bakar</b>. Ters konursa uyarı ~2–3 cm daha uzakta başlar ve latans uzar; nadiren anot ileti bloğu yaratabilir.</li>
-<li>F ve H yanıtlarında ise katot proksimale konur; çünkü bu yanıtlarda volley yukarı, omuriliğe doğru gitmelidir.</li>
-<li><b>Supramaksimal uyarı:</b> Akım, yanıt büyümeyi bırakana kadar artırılır, sonra ~%20 daha. Böylece sinirdeki tüm aksonların uyarıldığından emin oluruz. Submaksimal uyarı amplitüdü yanlış biçimde düşük gösterir.</li></ul>
-${BX('warn','Dikkat','Derin seyreden sinirlerde (ör. popliteal fossa, Erb noktası) proksimal uyarı kolayca submaksimal kalır ve yalancı ileti bloğu görüntüsü oluşur.')}
-${TRY('motor','Motor iletim sekmesinde akım kaydırıcısıyla dene')}`},
-{id:'motor',t:'Motor iletim: BKAP, latans, amplitüd, iletim hızı',lv:'Temel',h:()=>`
-<p>Motor sinir uyarıldığında innerve ettiği kasın tüm liflerinden gelen toplam yanıta <b>bileşik kas aksiyon potansiyeli (BKAP)</b> denir.</p>
-${DF('cmap','Şekil 6 · BKAP ölçümleri ve iki uyarı noktasından iletim hızı hesabı.')}
-<h3>Latans</h3>
-<p><b>Distal latans</b>, uyarıdan BKAP\'ın bazal hattan ayrılışına kadar geçen süredir. Yalnızca sinir iletimini değil, sinirin en uç dallarındaki yavaş iletimi, nöromüsküler kavşaktaki gecikmeyi (~1 ms) ve kas lifinin depolarizasyonunu da içerir. Bu yüzden distal latanstan doğrudan hız hesaplanmaz.</p>
-${BX('def','Neden iki nokta?','Proksimal latans ile distal latansın farkı yalnızca iki uyarı noktası arasındaki sinir segmentini yansıtır; kavşak ve kas gecikmesi iki ölçümde de aynı olduğu için çıkarma işleminde kaybolur.')}
-<h3>Amplitüd, alan ve süre</h3>
-<ul><li><b>Amplitüd</b> (bazal hat–negatif tepe, mV): Uyarılan ve kasa ulaşan akson ile kas lifi sayısını yansıtır.</li>
-<li><b>Alan:</b> Negatif fazın altındaki alan; dispersiyondan amplitüde göre daha az etkilenir.</li>
-<li><b>Süre:</b> Negatif fazın süresi; liflerin ne kadar eş zamanlı ilettiğini gösterir. Süre uzarsa (dispersiyon) lifler arası hız farkı artmış demektir.</li></ul>
-<h3>İletim hızı</h3>
-<p><b>İletim hızı (İH) = iki uyarı noktası arası mesafe ÷ latans farkı.</b> Mesafe mm, süre ms ise sonuç doğrudan m/s olarak çıkar. İH, sinirdeki <b>en hızlı</b> liflerin hızıdır.</p>
-${BX('clin','Klinik ipucu','Kısa segmentlerde 1 cm\'lik ölçüm hatası hızı belirgin değiştirir. Dirsek gibi eklem bölgelerinde ekstremite pozisyonu standart tutulmalıdır.')}
-${TRY('motor','Motor iletim sekmesinde dene')}`},
-{id:'duyu',t:'Duyu iletim: SNAP',lv:'Temel',h:()=>`
-<p>Duyu siniri uyarılıp sinirin başka bir noktasından kayıt alınınca oluşan yanıta <b>duyusal sinir aksiyon potansiyeli (SNAP)</b> denir. Arada kavşak ya da kas olmadığı için latanstan doğrudan hız hesaplanabilir.</p>
-${DF('snap','Şekil 7 · SNAP ölçümleri.')}
-<ul><li><b>Başlangıç latansı:</b> İletim hızı hesabında kullanılır (İH = mesafe ÷ başlangıç latansı).</li><li><b>Tepe latansı:</b> Daha kolay ve tekrarlanabilir ölçülür; karşılaştırmalı testlerde kullanılır.</li><li><b>Amplitüd</b> (µV): Duyusal akson sayısını yansıtır.</li></ul>
-<p><b>Antidromik</b> kayıtta uyarı sinirin doğal ileti yönünün tersine gider (bilekten uyarıp parmaktan kayıt). <b>Ortodromik</b> kayıtta doğal yönde gider. Latanslar benzerdir; antidromik yanıt genelde daha büyüktür.</p>
-${BX('def','Ortalama alma','SNAP çok küçük olduğu için gürültü içinde kaybolabilir. Aynı uyarıyı N kez tekrarlayıp ortalama alınca gerçek yanıt sabit kalır, rastgele gürültü √N oranında azalır: 16 tekrar gürültüyü 4 kat azaltır.')}
-${TRY('sensory','Duyu iletim sekmesinde "10× ortala" ile dene')}`},
-{id:'patern',t:'Aksonal mı, demiyelinizan mı?',lv:'Orta',h:()=>`
-<p>Sinir iletim çalışmasının en önemli sorusu budur. Yanıt <b>küçükse</b> akson kaybını, <b>geç ve yavaşsa</b> miyelin hasarını düşünürüz.</p>
-${DF('pat','Şekil 8 · Üç temel desen: üstte distal, altta proksimal uyarı.')}
-<table class="dt"><tr><th></th><th>Aksonal</th><th>Demiyelinizan</th></tr>
-<tr><td>Amplitüd</td><td><b>Düşük</b></td><td>Normal ya da proksimalde düşük</td></tr>
-<tr><td>Distal latans</td><td>Normal ya da hafif uzun (&lt;%130 üst sınır)</td><td><b>Belirgin uzun</b></td></tr>
-<tr><td>İletim hızı</td><td>Normal ya da hafif düşük (&gt;%75 alt sınır)</td><td><b>Belirgin düşük</b></td></tr>
-<tr><td>Süre / dispersiyon</td><td>Normal</td><td>Proksimalde uzun</td></tr>
-<tr><td>F yanıtı</td><td>Normal ya da hafif uzun</td><td>Belirgin uzun ya da yok</td></tr>
-<tr><td>İğne EMG</td><td>Denervasyon, sonra reinnervasyon</td><td>Azalmış rekrutman; denervasyon az</td></tr></table>
-${BX('pearl','Akılda kalsın','Ağır akson kaybında en hızlı lifler de kaybolduğu için hız biraz düşer. Bu "aksonal yavaşlama" sınırlıdır; hız alt sınırın %70–75\'inin altına iniyorsa demiyelinizasyon düşünülür.')}
-${TRY('motor:akson','Aksonal deseni gör')} ${TRY('motor:demy','Demiyelinizan deseni gör')}`},
-{id:'blok',t:'İleti bloğu ve temporal dispersiyon',lv:'Orta',h:()=>`
-<p><b>İleti bloğu</b>, aksiyon potansiyellerinin bir segmentten <b>geçememesidir</b>. Bloğun distalinden uyarınca normal yanıt, proksimalinden uyarınca küçük yanıt alınır. Akson sağlam olduğu için bloğun distalindeki uyarılabilirlik korunur.</p>
-<p><b>Temporal dispersiyon</b> ise lifler arasındaki hız farkının artmasıdır. Yanıtlar kasa farklı zamanlarda ulaşır, BKAP yayılır, basıklaşır ve fazlar kısmen birbirini siler. Amplitüd düşer ama alan görece korunur ve süre uzar.</p>
-${DF('blok','Şekil 9 · Solda gerçek blok, sağda dispersiyon. İkisi de proksimal amplitüdü düşürür; ayırt edici olan süredir.')}
-<ul><li>Proksimal amplitüd ya da alanda <b>&gt;%50 düşüş</b> ve süre artışı <b>&lt;%30</b> ise blok lehinedir. Eşikler kullanılan kritere göre değişir.</li>
-<li>Bloğun yeri <b>kısa segment (inching)</b> çalışmasıyla 1–2 cm aralıklarla uyararak bulunur.</li></ul>
-${BX('warn','Yalancı blok','Submaksimal proksimal uyarı, Martin–Gruber anastomozu (önkolda median→ulnar lifler) ve aksesuar derin peroneal sinir blok gibi görünebilir. Akut akson kaybının ilk günleri de bloğu taklit eder (bkz. Wallerian dejenerasyon).')}
-${TRY('motor:blok','İleti bloğunu gör')}`},
-{id:'wall',t:'Zamanlama: Wallerian dejenerasyon',lv:'Orta',h:()=>`
-<p>Akson kesildiğinde distal parça hemen ölmez; birkaç gün iletmeye devam eder. Bu yüzden bulguların <b>ne zaman</b> ortaya çıktığını bilmek yorum için kritiktir.</p>
-${DF('wall','Şekil 10 · Akut akson hasarından sonra bulguların sırası.')}
-<ul><li><b>İlk günler:</b> Lezyonun distalinden uyarıda yanıt normal, proksimalinden düşük → blok gibi görünür. Rekrutman ise hemen azalır.</li>
-<li><b>3–9. gün:</b> Motor yanıt (BKAP) düşer. <b>6–11. gün:</b> Duyu yanıtı (SNAP) düşer (kavşak, aksondan önce bozulduğu için motor yanıt daha erken düşer).</li>
-<li><b>10. günden sonra:</b> Fibrilasyon ve PSW önce lezyona yakın kaslarda, haftalar içinde distal kaslarda belirir.</li>
-<li><b>Haftalar–aylar:</b> Reinnervasyonla büyük, uzun, polifazik MUP\'lar oluşur.</li></ul>
-${BX('clin','Klinik ipucu','Akut bir sinir hasarında ilk elektrodiagnostik inceleme için en bilgilendirici zaman genellikle 3–4. haftadır; erken çalışma yanıltıcı biçimde iyi görünebilir.')}`},
-{id:'gec',t:'Geç yanıtlar: F dalgası ve H refleksi',lv:'Orta',h:()=>`
-<p>Distal uyarıdan sonra BKAP\'tan çok daha geç gelen küçük yanıtlardır; sinirin <b>proksimal</b> segmentlerini ve kökü dolaylı olarak değerlendirir.</p>
-${DF('fh','Şekil 11 · F dalgasında volley motor akson boyunca yukarı çıkıp ön boynuzda geri döner. H refleksinde Ia afferent omurilikte motor nöronla sinaps yapar.')}
-<table class="dt"><tr><th></th><th>F dalgası</th><th>H refleksi</th></tr>
-<tr><td>Yol</td><td>Tamamen motor, sinaps yok</td><td>Duyu (Ia) → sinaps → motor; gerçek refleks</td></tr>
-<tr><td>Uyarı</td><td>Supramaksimal</td><td>Düşük şiddet, uzun süreli; supramaksimalde kaybolur</td></tr>
-<tr><td>Latans ve şekil</td><td>Her taramada değişir</td><td>Sabittir</td></tr>
-<tr><td>Nereden</td><td>Hemen tüm motor sinirler</td><td>Erişkinde esas olarak soleus (S1) ve fleksör karpi radialis (C6–C7)</td></tr>
-<tr><td>Ölçüm</td><td>Minimum latans, persistans, kronodispersiyon</td><td>Latans, iki taraf farkı, H/M oranı</td></tr></table>
-${BX('pearl','Akılda kalsın','Normal F radikülopatiyi dışlamaz; bir kas birçok kökten innerve edilir. F\'nin en büyük değeri erken GBS gibi proksimal demiyelinizasyonu yakalamaktır.')}
-${TRY('late','F / H sekmesinde dene')}`},
-{id:'rns',t:'Nöromüsküler kavşak: tekrarlayıcı uyarı',lv:'İleri',h:()=>`
-<p>Normalde her sinir impulsu, kas lifini eşiğin çok üzerine taşıyan bir son plak potansiyeli oluşturur (<b>güvenlik payı</b>). Kavşak hastalıklarında bu pay azalır ve tekrarlayan uyarılarda bazı lifler yanıt veremez.</p>
-${DF('rns','Şekil 12 · 3 Hz tekrarlayıcı uyarıda BKAP amplitüdleri.')}
-<ul><li><b>Teknik:</b> Sinir 2–3 Hz ile 5–10 kez uyarılır; 4. ya da 5. yanıt ilk yanıtla karşılaştırılır. <b>&gt;%10 düşüş (dekrement)</b> anormaldir.</li>
-<li><b>Miyastenia gravis (postsinaptik):</b> İlk BKAP normal; düşük hızda dekrement. Proksimal ve yüz kaslarında daha duyarlıdır. Tek lif EMG en duyarlı testtir.</li>
-<li><b>Lambert–Eaton (presinaptik):</b> İlk BKAP düşük; 10 saniyelik maksimal egzersizden sonra ya da 20–50 Hz uyarıda <b>&gt;%100 artış (inkrement)</b>.</li></ul>
-${BX('clin','Klinik ipucu','Rutin sinir iletiminde tüm BKAP\'lar düşük, SNAP\'lar normal ise kısa bir egzersiz testi yapın: Lambert–Eaton gözden kaçmasın.')}`},
-{id:'igne',t:'İğne EMG\'nin dört aşaması',lv:'Temel',h:()=>`
-<p>Her kas sırayla dört durumda incelenir:</p>
-${DF('igne','Şekil 13 · İğne EMG\'de kasın dört durumu.')}
-<ol><li><b>Giriş (insersiyonel) aktivitesi:</b> İğne ilerlerken lifler mekanik olarak uyarılır; kısa bir patlama olur ve iğne durunca söner. Uzaması membran dengesizliğini, azalması fibrozu düşündürür.</li>
-<li><b>İstirahat (spontan aktivite):</b> Gevşek kas sessiz olmalıdır. Son plak gürültüsü ve dikenleri dışındaki her spontan aktivite anormaldir.</li>
-<li><b>Hafif kasılma:</b> Tek tek MUP\'lar ayırt edilir; şekilleri ve ateşleme düzenleri incelenir.</li>
-<li><b>Maksimal kasılma:</b> Tüm üniteler devreye girer; bazal hattı tamamen kapatan <b>interferans paterni</b> beklenir.</li></ol>
-${BX('def','İğne ucunun yeri','İğne yalnızca ucuna yakın (~1 mm) lifleri net kaydeder. Bu yüzden her kasta farklı yönlerde ve derinliklerde örnekleme yapılır.')}
-${TRY('needle:ins','İğne EMG sekmesinde iğneyi kendin oynat')}`},
-{id:'spon',t:'Spontan aktivite',lv:'Orta',h:()=>`
-<p>İstirahatteki kasta görülen potansiyeller kaynağına göre sınıflanır. Sesleri çoğu zaman ekrandan önce uyarır.</p>
-<table class="dt"><tr><th>Potansiyel</th><th>Kaynak</th><th>Ritim</th><th>Ses</th><th>Anlam</th></tr>
-<tr><td>Son plak gürültüsü / dikeni</td><td>Son plak</td><td>Düzensiz</td><td>Deniz kabuğu / cızırtı</td><td>Normal</td></tr>
-<tr><td>Fibrilasyon</td><td>Tek denerve lif</td><td>Çok düzenli 0,5–15 Hz</td><td>Yağmur / saat</td><td>Aktif denervasyon</td></tr>
-<tr><td>Pozitif keskin dalga</td><td>Tek denerve lif</td><td>Düzenli</td><td>Künt pop</td><td>Aktif denervasyon</td></tr>
-<tr><td>Fasikülasyon</td><td>Tüm motor ünite</td><td>Düzensiz, seyrek</td><td>Patlamış mısır</td><td>Benign ya da ön boynuz</td></tr>
-<tr><td>Miyotonik deşarj</td><td>Tek lif</td><td>20–150 Hz, inip çıkar</td><td>Pike yapan uçak</td><td>Miyotoni</td></tr>
-<tr><td>Kompleks tekrarlayıcı deşarj</td><td>Lif grubu (efaptik)</td><td>Sabit 5–100 Hz</td><td>Makine</td><td>Kronik süreç</td></tr>
-<tr><td>Miyokimi</td><td>Motor akson</td><td>Burstler</td><td>Yürüyen askerler</td><td>Radyasyon, MS, GBS</td></tr>
-<tr><td>Nöromiyotoni</td><td>Distal akson</td><td>150–250 Hz</td><td>Ping</td><td>Isaacs sendromu</td></tr></table>
-${BX('pearl','Akılda kalsın','Önce ritme bakın: düzenli mi, düzensiz mi, frekansı sabit mi, değişken mi? Sonra potansiyelin büyüklüğüne: tek lif mi, motor ünite mi?')}
-${TRY('needle:fib','Fibrilasyonu dinle')} ${TRY('needle:myot','Miyotonik deşarjı dinle')} ${TRY('needle:crd','CRD\'yi dinle')}`},
-{id:'mup',t:'MUP analizi',lv:'Orta',h:()=>`
-<p>Motor ünite potansiyeli (MUP), iğnenin kayıt alanındaki tek bir ünitenin liflerinden gelen toplam yanıttır.</p>
-${DF('mupm','Şekil 14 · MUP\'ta ölçülen parametreler.')}
-<ul><li><b>Amplitüd:</b> İğneye en yakın birkaç lif belirler; iğne konumuna çok duyarlıdır. Yükselme zamanı &lt;0,5 ms olan keskin MUP\'lar ölçülmelidir.</li>
-<li><b>Süre:</b> Ünitedeki lif sayısını ve dağılımını en iyi yansıtan parametredir.</li>
-<li><b>Faz sayısı:</b> Bazal hattı geçiş sayısı + 1. Dörtten fazla faz polifaziktir; normal kasta &lt;%15.</li>
-<li><b>Stabilite:</b> Şeklin taramadan taramaya değişmesi, yeni oluşan sinir terminallerinin güvenilmez iletimini (erken reinnervasyon, kavşak hastalığı) gösterir.</li></ul>
-${DF('mupt','Şekil 15 · Aynı ölçekte normal, nörojenik ve miyopatik MUP.')}
-${BX('def','Neden büyür, neden küçülür?','Reinnervasyonda kalan aksonlar filizlenip denerve lifleri sahiplenir: ünite büyür (<b>nörojenik</b>). Miyopatide ünitedeki işlevsel lif sayısı azalır: ünite küçülür (<b>miyopatik</b>).')}
-${TRY('needle:mupR','Nörojenik MUP\'ı gör')} ${TRY('needle:mupM','Miyopatik MUP\'ı gör')}`},
-{id:'rek',t:'Rekrutman',lv:'Orta',h:()=>`
-<p>Kasılma gücünü artırmanın iki yolu vardır: çalışan ünitelerin ateşleme hızını artırmak ve yeni üniteleri devreye sokmak (<b>rekrutman</b>).</p>
-${DF('rek','Şekil 16 · Aynı hafif kuvvette üç farklı rekrutman deseni.')}
-<ul><li><b>Normal:</b> İlk ünite ~10 Hz\'e ulaşınca ikinci ünite katılır. Rekrutman oranı (en hızlı ünitenin hızı ÷ aktif ünite sayısı) &lt;5.</li>
-<li><b>Azalmış (nörojenik):</b> Ünite sayısı az olduğu için var olanlar çok hızlı ateşler (20–40 Hz); oran &gt;10.</li>
-<li><b>Erken (miyopatik):</b> Her ünite zayıf olduğu için hafif kuvvette bile çok sayıda ünite katılır.</li></ul>
-${BX('pearl','Akılda kalsın','Rekrutman, MUP şeklinden önce bozulur. Akut nörojenik lezyonda MUP\'lar normaldir ama rekrutman azalmıştır.')}
-${TRY('needle:mupN','Kasılma gücü kaydırıcısıyla dene')}`},
-{id:'lok',t:'Lokalizasyon mantığı',lv:'İleri',h:()=>`
-<p>Duyusal hücre gövdesi omuriliğin dışında, <b>dorsal kök gangliyonundadır (DRG)</b>. Bu basit anatomik gerçek, lokalizasyonun anahtarıdır:</p>
-${BX('def','SNAP kuralı','Lezyon DRG\'nin <b>proksimalindeyse</b> (kök, spinal kord) periferik duyu aksonu hücre gövdesine bağlı kalır ve <b>SNAP normaldir</b>, hasta duyu kaybı tarif etse bile. Lezyon DRG\'de ya da <b>distalindeyse</b> (pleksus, sinir) <b>SNAP düşer</b>.')}
-<table class="dt"><tr><th>Lezyon</th><th>SNAP</th><th>BKAP</th><th>İğne EMG</th></tr>
-<tr><td>Ön boynuz (ALS)</td><td>Normal</td><td>Düşük</td><td>Yaygın, birçok segmentte denervasyon + nörojenik</td></tr>
-<tr><td>Kök (radikülopati)</td><td>Normal</td><td>Normal ya da düşük</td><td>Bir kök dağılımı + paraspinal</td></tr>
-<tr><td>Pleksus</td><td>Düşük</td><td>Düşük</td><td>Birden çok sinir, paraspinal normal</td></tr>
-<tr><td>Mononöropati</td><td>Tek sinirde anormal</td><td>Tek sinirde anormal</td><td>Tek sinir dağılımı</td></tr>
-<tr><td>Polinöropati</td><td>Yaygın düşük (önce bacak)</td><td>Distal düşük</td><td>Distalden proksimale</td></tr>
-<tr><td>Kavşak</td><td>Normal</td><td>Normal (LEMS\'te düşük)</td><td>İnstabil MUP; RNS anormal</td></tr>
-<tr><td>Miyopati</td><td>Normal</td><td>Normal ya da düşük</td><td>Miyopatik MUP, erken rekrutman</td></tr></table>
-${BX('clin','Klinik ipucu','Paraspinal kaslar arka primer ramustan, ekstremite kasları ön ramustan innerve edilir. Paraspinal denervasyon lezyonu köke ya da daha proksimaline taşır.')}`},
-{id:'klinik',t:'Sık klinik tablolar',lv:'İleri',h:()=>`
-<h3>Karpal tünel sendromu</h3><p>Önce median SNAP, sonra median distal motor latans bozulur. Hafif olgularda median–ulnar karşılaştırmalı testler gerekir. Önkol hızı normaldir. ${TRY('motor:tuzak','Gör')}</p>
-<h3>Dirsekte ulnar nöropati</h3><p>Dirsek segmentinde fokal yavaşlama (&gt;10 m/s fark) ve/veya amplitüd düşüşü; dirsek bükülü çalışılır. Ulnar SNAP ve dorsal ulnar kutanöz SNAP düşebilir.</p>
-<h3>Fibula başında peroneal nöropati</h3><p>Ayak düşmesinin en sık nedeni. Fibula başı segmentinde blok ya da yavaşlama aranır; L5 radikülopatisinden ayırmak için tibialis posterior ve gluteus medius incelenir.</p>
-<h3>Radikülopati</h3><p>SİÇ çoğu zaman normaldir (SNAP korunur). Tanı iğne EMG ile konur: aynı köke ait, farklı sinirlerden innerve edilen kaslarda ve paraspinallerde denervasyon. S1\'de H refleksi destekler.</p>
-<h3>Polinöropati</h3><p>Uzunluğa bağımlı, simetrik; önce sural ve yüzeyel peroneal SNAP düşer. Aksonal mı demiyelinizan mı ayrımı tedaviyi belirler (ör. KİDP immünoterapiye yanıt verir).</p>
-<h3>ALS</h3><p>Duyu normal, motor yanıtlar düşük; üç ya da dört bölgede (bulber, servikal, torakal, lumbosakral) aktif ve kronik denervasyon (Awaji/Gold Coast kriterleri).</p>
-<h3>Miyopati</h3><p>SİÇ genellikle normal; proksimal kaslarda kısa, küçük, polifazik MUP'lar ve erken rekrutman. Fibrilasyon enflamatuvar ya da nekrotizan süreci düşündürür.</p>
-`},
-{id:'tuzak',t:'Teknik hatalar ve tuzaklar',lv:'İleri',h:()=>`
-<ul><li><b>Sıcaklık:</b> Soğuk ekstremitede latans uzar, hız düşer (~1,5–2 m/s/°C), amplitüd artar. El ≥32 °C, ayak ≥30 °C olmalı.</li>
-<li><b>Yaş ve boy:</b> Yaşla SNAP amplitüdü ve iletim hızı azalır; uzun boyluda F ve H latansları uzundur.</li>
-<li><b>Submaksimal uyarı:</b> Yalancı düşük amplitüd ve yalancı blok.</li>
-<li><b>Elektrot yeri:</b> G1 motor noktada değilse BKAP\'ın ilk sapması pozitif olur ve amplitüd düşer.</li>
-<li><b>Mesafe ölçümü:</b> Kısa segmentlerde küçük hatalar hızı büyük ölçüde değiştirir.</li>
-<li><b>Anatomik varyasyonlar:</b> Martin–Gruber anastomozu, aksesuar derin peroneal sinir.</li>
-<li><b>Artefakt ve parazit:</b> 50 Hz parazit için toprak elektrodu, cilt temizliği ve kabloların düzenlenmesi.</li>
-<li><b>Ödem ve obezite:</b> Amplitüdleri düşürür, uyarı eşiğini yükseltir.</li></ul>
-${BX('warn','Dikkat','Beklenmedik bir bulgu gördüğünüzde yorumlamadan önce tekniği kontrol edin: sıcaklık, elektrot yeri, akım ve mesafe.')}
-`},
-{id:'rapor',t:'Rapor yazımı',lv:'İleri',h:()=>`
-<p>İyi bir EMG raporu, istemi yapan hekimin klinik soruya cevap bulabileceği şekilde yazılır.</p>
-<ol><li><b>Klinik soru:</b> Kısa öykü ve istem nedeni.</li><li><b>Teknik:</b> Sıcaklık, çalışılan sinirler ve kaslar.</li><li><b>Bulgular:</b> Tablolar (referans değerlerle) ve iğne EMG özeti.</li><li><b>Yorum (sonuç):</b> Lokalizasyon, patofizyoloji (aksonal/demiyelinizan), şiddet ve evre (akut/kronik, aktif/kronik denervasyon).</li><li><b>Kısıtlılıklar:</b> Hasta uyumu, yapılamayan çalışmalar.</li></ol>
-${BX('def','Örnek sonuç cümlesi','"Bulgular, bilek düzeyinde median nöropati ile uyumludur (karpal tünel sendromu); demiyelinizan özellikte, orta derecededir. Polinöropati ya da C6–C7 radikülopatisini destekleyen bulgu saptanmamıştır."')}`},
-{id:'sozluk',t:'A\'dan Z\'ye sözlük',lv:'Sözlük',h:()=>{const G=[
-['Aksiyon potansiyeli','Uyarılabilir zarda eşik aşılınca oluşan, kendini yayan kısa depolarizasyon.'],['Aksonal hasar','Akson sayısının azalması; esas olarak amplitüd düşer.'],['Alan','BKAP\'ın negatif fazının altındaki alan; dispersiyondan amplitüde göre daha az etkilenir.'],['Amplitüd','Yanıtın büyüklüğü (mV ya da µV); akson/lif sayısını yansıtır.'],['Anot','Uyarıcının pozitif ucu; altında zar hiperpolarize olur.'],['Antidromik','Sinirin doğal ileti yönünün tersine giden uyarı.'],
+{id:'giris',p:'I',t:'EMG nedir, ne zaman ve nasıl planlanır?',lv:'Temel',h:()=>`
+<p class="lead">Elektrodiagnostik (EDX) inceleme, periferik sinir sistemi ve kasın elektriksel davranışını ölçerek bir sorunun <b>yerini</b> (lokalizasyon), <b>türünü</b> (aksonal, demiyelinizan, nöromüsküler kavşak, miyopatik), <b>şiddetini</b> ve <b>zamanlamasını</b> (akut, aktif, kronik, iyileşmekte) ortaya koyar. Klinik muayenenin elektriksel uzantısıdır: soru muayeneden doğar, cevap klinikle birlikte yorumlanır.</p>
+${DF('yol','Şekil 1 · Alt motor nöron yolu: ön boynuz hücresi → ön kök → pleksus → periferik sinir → nöromüsküler kavşak → kas. Duyu yolunda hücre gövdesi arka kök ganglionundadır (DRG); bu ayrıntı lokalizasyonun anahtarıdır.')}
+<h3>Bileşenler</h3>
+<table class="dt"><tr><th>Yöntem</th><th>Neyi ölçer</th><th>En güçlü olduğu soru</th></tr>
+<tr><td>Motor sinir iletimi</td><td>BKAP: motor akson + kavşak + kas lifinin toplam yanıtı</td><td>Akson kaybı mı, demiyelinizasyon mu; fokal yavaşlama ve blok</td></tr>
+<tr><td>Duyu sinir iletimi</td><td>SNAP: DRG'den çıkan kalın miyelinli duyu aksonları</td><td>Lezyon DRG'nin proksimalinde mi distalinde mi</td></tr>
+<tr><td>Geç yanıtlar (F, H)</td><td>Proksimal segment ve kökler</td><td>Erken GBS, proksimal demiyelinizasyon, S1 kökü</td></tr>
+<tr><td>Tekrarlayıcı uyarı, tek lif EMG</td><td>Kavşak güvenlik faktörü</td><td>Miyasteni, LEMS, botulizm</td></tr>
+<tr><td>İğne EMG</td><td>Kasın istirahat ve istemli aktivitesi</td><td>Denervasyon, reinnervasyon, miyopati; zamanlama</td></tr></table>
+<h3>Endikasyonlar</h3>
+<ul><li>Fokal güçsüzlük, uyuşma, ağrı: tuzak nöropatiler, radikülopati, pleksopati.</li>
+<li>Yaygın güçsüzlük: motor nöron hastalığı, polinöropati, kavşak hastalığı, miyopati ayrımı.</li>
+<li>Travma sonrası: sinir hasarının tipi ve prognozu, cerrahi zamanlaması.</li>
+<li>Takip: CIDP, MMN tedavi yanıtı; reinnervasyonun izlenmesi.</li>
+<li>Kas biyopsisi yerinin seçilmesi (iğnelenen kasın karşı tarafındaki homolog kas).</li></ul>
+<h3>Planlama: "her hastaya aynı protokol" yoktur</h3>
+<p>İnceleme, ön tanıya göre başlar ama bulgulara göre <b>yön değiştirir</b>. Örneğin karpal tünel ön tanısıyla gelen bir hastada ulnar duyu da düşükse polinöropati, ipsilateral medial antebrakiyal kutanöz SNAP düşükse alt trunkus düşünülür ve plan genişletilir. Her bulgu bir hipotezi test etmelidir.</p>
+${BX('def','Altın kurallar','1) Önce sinir iletimi, sonra iğne EMG. 2) Anormal bir bulguyu karşı tarafla ve komşu sinirle karşılaştırın. 3) Tek sınırda değere dayanarak tanı koymayın. 4) Ekstremite ısısını ölçün. 5) Bulgu klinikle uyuşmuyorsa önce teknik hatayı arayın.')}
+<h3>EMG'nin sınırları</h3>
+<ul><li><b>Küçük lif</b> (Aδ, C) fonksiyonunu ölçmez; küçük lif nöropatisinde rutin EMG normaldir.</li>
+<li>Saf duyu kök lezyonu (DRG proksimali) ve saf demiyelinizan kök lezyonu iğne EMG'de iz bırakmayabilir: <b>normal EMG radikülopatiyi dışlamaz</b>.</li>
+<li>Hiperakut dönemde (ilk 7–10 gün) akson kaybı henüz görünmez; zamanlama yanlışsa sonuç yanıltır.</li>
+<li>Santral (üst motor nöron) lezyonlar ancak dolaylı bulgu verir (azalmış aktivasyon).</li></ul>
+${BX('clin','Klinik ipucu','İstek formuna "EMG" yazmak yetmez. Klinik soru açık olmalı: "Sağ elde uyuşma: KTS mi, C6–7 mi?" Soru ne kadar netse inceleme o kadar hedefli ve kısa olur.')}`},
+
+{id:'fizyo',p:'I',t:'Membran fizyolojisi, miyelin ve lif tipleri',lv:'Temel',h:()=>`
+<p class="lead">Sinir iletimi çalışmalarında gördüğümüz her dalga, binlerce aksiyon potansiyelinin (AP) uzaktan, cilt üzerinden kaydedilmiş toplamıdır. Bu toplamı doğru yorumlamak için tek bir aksonda ne olduğunu iyi bilmek gerekir.</p>
+<h3>İstirahat potansiyeli ve aksiyon potansiyeli</h3>
+<p>Na⁺/K⁺-ATPaz pompası ve istirahatte açık K⁺ kanalları zar içini negatif tutar: aksonda yaklaşık −70 mV, kas lifinde yaklaşık −85 ile −90 mV. Zar eşiğe (yaklaşık −55 mV) kadar depolarize olursa <b>voltaj kapılı Na⁺ kanalları</b> açılır, içeri Na⁺ akımı zarı +30 mV'a çıkarır. Ardından Na⁺ kanalları inaktive olur, K⁺ kanalları açılır ve zar repolarize olur. Na⁺ kanallarının inaktivasyondan çıkması için gereken süre <b>refrakter dönemi</b> belirler (mutlak ~0,5–1 ms, rölatif birkaç ms). Bu nedenle AP'ler tek yönlü yayılır ve yüksek frekansta ard arda uyarılarda ikinci yanıt küçülebilir.</p>
+<h3>Miyelin ve saltatorik iletim</h3>
+${DF('salt','Şekil 2 · Miyelinli aksonda Na⁺ kanalları Ranvier düğümlerinde yoğunlaşır (Nav1.6); internod boyunca miyelin kapasitansı düşürür ve akım kaçağını engeller. AP düğümden düğüme "atlar".')}
+<p>Miyelin, Schwann hücresinin akson etrafına sardığı çok katlı yağlı zardır. İki etkisi vardır: zar <b>kapasitansını</b> azaltır (daha az yük ile depolarize olur) ve <b>direnci</b> artırır (akım kaçağını engeller). Böylece akım internod boyunca pasif ve hızla ilerler, bir sonraki düğümü eşiğe getirir. Düğümler arası mesafe kabaca akson çapının 100 katıdır. Paranodal bölgede miyelin aksona sıkıca tutunur, jukstaparanodal bölgede Kv1 kanalları bulunur. Bu yapı bozulduğunda (örneğin nodo-paranodopatilerde anti-nörofasin 155, anti-kontaktin-1) ileti düğüm düzeyinde aksar.</p>
+${BX('def','Güvenlik faktörü','Bir düğümde üretilen akımın bir sonraki düğümü eşiğe getirmek için gereken akıma oranıdır; normalde 5–7 kat. Demiyelinizasyonda akım kaçar ve kapasitans artar; güvenlik faktörü önce düşer (ileti <b>yavaşlar</b>), 1\'in altına inerse ileti o noktada <b>durur</b> (ileti bloğu). Isı artışı Na⁺ kanalı inaktivasyonunu hızlandırdığı için sınırda lifleri bloğa iter: Uhthoff fenomeninin periferik karşılığı.')}
+<h3>Çap–hız ilişkisi ve lif sınıfları</h3>
+<p>Miyelinli liflerde iletim hızı (m/s) yaklaşık olarak lif çapının (µm) <b>6 katıdır</b> (Hursh). Rutin sinir iletimi yalnızca <b>en kalın ve en hızlı</b> lifleri ölçer: latans ve hız ilk gelen liflerden hesaplanır, amplitüd ise kalın liflerin sayısını yansıtır.</p>
+<table class="dt"><tr><th>Sınıf (Erlanger–Gasser / Lloyd–Hunt)</th><th>Çap</th><th>Hız</th><th>İşlev</th><th>Rutin SİÇ'de</th></tr>
+<tr><td>Aα / Ia, Ib</td><td>12–20 µm</td><td>70–120 m/s</td><td>Kas iğciği, Golgi tendon organı; alfa motor akson</td><td>Evet (BKAP, H refleksi)</td></tr>
+<tr><td>Aβ / II</td><td>6–12 µm</td><td>35–75 m/s</td><td>Dokunma, titreşim, pozisyon</td><td>Evet (SNAP)</td></tr>
+<tr><td>Aγ</td><td>3–6 µm</td><td>15–30 m/s</td><td>İğcik içi (fuziform) motor</td><td>Hayır</td></tr>
+<tr><td>Aδ / III</td><td>1–5 µm</td><td>5–30 m/s</td><td>Keskin ağrı, soğuk</td><td>Hayır</td></tr>
+<tr><td>B</td><td>&lt;3 µm</td><td>3–15 m/s</td><td>Preganglionik otonom</td><td>Hayır</td></tr>
+<tr><td>C / IV (miyelinsiz)</td><td>0,2–1,5 µm</td><td>0,5–2 m/s</td><td>Yanıcı ağrı, sıcak, postganglionik otonom</td><td>Hayır (SSR, QSART, deri biyopsisi)</td></tr></table>
+${BX('pearl','Akılda kalsın','İletim hızı en hızlı birkaç lifin hızıdır. Kalın liflerin %70–80\'i kaybolsa bile kalan tek bir hızlı lif hızı normal tutabilir. Bu yüzden akson kaybı esas olarak <b>amplitüdü</b>, demiyelinizasyon esas olarak <b>latans ve hızı</b> etkiler.')}
+<h3>Demiyelinizasyonun sonuçları</h3>
+<ul><li><b>Yavaşlama:</b> İnternodda zayıflayan akım düğümü daha geç eşiğe getirir; segmental demiyelinizasyonda ileti düğüm atlamak yerine sürekli (kontinü) hale gelebilir.</li>
+<li><b>İleti bloğu:</b> Güvenlik faktörü 1'in altında; distal uyarıda yanıt normal, lezyonun proksimalinden uyarıda küçük.</li>
+<li><b>Temporal dispersiyon:</b> Liflerin farklı derecede yavaşlaması yanıtı yayar.</li>
+<li><b>Frekans bağımlı blok:</b> Yüksek frekansta ard arda impulslar geçemez (dayanıklılık düşer, yorgunluk).</li>
+<li><b>Ektopik ateşleme ve efaptik geçiş:</b> Miyokimi, nöromiyotoni, parestezi.</li></ul>`},
+
+{id:'mu',p:'I',t:'Motor ünite',lv:'Temel',h:()=>`
+<p class="lead">Motor ünite (MÜ), bir alfa motor nöron, aksonu ve bu aksonun innerve ettiği tüm kas lifleridir. İğne EMG'de gördüğümüz her MUP bir motor ünitenin, BKAP ise uyarılan tüm motor ünitelerin toplamıdır.</p>
+${DF('mu','Şekil 3 · İki motor ünite. Liflerin kas içinde mozaik (dama tahtası) dağılımı vardır: aynı ünitenin lifleri yan yana değil, başka ünitelerin lifleri arasına serpiştirilmiştir.')}
+<h3>İnnervasyon oranı ve ünite alanı</h3>
+<p>Bir motor nöronun innerve ettiği lif sayısı kastan kasa çok değişir: dış göz kaslarında 5–10, el intrinsik kaslarında 100–300, gastroknemius ve tibialis anteriorda 1000–2000. Bir ünitenin lifleri kas kesitinde 5–10 mm çaplı bir alana dağılır ve bu alanda 20–30 farklı ünitenin lifleri iç içe geçer. Bu mozaik yapı, iğne ucunun yakınında aynı üniteden normalde yalnızca 1–2 lif bulunmasını sağlar (normal <b>lif yoğunluğu</b> ~1,5).</p>
+<h3>Ünite tipleri ve boyut ilkesi</h3>
+<table class="dt"><tr><th></th><th>Tip I (S, yavaş)</th><th>Tip IIA (FR)</th><th>Tip IIB/X (FF)</th></tr>
+<tr><td>Motor nöron</td><td>Küçük, düşük eşikli</td><td>Orta</td><td>Büyük, yüksek eşikli</td></tr>
+<tr><td>Lif sayısı / kuvvet</td><td>Az / düşük</td><td>Orta</td><td>Çok / yüksek</td></tr>
+<tr><td>Yorgunluk</td><td>Dirençli</td><td>Dirençli</td><td>Çabuk yorulur</td></tr>
+<tr><td>Metabolizma</td><td>Oksidatif</td><td>Oksidatif-glikolitik</td><td>Glikolitik</td></tr></table>
+<p><b>Henneman boyut ilkesi:</b> Kasılma arttıkça önce küçük, düşük eşikli üniteler, sonra giderek daha büyük üniteler devreye girer. Bu yüzden iğne EMG'de minimal kasılmada gördüğümüz MUP'lar küçük tip I ünitelerdir; MUP analizi bu düşük eşikli ünitelerle yapılır. Kuvvet iki yolla artar: yeni ünite katılması (<b>rekrutman</b>) ve mevcut ünitelerin ateşleme hızını artırması (<b>hız kodlaması</b>).</p>
+<h3>Hastalıkta motor ünite</h3>
+<ul><li><b>Nörojenik süreç:</b> Ünite sayısı azalır. Sağ kalan aksonlar denerve lifleri <b>kollateral filizlenme</b> ile sahiplenir: ünite büyür, lifleri gruplaşır (biyopside "fiber type grouping"), MUP uzun süreli ve yüksek amplitüdlü olur.</li>
+<li><b>Miyopatik süreç:</b> Ünite sayısı aynıdır ama her ünitenin çalışan lif sayısı azalır: MUP kısa süreli, düşük amplitüdlü ve polifazik olur; aynı kuvvet için daha çok ünite gerekir (erken rekrutman).</li>
+<li><b>Kavşak hastalığı:</b> Ünite sayısı ve büyüklüğü normaldir ama bazı liflerde ileti aralıklı olarak başarısız olur: MUP her ateşlemede değişir (instabilite).</li></ul>`},
+
+{id:'hacim',p:'I',t:'Hacim iletimi: dalga şekli nereden gelir?',lv:'Orta',h:()=>`
+<p class="lead">Elektrotlarımız sinire ya da kas lifine dokunmaz; aradaki doku (hacim iletkeni) içinden yayılan akımı kaydeder. Bir dalganın neden başta pozitif ya da negatif olduğunu, neden trifazik göründüğünü bilmek, elektrot yerinin doğru olup olmadığını ve dalganın nereden geldiğini anlamanın temelidir.</p>
+${DF('trif','Şekil 4 · Yayılan bir AP dış ortamdan bakıldığında önde pozitif, depolarize bölgede negatif, arkada yine pozitif yük taşıyan bir dipol (tripol) gibi davranır. Elektrot dalgaya göre nerede duruyorsa ona göre bir şekil görür.')}
+<h3>Üç temel durum</h3>
+<ol><li><b>Uzaktan yaklaşıp altından geçen ve uzaklaşan dalga:</b> Önce önde gelen pozitif yükü (aşağı sapma), sonra negatif çekirdeği (yukarı), sonra arkadaki pozitifi görür: <b>trifazik (+ − +)</b>. Tipik örnekler ortodromik/antidromik SNAP ve fibrilasyon potansiyelidir.</li>
+<li><b>Dalga elektrotun tam altında başlıyorsa:</b> Önde gelen pozitif bölge hiç görülmez; yanıt <b>doğrudan negatif</b> (yukarı) başlar. BKAP kaydında G1'in kasın motor noktasına (son plak bölgesi) konmasının nedeni budur. Son plak dikenleri de bu yüzden negatif başlar.</li>
+<li><b>Dalga elektrota hiç ulaşmıyorsa ya da elektrot dalganın bittiği yerdeyse:</b> Yalnızca pozitif (aşağı) sapma görülür. Pozitif keskin dalga, iğne ucunun hasarlı lif ucunda ileti bloğu oluşturmasıyla bu şekli alır.</li></ol>
+${BX('warn','Başlangıçta pozitif sapan BKAP','G1 motor noktada değil demektir: dalga başka bir yerde başlayıp elektrota doğru ilerliyor. Latans yanlış ölçülür (pozitif sapmanın başlangıcı alınmalıdır) ve amplitüd düşük çıkar. G1\'i kaydırın. Elektrot doğru yerdeyse başka bir kastan hacim iletimiyle gelen potansiyel (örneğin Martin-Gruber anastomozunda median uyarıda ulnar kaslar) düşünülmelidir.')}
+<h3>Yakın alan ve uzak alan potansiyelleri</h3>
+<p><b>Yakın alan (near-field)</b> potansiyelleri kaynak elektrota yaklaştıkça büyüyen, latansı elektrotun yerine göre değişen potansiyellerdir; SİÇ ve iğne EMG'deki dalgaların hemen hepsi böyledir. <b>Uzak alan (far-field)</b> potansiyelleri ise dalga cephesi farklı iletkenliğe sahip iki bölge arasındaki sınırı geçtiğinde (örneğin önkoldan ele, kalçadan bacağa) ortaya çıkan, geniş bir alanda <b>aynı anda</b> görülen duran potansiyellerdir. Latansları elektrot yerinden bağımsızdır. Somatosensoriyel uyarılmış potansiyellerdeki P9, P11, P13/14 ve N18 bu tiptedir. SİÇ'de G2'nin tamamen "sessiz" olmadığını, uzak alan bileşenlerinin ve kas aktivitesinin G2 tarafından da görülebileceğini hatırlamak gerekir.</p>
+<h3>Bipolar kayıt ve elektrotlar arası mesafe</h3>
+<p>Amplifikatör G1 ile G2 arasındaki <b>farkı</b> büyütür. Bir SNAP'ın sinir boyunca kapladığı uzunluk yaklaşık süre × hız kadardır (1 ms × 60 m/s ≈ 6 cm). G1 ile G2 arası bu mesafeden kısa olursa dalga G1'den çıkmadan G2'ye ulaşır, iki elektrotun potansiyelleri birbirini kısmen siler ve amplitüd yapay olarak düşer, tepe latansı kısalır. Bu nedenle duyu halka elektrotları arasında <b>3–4 cm</b> bırakılır. BKAP'ta ise G2 kasın tendonuna (elektriksel olarak görece sessiz) konur; G2 aktif bir kasın üzerine düşerse BKAP şekli bozulur.</p>
+${BX('pearl','Akılda kalsın','Negatif yukarı, pozitif aşağı. BKAP negatif başlamalıdır. SNAP ve fibrilasyon küçük bir pozitifle başlar. Son plak dikeni negatif başlar. Pozitif keskin dalga pozitif başlar. Dalganın ilk fazı, kaynağın elektrota göre nerede olduğunu söyler.')}`},
+
+{id:'kayit',p:'I',t:'Enstrümantasyon: amplifikatör, filtreler, gürültü',lv:'Orta',h:()=>`
+<p class="lead">Kaydedilen sinyaller mikrovolt (SNAP) ile milivolt (BKAP, MUP) düzeyindedir; çevredeki elektriksel gürültü bunun binlerce katı olabilir. Doğru ayar yapılmazsa latans, amplitüd ve süre ölçümleri sistematik olarak bozulur.</p>
+${DF('amp','Şekil 5 · Diferansiyel amplifikatör iki girişin farkını büyütür; iki girişe ortak gelen gürültü (şebeke, uzak kaynaklar) birbirini siler.')}
+<h3>Diferansiyel amplifikatör</h3>
+<ul><li><b>Ortak mod reddi oranı (CMRR):</b> Ortak sinyali ne kadar bastırdığı. İyi bir cihazda &gt;90–100 dB (100 000:1). Ortak mod reddi ancak iki elektrotun empedansı birbirine yakınsa işe yarar.</li>
+<li><b>Giriş empedansı:</b> Çok yüksek olmalıdır (&gt;100 MΩ); elektrot–cilt empedansı ise düşük ve iki elektrotta eşit tutulmalıdır (ideal &lt;5 kΩ). Cildi silmek, iletken jel kullanmak, kuru ve nasırlı cildi hafifçe aşındırmak gürültüyü azaltır.</li>
+<li><b>Toprak elektrotu:</b> Uyarı ile kayıt elektrotları arasına konur; hem güvenlik hem uyarı artefaktının azaltılması için.</li></ul>
+<h3>Filtreler ve ölçüme etkileri</h3>
+<table class="dt"><tr><th>Çalışma</th><th>Alçak frekans filtresi (LFF, yüksek geçiren)</th><th>Yüksek frekans filtresi (HFF, alçak geçiren)</th></tr>
+<tr><td>Motor iletim</td><td>2–10 Hz</td><td>10 kHz</td></tr>
+<tr><td>Duyu iletim</td><td>5–20 Hz</td><td>2–3 kHz</td></tr>
+<tr><td>İğne EMG</td><td>10–20 Hz</td><td>10 kHz</td></tr>
+<tr><td>Tek lif EMG</td><td>500 Hz–1 kHz</td><td>10 kHz</td></tr></table>
+<ul><li><b>LFF'yi yükseltmek</b> yavaş bileşenleri keser: amplitüd ve süre azalır, <b>tepe latansı kısalır</b>; başlangıç latansı pek değişmez.</li>
+<li><b>HFF'yi düşürmek</b> hızlı bileşenleri yumuşatır: amplitüd düşer, <b>başlangıç ve tepe latansı uzar</b>.</li>
+<li><b>Çentik (50 Hz) filtre</b> sinyalin o frekanstaki bileşenlerini de siler ve dalgayı bozar; mümkünse kullanmayın, gürültünün kaynağını giderin.</li></ul>
+${BX('warn','Kural','Referans değerleriniz hangi filtre ayarlarıyla elde edildiyse, hastayı da aynı ayarlarla çalışın. Filtre değişikliği, örneğin CIDP kriterlerindeki distal BKAP süresi eşiklerini doğrudan değiştirir.')}
+<h3>Ekran ayarları ve latans ölçümü</h3>
+<p>Ölçülen başlangıç latansı kazanca bağlıdır: duyarlılık artırıldıkça dalganın bazalden ayrıldığı nokta daha erken görünür. Bu nedenle latansları her zaman aynı kazançta ölçün (örneğin motor için 2–5 mV/bölme, duyu için 10–20 µV/bölme). Tarama hızını yanıtın ekranın yaklaşık yarısını kaplayacağı şekilde seçin.</p>
+<h3>Ortalama alma ve örnekleme</h3>
+<p>Rastgele gürültü uyarıya kilitli değildir; n yanıtın ortalaması alındığında sinyal sabit kalır, gürültü <b>√n</b> oranında azalır (4 tekrar gürültüyü yarıya, 16 tekrar dörtte bire indirir). Küçük ortodromik SNAP'lar, plantar sinirler ve proksimal duyu yanıtları için gereklidir. Analog-dijital dönüştürücünün örnekleme hızı en yüksek frekansın en az iki katı (Nyquist), pratikte 5–10 katı olmalıdır.</p>
+<h3>Gürültü kaynakları ve çözüm</h3>
+<ul><li><b>50 Hz şebeke gürültüsü:</b> Gevşek elektrot, uzun açık kablolar, yakındaki cihazlar, kötü toprak. Kabloları birlikte sarın, toprağı kontrol edin.</li>
+<li><b>Uyarı artefaktı:</b> Bazalin kayması. Anodu katodun etrafında döndürün, cildi kurulayın, toprağı aradaya koyun, gereksiz yüksek akımdan kaçının.</li>
+<li><b>Kas gerilimi:</b> Hastanın gevşemesini sağlayın; duyu çalışmalarında özellikle önemlidir.</li></ul>`},
+
+{id:'uyari',p:'I',t:'Uyarı: katot, anot, supramaksimal uyarı ve güvenlik',lv:'Temel',h:()=>`
+<p class="lead">Uyarı elektrotunun katodu (−) altındaki aksonu depolarize eder; anot (+) altında hiperpolarizasyon olur. Doğru uyarı, tüm aksonların aynı anda ve yalnızca hedef sinirde uyarılmasıdır.</p>
+${DF('stim','Şekil 6 · Katot altında depolarizasyon başlar ve AP iki yöne yayılır. Mesafe katottan ölçülür.')}
+<h3>Uyarı parametreleri</h3>
+<ul><li><b>Sabit akım uyarıcı</b> cilt empedansı değişse de aynı akımı verir; günümüzde standarttır.</li>
+<li><b>Süre:</b> Genellikle 0,1–0,2 ms. Ödemli, obez ya da derin sinirlerde 0,5–1 ms'ye çıkılabilir. H refleksi için uzun süre (0,5–1 ms) Ia liflerini seçici uyarır.</li>
+<li><b>Şiddet:</b> Normal bir median sinirde bilekte 5–20 mA çoğu zaman yeterlidir. Diz arkasında tibial, fibula başında peroneal ve Erb noktası daha yüksek akım ister.</li></ul>
+<h3>Supramaksimal uyarı</h3>
+<p>Akım artırıldıkça daha çok akson eşiğe ulaşır ve BKAP büyür. Yanıt artık büyümüyorsa tüm aksonlar uyarılmıştır (maksimal uyarı). Güvenli olmak için akım bu düzeyin <b>%20–30 üstüne</b> çıkarılır: <b>supramaksimal uyarı</b>. Tüm amplitüd, latans ve blok kararları supramaksimal yanıta göre verilir. Submaksimal uyarı en sık yalancı ileti bloğu ve yalancı akson kaybı nedenidir.</p>
+${BX('warn','Fazla uyarının tuzakları','1) <b>Akım yayılması:</b> Bilekte median uyarırken ulnar da uyarılır; tenar kayıtta BKAP yapay olarak büyür ve şekli değişir. Dirsekte yüksek akım ulnar ve median sinirleri birlikte uyarabilir. 2) <b>Sanal katot:</b> Çok yüksek akımda depolarizasyon katodun ötesinde, daha distalde başlar; latans yapay olarak kısalır. Çok kısa bir distal latansı ya da beklenmedik büyük bir proksimal yanıtı görünce akımı düşürüp tekrar deneyin.')}
+<h3>Katodun yönü ve anodal blok</h3>
+<p>Motor ve duyu iletimde katot kayıt elektrotuna bakar. Kutuplar ters çevrilirse depolarizasyon kayıt elektrotundan 2–3 cm uzakta başlar: latans 0,3–0,5 ms uzar ve teorik olarak anot altında hiperpolarizasyon impulsları kısmen engelleyebilir (anodal blok). F dalgası ve H refleksinde ise impulsun omuriliğe doğru gitmesi istendiği için katot proksimale konur.</p>
+<h3>Mesafe ölçümü</h3>
+<p>Mesafe şerit metreyle cilt üzerinden, sinirin seyrini izleyerek ölçülür. 1 cm'lik hata 10 cm'lik bir segmentte %10 hız hatası demektir. Ulnar sinir dirsekte <b>70–90° fleksiyonda</b> ölçülmelidir; ekstansiyonda sinir gevşek ve kıvrımlıdır, cilt mesafesi gerçek sinir uzunluğundan kısa kalır ve dirsek segmenti yapay olarak yavaş çıkar.</p>
+<h3>Güvenlik</h3>
+<ul><li><b>Kalp pili ve ICD:</b> Sinir iletim çalışmaları genellikle güvenlidir; cihaza yakın bölgede (aynı taraf Erb noktası) uyarıdan kaçının, uyarı süresini kısa tutun. ICD'li hastalarda gerekirse kardiyolojiyle görüşün.</li>
+<li><b>Kalbe uzanan dış elektriksel yol</b> (santral kateter, geçici pacing teli) olan hastada uyarı yapılmaz ya da çok dikkatli yapılır.</li>
+<li>Cihazların topraklaması ve kaçak akım denetimi düzenli olarak yapılmalıdır.</li></ul>`},
+{id:'motor',p:'II',t:'Motor iletim: BKAP, latans, amplitüd, iletim hızı',lv:'Temel',h:()=>`
+<p class="lead">Motor iletimde sinir iki ya da daha fazla noktadan supramaksimal uyarılır, yanıt kasın üzerinden kaydedilir. Kaydedilen bileşik kas aksiyon potansiyeli (BKAP; CMAP) motor aksonun, nöromüsküler kavşağın ve kas liflerinin toplam ürünüdür.</p>
+${DF('cmap','Şekil 7 · BKAP ölçümleri. Distal latans: uyarıdan ilk negatif sapmaya. Amplitüd: bazalden negatif tepeye. Süre ve alan: negatif fazın genişliği ve altındaki alan.')}
+<h3>Elektrot düzeni</h3>
+<p><b>Belly–tendon</b> düzeni: G1 kas karnının ortasında, motor noktanın üzerinde; G2 distal tendon üzerinde. Toprak uyarı ve kayıt arasında. Rutin kaslar: median için abductor pollicis brevis, ulnar için abductor digiti minimi (ve birinci dorsal interosseöz), peroneal için extensor digitorum brevis (ve tibialis anterior), tibial için abductor hallucis.</p>
+<h3>Distal latans neden hız değildir?</h3>
+<p>Distal motor latans üç bileşenin toplamıdır: (1) katottan terminal dallanmaya kadar sinir iletimi, (2) terminal aksonlarda yavaş ileti ve nöromüsküler iletim (yaklaşık 1 ms), (3) son plaktan kas lifi boyunca yayılma. Bu yüzden tek bir uyarı noktasından iletim hızı hesaplanamaz. İki nokta uyarılır ve aradaki fark kullanılır:</p>
+${BX('def','İletim hızı','İH (m/s) = proksimal ve distal uyarı noktaları arasındaki mesafe (mm) ÷ (proksimal latans − distal latans) (ms). Kavşak ve kas bileşenleri iki latansta da aynı olduğu için çıkarma işleminde silinir.')}
+<h3>Ölçülen parametreler ve anlamları</h3>
+<table class="dt"><tr><th>Parametre</th><th>Neyi yansıtır</th><th>Ne zaman bozulur</th></tr>
+<tr><td>Distal latans</td><td>Distal segmentteki en hızlı liflerin iletimi</td><td>Distal demiyelinizasyon (KTS, anti-MAG, CIDP'de distal tutulum), şiddetli akson kaybında hafif</td></tr>
+<tr><td>Amplitüd</td><td>Uyarılabilen motor akson ve kas lifi sayısı</td><td>Akson kaybı, distal ileti bloğu, ağır kavşak hastalığı (LEMS), ağır miyopati</td></tr>
+<tr><td>Alan</td><td>Amplitüd ve sürenin birleşimi; dispersiyona daha dayanıklı</td><td>İleti bloğu değerlendirmesinde tercih edilir</td></tr>
+<tr><td>Negatif tepe süresi</td><td>Liflerin senkronu</td><td>Temporal dispersiyon (edinsel demiyelinizasyon); kritik hastalık miyopatisinde uzar</td></tr>
+<tr><td>İletim hızı</td><td>Segmentteki en hızlı liflerin hızı</td><td>Demiyelinizasyon; ağır akson kaybında en fazla ~%25–30 düşer</td></tr></table>
+<h3>Referans değerler (örnek laboratuvar, ≥32 °C el, ≥30 °C ayak)</h3>
+<table class="dt"><tr><th>Sinir (kas)</th><th>Distal latans</th><th>Amplitüd</th><th>İletim hızı</th><th>Distal mesafe</th></tr>
+<tr><td>Median (APB)</td><td>≤4,4 ms</td><td>≥4 mV</td><td>≥49 m/s</td><td>8 cm</td></tr>
+<tr><td>Ulnar (ADM)</td><td>≤3,3 ms</td><td>≥6 mV</td><td>≥49 m/s (dirsek üstü–altı ≥50)</td><td>8 cm</td></tr>
+<tr><td>Peroneal (EDB)</td><td>≤6,5 ms</td><td>≥2 mV</td><td>≥44 m/s</td><td>9 cm</td></tr>
+<tr><td>Tibial (AH)</td><td>≤5,8 ms</td><td>≥4 mV</td><td>≥41 m/s</td><td>9 cm</td></tr></table>
+<p>Değerler laboratuvara, yaşa ve boya göre değişir. Sınır değerler genellikle sağlıklı kontrollerin ortalama ±2–2,5 SS'si ya da 2,5–97,5. persentilleridir.</p>
+<h3>Proksimal–distal amplitüd farkı</h3>
+<p>Normalde proksimal uyarıda BKAP biraz küçülür ve yayılır (fizyolojik dispersiyon). Kollarda %10–20'ye kadar düşüş normaldir. <b>Tibial sinirde diz arkası–ayak bileği arasında %50'ye varan düşüş normal olabilir</b> (uzun mesafe, derin sinir, submaksimal uyarı). Bu nedenle tibial sinir ileti bloğu kararında kullanılmaz.</p>
+<h3>Sıcaklık, yaş ve boy</h3>
+<ul><li><b>Soğuk</b> Na⁺ kanallarının kapanmasını yavaşlatır: latanslar uzar (~0,2 ms/°C), hız düşer (~1,5–2,5 m/s/°C), amplitüd ve süre <b>artar</b>. Soğuk el hem yalancı "demiyelinizan" hem de yalancı "normal amplitüd" yaratır. Ekstremiteyi ısıtın ya da düzeltme faktörü kullanın; ısıtma her zaman daha güvenilirdir.</li>
+<li><b>Yaş:</b> Yenidoğanda hızlar erişkin değerin yaklaşık yarısıdır, 3–5 yaşında erişkin düzeye ulaşır. 60 yaşından sonra hız ve özellikle duyu amplitüdleri azalır.</li>
+<li><b>Boy:</b> Uzun bireylerde bacak sinirleri daha yavaş, F ve H latansları daha uzundur (distal incelme, düşük ısı).</li></ul>
+${TRY('motor:normal','Motor iletimi canlı ölçün')}`},
+
+{id:'duyu',p:'II',t:'Duyu iletim: SNAP, ortodromik ve antidromik kayıt',lv:'Orta',h:()=>`
+<p class="lead">Duyu sinir aksiyon potansiyeli (SNAP), kalın miyelinli (Aβ) duyu aksonlarının toplam potansiyelidir. Bu aksonların hücre gövdeleri <b>arka kök ganglionunda (DRG)</b> bulunur. SNAP'ın klinik değeri, lezyonun DRG'ye göre yerini göstermesinden gelir.</p>
+${DF('snap','Şekil 8 · SNAP ölçümleri. Başlangıç latansı en hızlı liflerin varış zamanıdır ve doğrudan iletim hızını verir; tepe latansı daha tekrarlanabilirdir.')}
+<h3>Ortodromik ve antidromik kayıt</h3>
+${DF('ortanti','Şekil 9 · Ortodromik ve antidromik median duyu çalışması. Aynı aksonlar iki yönde de aynı hızla iletir; fark, kaydın nerede yapıldığı ve uyarının neyi uyardığıdır.')}
+<p>Duyu aksonları fizyolojik olarak impulsu <b>çevreden merkeze</b> (reseptörden DRG'ye) taşır. Laboratuvarda akson herhangi bir noktada uyarıldığında AP iki yöne de yayılır; hangi yönü kaydettiğimiz elektrotların yerine bağlıdır:</p>
+<ul><li><b>Ortodromik</b> (orto = doğru): Uyarı distalde, yalnızca duyu lifi içeren bölgede (örneğin parmak halkaları); kayıt proksimalde, sinir gövdesi üzerinde (bilek). İmpuls doğal yönünde ilerler.</li>
+<li><b>Antidromik</b> (anti = karşı): Uyarı proksimalde, sinir gövdesi üzerinde (bilek); kayıt distalde (parmak halkaları). İmpuls doğal yönünün tersine ilerler.</li></ul>
+<table class="dt"><tr><th></th><th>Ortodromik</th><th>Antidromik</th></tr>
+<tr><td>Latans ve iletim hızı</td><td colspan="2">Aynı mesafede aynıdır: akson iki yönde de aynı hızla iletir</td></tr>
+<tr><td>Amplitüd</td><td>Küçük (median ~10–20 µV)</td><td>Büyük (median ~20–50 µV): parmak sinirleri cilde yakın, kayıt elektrotu kaynağa daha yakın</td></tr>
+<tr><td>Uyarılan lifler</td><td>Saf duyu (parmak sinirleri)</td><td>Karışık sinir: motor lifler de uyarılır</td></tr>
+<tr><td>Kas artefaktı</td><td>Yok</td><td>Var: lumbrikal/tenar kaslardan hacim iletimiyle gelen potansiyel SNAP'tan sonra (~5–7 ms) görülür; SNAP gecikirse üst üste biner</td></tr>
+<tr><td>Ortalama alma</td><td>Sıklıkla gerekir</td><td>Çoğu zaman gerekmez</td></tr>
+<tr><td>Hasta konforu</td><td>Parmak uyarısı daha rahatsız edici olabilir</td><td>Genellikle iyi tolere edilir</td></tr>
+<tr><td>Tipik kullanım</td><td>Palmar mikst çalışmalar, plantar sinirler, ağır KTS'de küçük yanıt arama</td><td>Rutin median, ulnar, radial, sural, yüzeyel peroneal</td></tr></table>
+${BX('warn','Antidromik kayıtta kas artefaktı','Ağır KTS\'de median SNAP gecikir ve küçülür; ardından gelen ve motor liflerden kaynaklanan hacim iletimi potansiyeli SNAP sanılabilir. Ayırt etmek için: kas potansiyeli daha geç, daha geniş ve yuvarlak tepelidir; uyarı şiddeti düşürülünce motor yanıt değişir; G1 hafifçe kaydırılınca şekli değişir. Şüphede ortodromik kayda geçin.')}
+<h3>Elektrot ve mesafe</h3>
+<p>Halka elektrotlar: G1 proksimal falanksa, G2 3–4 cm distale (elektrotlar arası mesafe neden önemli: Hacim iletimi bölümü). Uyarı ile G1 arasında standart mesafe kullanılır (örneğin median ve ulnar 14 cm, radial 10 cm, sural 14 cm, yüzeyel peroneal 12 cm). Standart mesafe, tepe latansının referans değerlerle karşılaştırılmasını sağlar.</p>
+<h3>Ölçümler</h3>
+<ul><li><b>Başlangıç latansı:</b> En hızlı liflerin varışı. Sinapsa gerek olmadığından iletim hızı tek noktadan hesaplanır: İH = mesafe ÷ başlangıç latansı.</li>
+<li><b>Tepe latansı:</b> Negatif tepenin zamanı. Uyarı artefaktından ve bazal gürültüden daha az etkilenir, daha tekrarlanabilirdir. KTS gibi karşılaştırma testlerinde tercih edilir.</li>
+<li><b>Amplitüd:</b> Bazal–negatif tepe ya da negatif tepe–pozitif tepe (tepe–tepe). Laboratuvar hangisini kullanıyorsa referans değer de ona göredir. Karşı tarafla &gt;%50 fark anlamlıdır.</li></ul>
+<table class="dt"><tr><th>Sinir (antidromik)</th><th>Tepe latansı</th><th>Amplitüd</th><th>İH</th></tr>
+<tr><td>Median (D2, 14 cm)</td><td>≤3,5 ms</td><td>≥20 µV</td><td>≥50 m/s</td></tr><tr><td>Ulnar (D5, 14 cm)</td><td>≤3,1 ms</td><td>≥17 µV</td><td>≥50 m/s</td></tr>
+<tr><td>Radial (enstantane, 10 cm)</td><td>≤2,9 ms</td><td>≥15 µV</td><td>≥50 m/s</td></tr><tr><td>Sural (14 cm)</td><td>≤4,4 ms</td><td>≥6 µV</td><td>≥40 m/s</td></tr>
+<tr><td>Yüzeyel peroneal (12 cm)</td><td>≤4,4 ms</td><td>≥6 µV</td><td>≥40 m/s</td></tr></table>
+<h3>Preganglionik ve postganglionik lezyon</h3>
+<p>DRG intervertebral foramende, kökün dışında yer alır. Lezyon DRG'nin <b>proksimalindeyse</b> (kök, kök avülsiyonu, omurilik) DRG hücre gövdesi ile periferik akson arasındaki bağlantı korunur: hasta duyuyu kaybettiği halde <b>SNAP normaldir</b>. Lezyon DRG'nin <b>distalindeyse</b> (pleksus, periferik sinir) periferik akson dejenere olur ve SNAP düşer. Klinik duyu kaybı varken SNAP normalse lezyon ya köktedir ya da santraldir.</p>
+${BX('pearl','İstisnalar','1) L5 DRG\'si bazı kişilerde spinal kanal içinde yer alır; L5 radikülopatide yüzeyel peroneal SNAP etkilenebilir. 2) Kök avülsiyonunda paraspinal fibrilasyon ile normal SNAP birlikteliği tipiktir ve cerrahi planı değiştirir. 3) SNAP\'ın yaygın, uzunluğa bağımlı olmayan kaybı (kolda bacaktan kötü) DRG\'nin kendisinin hastalığını, yani <b>ganglionopatiyi</b> düşündürür: Sjögren, paraneoplastik (anti-Hu), sisplatin, B6 toksisitesi.')}
+<h3>Yaş ve SNAP</h3>
+<p>SNAP amplitüdü yaşla belirgin azalır; 60–70 yaş üstü sağlıklı bireylerin bir kısmında sural SNAP alınamayabilir. Yaşlı bir hastada iki taraflı simetrik düşük sural tek başına polinöropati kanıtı sayılmaz; yaşa göre referans kullanın ve kolları karşılaştırın.</p>
+${TRY('sensory:normal','Duyu iletimini canlı ölçün')} ${TRY('sensory:pregang','Preganglionik lezyonu görün')}`},
+
+{id:'faz',p:'II',t:'Fizyolojik dispersiyon ve faz iptali',lv:'Orta',h:()=>`
+<p class="lead">Bir sinir gövdesindeki lifler aynı hızda iletmez: en hızlı ile en yavaş kalın lif arasında 10–25 m/s fark vardır. Uyarı noktasından uzaklaştıkça liflerin varış zamanları birbirinden açılır. Buna <b>fizyolojik temporal dispersiyon</b> denir.</p>
+${DF('faz','Şekil 10 · Faz iptali. Her mavi eğri bir lif grubunun potansiyelidir. Kısa mesafede hepsi aynı anda gelir ve toplanır; uzun mesafede hızlı liflerin pozitif kuyruğu yavaş liflerin negatif tepesiyle çakışır ve onu siler.')}
+<h3>SNAP neden mesafeyle hızla küçülür?</h3>
+<p>Tek bir duyu lifinin potansiyeli kısa sürelidir (~1 ms) ve bifazik/trifaziktir. Lifler arasındaki zaman farkı bu sürenin yarısına yaklaştığında bir lifin pozitif fazı diğerinin negatif fazıyla çakışır: <b>faz iptali</b>. Sonuç olarak dirsekten uyarılan median SNAP'ı bilekten uyarılana göre %50'den fazla küçük olabilir, bu normaldir. Bu nedenle <b>duyu yanıtlarında ileti bloğu kararı verilemez</b>.</p>
+<h3>BKAP neden daha dayanıklıdır?</h3>
+<p>Tek bir motor ünite potansiyeli daha uzundur (5–10 ms). Aynı zaman farkı bu süreye göre küçük kalır; faz iptali sınırlıdır. Bu yüzden normal kol sinirlerinde dirsek–bilek amplitüd farkı %10–20'yi geçmez. Bacakta mesafe uzadıkça (tibial) fark %50'ye kadar çıkabilir.</p>
+<h3>Patolojik dispersiyon</h3>
+<p>Edinsel demiyelinizasyonda lifler <b>farklı derecelerde</b> yavaşlar; aradaki zaman farkı fizyolojik sınırın çok üstüne çıkar. Yanıt genişler, çok fazlı ve basık hale gelir. Bilgisayar modelleri, yalnızca dispersiyon ve faz iptaliyle alanın %50'ye kadar düşebileceğini gösterir. Bu yüzden ileti bloğu kriterleri, süre artışının belirli bir sınırın (genellikle %30) altında kalmasını şart koşar; aksi halde düşüşün blok mu dispersiyon mu olduğu ayırt edilemez.</p>
+${BX('pearl','Akılda kalsın','Kalıtsal demiyelinizasyonda (CMT1A) tüm lifler eşit yavaşlar: hız çok düşük ama dispersiyon ve blok yoktur. Edinsel demiyelinizasyonda (GBS, CIDP) yavaşlama düzensizdir: dispersiyon ve blok görülür. Uniform–nonuniform ayrımı kalıtsal–edinsel ayrımının elektrofizyolojik karşılığıdır.')}`},
+
+{id:'patern',p:'II',t:'Aksonal mı, demiyelinizan mı?',lv:'Orta',h:()=>`
+<p class="lead">Sinir iletiminin temel sorusu, sürecin aksonu mu miyelini mi hedef aldığıdır. Cevap tanıyı, prognozu ve tedaviyi (örneğin immünoterapiye yanıt olasılığını) değiştirir.</p>
+${DF('pat','Şekil 11 · Normal, aksonal ve demiyelinizan BKAP desenleri (üst: distal, alt: proksimal uyarı).')}
+<h3>Aksonal desen</h3>
+<ul><li>BKAP ve SNAP amplitüdleri düşük.</li>
+<li>Latans ve hız normal ya da en hızlı liflerin kaybına bağlı hafif bozulmuş.</li>
+<li>İğne EMG'de denervasyon (fibrilasyon, PSW) ve zamanla reinnervasyon.</li></ul>
+<h3>Akson kaybı hızı ne kadar düşürebilir?</h3>
+<p>En hızlı lifler kaybolduğunda kalan daha yavaş kalın lifler ölçülür. Bu yavaşlamanın bir üst sınırı vardır. Pratik eşikler:</p>
+<table class="dt"><tr><th>Parametre</th><th>Akson kaybıyla açıklanabilir</th><th>Demiyelinizasyon lehine</th></tr>
+<tr><td>İletim hızı</td><td>Alt sınırın %75'ine kadar</td><td>&lt;%75 (BKAP çok düşükse &lt;%70)</td></tr>
+<tr><td>Distal latans</td><td>Üst sınırın %130'una kadar</td><td>&gt;%130 (CIDP kriterinde ≥%150)</td></tr>
+<tr><td>F latansı</td><td>Üst sınırın %130'una kadar</td><td>&gt;%130</td></tr>
+<tr><td>İleti bloğu / anormal dispersiyon</td><td>Yok</td><td>Var (edinsel demiyelinizasyon)</td></tr></table>
+${BX('warn','Ağır akson kaybında dikkat','BKAP çok düşük (örneğin &lt;1 mV) olduğunda kalan birkaç lif rastlantısal olarak yavaş olabilir; yavaşlamayı demiyelinizasyon diye yorumlamak hatadır. Kriterlerin çoğu bu yüzden distal BKAP\'ın alt sınırın en az %20\'si olmasını şart koşar.')}
+<h3>Uniform ve nonuniform yavaşlama</h3>
+<table class="dt"><tr><th></th><th>Kalıtsal (ör. CMT1A)</th><th>Edinsel (GBS, CIDP)</th></tr>
+<tr><td>Hız</td><td>Tüm sinirlerde ve segmentlerde benzer, ör. median 20–25 m/s</td><td>Sinirden sinire ve segmentten segmente değişken</td></tr>
+<tr><td>İleti bloğu</td><td>Yok (HNPP ve CMTX istisna olabilir)</td><td>Sık</td></tr>
+<tr><td>Temporal dispersiyon</td><td>Belirgin değil</td><td>Belirgin</td></tr>
+<tr><td>Simetri</td><td>Simetrik</td><td>Asimetrik olabilir</td></tr>
+<tr><td>Tuzak bölgeleri</td><td>Özel tutulum yok (HNPP'de var)</td><td>Tuzak bölgesi dışında da blok</td></tr></table>
+<h3>CMT sınıflaması (median motor İH)</h3>
+<ul><li><b>CMT1 (demiyelinizan):</b> &lt;38 m/s, tipik olarak 15–30 m/s.</li><li><b>Ara form:</b> 25–45 m/s (CMTX1, bazı DNM2, MPZ).</li><li><b>CMT2 (aksonal):</b> &gt;38–45 m/s, düşük amplitüdler.</li></ul>
+<h3>Özel desenler</h3>
+<ul><li><b>Distal ağırlıklı demiyelinizasyon</b> (anti-MAG, DADS): Distal latans orantısız uzun, önkol hızı görece iyi. <b>Terminal latans indeksi</b> (TLI = distal mesafe ÷ (İH × distal latans)) düşük (&lt;0,25).</li>
+<li><b>HNPP:</b> Tuzak bölgelerinde (karpal tünel, dirsek, fibula başı) fokal yavaşlama, uzamış distal latanslar ve yaygın hafif duyu anormallikleri.</li>
+<li><b>Nodo-paranodopati</b> (AMAN, anti-NF155, anti-CNTN1): Başta blok ya da yavaşlama görülüp hızla düzelebilir (geri dönüşlü ileti yetmezliği) veya aksonal görünür. Seri çalışmalar yorumu değiştirebilir.</li></ul>
+${TRY('motor:akson','Aksonal deseni görün')} ${TRY('motor:demy','Demiyelinizan deseni görün')}`},
+
+{id:'blok',p:'II',t:'İleti bloğu, temporal dispersiyon ve inching',lv:'İleri',h:()=>`
+<p class="lead">İleti bloğu (İB), aksonun yapısal olarak sağlam olduğu halde impulsun belirli bir segmentten geçemediği durumdur. Lezyonun distalinden uyarıldığında yanıt normal, proksimalinden uyarıldığında belirgin küçüktür. İB demiyelinizasyonun (ya da nodal disfonksiyonun) en özgül bulgusudur ve iyi prognozu gösterir.</p>
+${DF('blok','Şekil 12 · İleti bloğunda proksimal yanıt küçülür ama süresi hemen hemen aynı kalır. Temporal dispersiyonda yanıt yayılır ve basıklaşır.')}
+<h3>Tanımlar ve kriterler</h3>
+<table class="dt"><tr><th>Kaynak</th><th>Kesin / güçlü destekleyici İB</th></tr>
+<tr><td>EAN/PNS 2021 (CIDP)</td><td>Proksimal/distal negatif tepe amplitüd oranında ≥%30 düşüş (tibial hariç), distal BKAP alt sınırın ≥%20'si, en az iki sinirde ya da bir sinirde + başka bir demiyelinizasyon ölçütü</td></tr>
+<tr><td>EFNS/PNS 2010 (MMN)</td><td>Kesin: ≥%50 amplitüd düşüşü ve süre artışı ≤%30, distal BKAP &gt;%20 alt sınır ve &gt;1 mV; olası: uzun kol segmentinde ≥%30 düşüş, ya da ≥%50 düşüş ile süre artışı &gt;%30</td></tr>
+<tr><td>Pratik kural</td><td>Kısa segmentte (inching) %10–15 düşüş bile anlamlıdır; uzun segmentte eşik yüksektir</td></tr></table>
+<h3>Yalancı ileti bloğu: önce bunları dışlayın</h3>
+<ol><li><b>Submaksimal proksimal uyarı:</b> Derin sinir (Erb, aksilla, diz arkası), obezite, ödem. Akımı ve süreyi artırın.</li>
+<li><b>Distal aşırı uyarı ve akım yayılması:</b> Bilekte komşu sinir de uyarılırsa distal BKAP yapay olarak büyür.</li>
+<li><b>Martin-Gruber anastomozu:</b> Ulnar çalışmada önkolda amplitüd düşüşü (bkz. İnervasyon anomalileri).</li>
+<li><b>Fizyolojik faz iptali:</b> Tibial gibi uzun segmentlerde normalde %50'ye kadar düşüş.</li>
+<li><b>Akut akson kesisi (ilk 3–7 gün):</b> Distal kısım henüz dejenere olmadığı için lezyon blok gibi görünür. 10–11. günden sonra tekrar edilince distal BKAP da düşer: blok değil, akson kaybıdır.</li>
+<li><b>Ağır temporal dispersiyon:</b> Süre %30'dan fazla artmışsa düşüş dispersiyonla açıklanabilir.</li></ol>
+<h3>İnching (kısa segment çalışması)</h3>
+<p>Şüpheli segment 1–2 cm'lik adımlarla uyarılır ve her adımda latans ile amplitüd kaydedilir. Normalde 1 cm ilerleme latansı 0,16–0,25 ms değiştirir (1 cm ÷ 50 m/s ≈ 0,2 ms). Tek bir adımda <b>&gt;0,4–0,5 ms</b> latans sıçraması ya da belirgin amplitüd/şekil değişikliği lezyonun tam yerini gösterir.</p>
+<ul><li><b>Median (Kimura):</b> Distal el bileği çizgisinin 4 cm proksimalinden 6 cm distaline 1 cm adımlarla; lezyon tipik olarak çizginin 2–4 cm distalinde.</li>
+<li><b>Ulnar dirsek:</b> Medial epikondilin 4–6 cm altından 4–6 cm üstüne; lezyon retroepikondiler oluk mu, kubital tünel (FCU aponevrozu) mu?</li>
+<li><b>Peroneal:</b> Fibula başı çevresinde; TA kaydı EDB'den daha duyarlıdır.</li></ul>
+${BX('pearl','Kısa segmentin avantajı ve tuzağı','Uzun segmentte fokal bir yavaşlama normal bölümlerle "seyrelir"; kısa segment bunu ortaya çıkarır. Ancak 1 cm\'lik ölçüm hatası 1 cm\'lik segmentte %100 hata demektir. Bu yüzden inching\'de hız hesaplanmaz; latans farkına ve amplitüd/şekil değişimine bakılır.')}
+<h3>Klinik anlam</h3>
+<ul><li>Bloklu lifler klinik güçsüzlüğe yol açar ama atrofi ve fibrilasyon yapmaz (akson sağlamdır).</li>
+<li>Remiyelinizasyonla haftalar–aylar içinde düzelir: tuzak nöropatide basının kalkması, immün nöropatide tedavi.</li>
+<li>Tuzak bölgesi dışında, duyu lifleri korunarak motor bloğu: <b>MMN</b>. Aynı segmentte duyu da tutulmuşsa: <b>Lewis-Sumner (MADSAM)</b>.</li></ul>
+${TRY('motor:blok','İleti bloğunu görün')}`},
+
+{id:'wall',p:'II',t:'Sinir hasarı ve zamanlama: Wallerian dejenerasyon',lv:'İleri',h:()=>`
+<p class="lead">Bir akson kesildiğinde distal parçası günler içinde dejenere olur (Wallerian dejenerasyon). Bu süre dolmadan yapılan bir çalışma, akson kaybını göremez ve lezyonu yanlışlıkla nöropraksi sanabilir. Travmatik sinir hasarında EMG'nin en kritik değişkeni <b>zamanlamadır</b>.</p>
+${DF('wall','Şekil 13 · Akut akson hasarından sonra elektrofizyolojik değişikliklerin zaman çizelgesi.')}
+<h3>Seddon ve Sunderland sınıflaması</h3>
+<table class="dt"><tr><th>Seddon</th><th>Sunderland</th><th>Patoloji</th><th>Elektrofizyoloji</th><th>Prognoz</th></tr>
+<tr><td>Nöropraksi</td><td>1</td><td>Fokal demiyelinizasyon, akson sağlam</td><td>Lezyon üstünde blok/yavaşlama, distal BKAP her zaman normal, fibrilasyon yok</td><td>Haftalar–3 ay, tam</td></tr>
+<tr><td>Aksonotmezis</td><td>2–4</td><td>Akson kesik; endonöryum (2), perinöryum (3) değişen derecede sağlam</td><td>10–11. günden sonra distal BKAP/SNAP düşük; 2–3 hafta sonra fibrilasyon</td><td>Rejenerasyonla (≈1 mm/gün); 3–4'te eksik</td></tr>
+<tr><td>Nörotmezis</td><td>5</td><td>Sinir tamamen kesik</td><td>Aksonotmeziden ayırt edilemez</td><td>Cerrahi gerekir</td></tr></table>
+<h3>Zaman çizelgesi</h3>
+<ul><li><b>0–3. gün:</b> Distal segment normal iletir. Lezyon üstünden uyarıda yanıt yok: tam blok görünümü. Bu aşamada nöropraksi ile akson kesisi <b>ayırt edilemez</b>.</li>
+<li><b>3–5. günden itibaren</b> distal BKAP düşmeye başlar, 7–9. günde dibe iner (kavşak önce bozulduğu için motor yanıtlar duyudan önce kaybolur).</li>
+<li><b>6–11. gün</b> SNAP düşer.</li>
+<li><b>10–14. gün</b> lezyona yakın kaslarda (paraspinal) fibrilasyon ve PSW; <b>3–6 hafta</b> distal kaslarda. Süre lezyon–kas mesafesiyle orantılıdır.</li>
+<li><b>Haftalar–aylar:</b> Reinnervasyon. Kısmi lezyonda kollateral filizlenme; tam lezyonda proksimalden rejenerasyon (yaklaşık 1 mm/gün, ayda ~2,5 cm).</li></ul>
+${BX('def','İdeal zamanlama','İlk çalışma 3–4 hafta sonra: Wallerian dejenerasyon tamamlanmış, fibrilasyonlar ortaya çıkmıştır. Erken bir çalışma (ilk hafta) yine de değerlidir: lezyon yerini gösterir (blok noktası) ve klinik olarak tam felçli bir kasta tek bir istemli MUP görülmesi lezyonun <b>tam olmadığını</b> kanıtlar.')}
+<h3>Akson kaybının miktarı</h3>
+<p>10–11. günden sonra lezyon distalinden elde edilen BKAP amplitüdü, karşı taraf homolog BKAP ile karşılaştırılır. Örneğin %20 ise yaklaşık %80 akson kaybı vardır. Yüz felcinde (ENoG) %90'ın üzerinde dejenerasyon kötü prognozu gösterir. Amplitüd, iğne EMG'deki fibrilasyon yoğunluğundan çok daha güvenilir bir akson kaybı ölçüsüdür.</p>
+<h3>Reinnervasyonun elektrofizyolojisi</h3>
+<ul><li><b>Kollateral filizlenme (kısmi lezyon):</b> Sağlam aksonlar komşu denerve lifleri sahiplenir. Önce uzun, polifazik, satellitli ve <b>instabil</b> MUP'lar; aylar sonra büyük, uzun süreli ve stabil MUP'lar.</li>
+<li><b>Rejenerasyon (tam lezyon):</b> İlk dönen üniteler az lifli olduğu için küçük, kısa ve polifazik "<b>doğan (nascent) MUP</b>"lardır. Klinik hareketten haftalar önce görülürler: en erken iyileşme bulgusudur.</li>
+<li>Fibrilasyonlar reinnervasyon ya da lif fibrozisi gerçekleşene kadar sürer; zamanla amplitüdleri küçülür (bir yıldan sonra çoğu &lt;100 µV).</li></ul>
+${BX('clin','Cerrahi karar','Klinik ya da EMG\'de 3–4 ayda reinnervasyon bulgusu yoksa ve lezyon bölgesi ile ilk kas arasındaki mesafe uzun değilse, cerrahi keşif (nöroliz, greft, transfer) tartışılır. Kas uç plakları denerve kaldıkça (yaklaşık 12–18 ay) geri dönüş şansı azalır.')}`},
+
+{id:'anomali',p:'II',t:'İnervasyon anomalileri',lv:'İleri',h:()=>`
+<p class="lead">Anatomik varyasyonlar yaygındır ve tanınmazsa yanlış blok, yanlış hızlı iletim ya da açıklanamayan kas korunması gibi hatalara yol açar.</p>
+${DF('mga','Şekil 14 · Martin-Gruber anastomozu: önkolda medianden (çoğunlukla anterior interosseöz dalından) ulnar sinire geçen motor lifler. Bu lifler eldeki ulnar kaslara (FDI, adductor pollicis, ADM) gider.')}
+<h3>Martin-Gruber anastomozu (median → ulnar, önkol)</h3>
+<p>Toplumun %15–30'unda görülür, sıklıkla iki taraflıdır. Lifler dirsekte median içinde, bilekte ulnar içindedir.</p>
+<ul><li><b>Ulnar motor çalışmada:</b> Bilekte uyarı tüm ulnar lifleri, dirsek altında uyarı geçiş liflerini içermez → önkolda amplitüd düşüşü: <b>yalancı ileti bloğu</b>. Doğrulama: medianı dirsekte uyarıp ADM/FDI'dan kaydedin; belirgin bir yanıt alınır.</li>
+<li><b>Median motor çalışmada (APB):</b> Dirsekte uyarı median liflerine ek olarak ulnar kaslara giden geçiş liflerini de uyarır → dirsek BKAP'ı bilektekinden <b>büyük</b> ve çoğu zaman <b>başlangıçta pozitif</b> (ulnar tenar kaslardan hacim iletimi).</li>
+<li><b>KTS ile birlikte:</b> Geçiş lifleri karpal tüneli atlar. Dirsek uyarısında bu lifler hızlı geldiği için önkol iletim hızı yapay olarak çok yüksek (&gt;70 m/s) hatta negatif latans farkı çıkar. Başlangıçtaki küçük pozitif sapmayı görüp latansı oradan ölçün.</li></ul>
+<h3>Riche-Cannieu anastomozu (avuç içinde median ↔ ulnar)</h3>
+<p>Derin ulnar dal ile rekürren median dal arasında bağlantı. Ağır median hasarında tenar kaslar korunmuş görünür ("tamamen ulnar el"); ya da tersi. Tam median kesisine rağmen APB'de MUP görülmesi bu anomaliyi düşündürmelidir.</p>
+<h3>Aksesuar derin peroneal sinir</h3>
+<p>Yüzeyel peroneal sinirden çıkan bir dal lateral malleolün arkasından geçerek EDB'nin lateral kısmını innerve eder (%20–28). Peroneal motor çalışmada <b>fibula başı/diz uyarısı ayak bileği uyarısından büyük</b> çıkar. Doğrulama: lateral malleolün arkasından uyarı ile EDB'den yanıt alınır. Fark bu yanıtla açıklanıyorsa anomalidir.</p>
+<h3>Diğerleri</h3>
+<ul><li><b>Marinacci</b> (ulnar → median, önkol): Nadir, Martin-Gruber'in tersi.</li>
+<li><b>Kök kayması</b> (prefikse/postfikse pleksus): Kök–kas ilişkisi bir segment kayabilir; tek kas bulgusuyla kök kesinleştirilmez.</li>
+<li><b>Sural sinirin değişken katkısı</b> (medial ve lateral sural kutanöz).</li></ul>
+${TRY('motor:tuzak','Tuzakları canlı deneyin')}`},
+
+{id:'gec',p:'II',t:'Geç yanıtlar: F dalgası ve H refleksi',lv:'İleri',h:()=>`
+<p class="lead">Rutin iletim çalışmaları uyarı noktasının distalini inceler. Proksimal segment (pleksus, kök) ancak impulsun omuriliğe gidip geri dönmesiyle değerlendirilebilir. F dalgası ve H refleksi bu iki yoldur.</p>
+${DF('fh','Şekil 15 · F dalgası tamamen motor bir yoldur (antidromik yukarı, ortodromik aşağı; sinaps yok). H refleksi ise Ia afferent → monosinaptik sinaps → alfa motor nöron yoludur.')}
+<h3>F dalgası: fizyoloji</h3>
+<p>Supramaksimal uyarı motor aksonda iki yöne yayılır. Yukarı (antidromik) giden volley ön boynuz hücresinin akson tepeciğine ulaşır. Hücre gövdesi bu sırada refrakter değilse ilk segment yeniden ateşler ve impuls aynı akson boyunca aşağı iner. Bu, her uyarıda motor nöron havuzunun yalnızca <b>%1–5</b>'inde ve <b>her seferinde farklı</b> nöronlarda olur. Sonuç: küçük (BKAP'ın %1–5'i), latansı ve şekli her uyarıda değişen geç bir yanıt. Refleks değildir.</p>
+<h3>Teknik</h3>
+<ul><li>Supramaksimal uyarı, <b>katot proksimalde</b>.</li>
+<li>En az 10, tercihen 20 uyarı; 0,5–1 Hz.</li>
+<li>Duyarlılık 100–200 µV/bölme; tarama 5–10 ms/bölme (kol), 10 ms/bölme (bacak).</li>
+<li>Hasta gevşek olmalı; hafif istemli kasılma persistansı artırır (Jendrassik).</li></ul>
+<h3>Parametreler</h3>
+<table class="dt"><tr><th>Parametre</th><th>Tanım</th><th>Örnek normal</th></tr>
+<tr><td>Minimal F latansı</td><td>En kısa F; en hızlı liflerin toplam proksimal-distal yolu</td><td>Median/ulnar ≤31–32 ms, peroneal/tibial ≤56 ms (boya göre)</td></tr>
+<tr><td>Kronodispersiyon</td><td>En uzun − en kısa latans</td><td>Kol &lt;4 ms, bacak &lt;6 ms</td></tr>
+<tr><td>Persistans</td><td>F görülen uyarı yüzdesi</td><td>Median, ulnar, tibial &gt;%50; peroneal düşük olabilir</td></tr>
+<tr><td>Sağ–sol fark</td><td>Minimal latans farkı</td><td>Kol &gt;2 ms, bacak &gt;3–4 ms anlamlı</td></tr>
+<tr><td>F tahmini</td><td>(2 × mesafe ÷ İH) × 10 + distal latans + 1 ms</td><td>Ölçülen F, tahminden belirgin uzunsa proksimal yavaşlama</td></tr></table>
+<h3>Klinik değer ve sınırlar</h3>
+<ul><li><b>Erken GBS:</b> Distal iletim normalken F dalgalarının yokluğu, uzaması ya da persistans düşüklüğü en erken bulgulardandır (kök düzeyinde demiyelinizasyon).</li>
+<li><b>CIDP:</b> F latansı ≥%20 uzama (BKAP &lt;%80 alt sınırsa ≥%50) destekleyici kriterdir.</li>
+<li><b>Radikülopati:</b> Sınırlı değer. Kas çok sayıda kökten innerve olur, yalnızca motor lifleri test eder, lezyon uzun yolun küçük bir kısmıdır ve normal yanıt lezyonu dışlamaz.</li>
+<li><b>F yok ama BKAP normal:</b> Proksimal blok (erken GBS) ya da motor nöron uyarılabilirliğinin azalması (uyku, sedasyon, akut üst motor nöron lezyonu, spinal şok).</li>
+<li><b>Spastisitede</b> persistans ve amplitüd artar; aynı F'nin sık tekrarlaması (<b>tekrarlayıcı F</b>) motor nöron kaybını (ALS) düşündürür.</li></ul>
+${BX('def','A dalgası','M ile F arasında, latansı ve şekli <b>sabit</b> küçük yanıt. Akson refleksi (dallanan bir aksonun bir dalından geri dönüş) ya da efaptik geçişle oluşur. Submaksimal uyarıda belirginleşir, supramaksimalde çarpışma ile kaybolabilir. Normal tibial sinirde görülebilir; birden fazla sinirde ve çok sayıda A dalgası demiyelinizan nöropatiyi (özellikle GBS) düşündürür.')}
+<h3>H refleksi: fizyoloji ve teknik</h3>
+<p>Aşil refleksinin elektriksel karşılığıdır. Düşük eşikli Ia afferentleri uyarılır; impuls DRG'den arka köke, oradan ön boynuz motor nöronuna monosinaptik iletilir ve ön kök ile motor akson yoluyla kasa ulaşır. Erişkinde rutin olarak <b>tibial sinir–soleus</b> (S1) ve <b>median sinir–fleksör karpi radialis</b> (C6–C7) yollarında alınır.</p>
+<ul><li>Uzun süreli (0,5–1 ms), düşük şiddetli uyarı; katot proksimalde.</li>
+<li>Uyarılar arası en az 2–3 saniye (aktivasyon sonrası depresyon).</li>
+<li>Akım artırıldıkça H önce M'den <b>önce</b> görülür, büyür; M büyüdükçe H küçülür (motor aksonlarda antidromik çarpışma ve Renshaw inhibisyonu) ve supramaksimal uyarıda kaybolur.</li>
+<li>Latans her uyarıda <b>sabittir</b>; F'den bu özelliğiyle ayrılır.</li></ul>
+<table class="dt"><tr><th>Parametre</th><th>Normal</th><th>Anormal</th></tr>
+<tr><td>Soleus H latansı</td><td>~28–34 ms (boy ve yaşa göre; ör. 9,14 + 0,46 × bacak uzunluğu (cm) + 0,1 × yaş)</td><td>Üst sınırdan uzun ya da yok</td></tr>
+<tr><td>Sağ–sol latans farkı</td><td>&lt;1,0–1,5 ms</td><td>&gt;1,5 ms</td></tr>
+<tr><td>Amplitüd asimetrisi</td><td></td><td>Bir tarafta %50'den fazla düşük</td></tr>
+<tr><td>Hmaks/Mmaks</td><td>&lt;0,5–0,7</td><td>Artmış: üst motor nöron lezyonu</td></tr></table>
+${BX('warn','H refleksinin sınırları','Arkın herhangi bir yerinde (sinir, pleksus, kök, omurilik) lezyon H\'yi bozar: özgül değildir. Bir kez kaybolursa çoğunlukla geri gelmez; eski bir S1 lezyonu da yanıtsızlık yapar. 60 yaş üstünde iki taraflı alınamaması normal olabilir; tek taraflı kayıp daha anlamlıdır.')}
+${TRY('late:fN','F dalgasını canlı izleyin')} ${TRY('late:hN','H refleksini canlı izleyin')}`},
+
+{id:'ozel',p:'II',t:'Özel teknikler: blink refleksi, frenik, çarpışma, MUNE',lv:'İleri',h:()=>`
+<p class="lead">Rutin çalışmaların ulaşamadığı yolları değerlendirmek için kullanılan ek teknikler.</p>
+<h3>Blink refleksi</h3>
+<p>Supraorbital sinir (V1) uyarılır, iki taraflı orbicularis oculi kasından kayıt yapılır. Afferent trigeminal, efferent fasiyal sinirdir.</p>
+<ul><li><b>R1:</b> Yalnızca uyarı tarafında, latans ≤13 ms; pons içindeki oligosinaptik yol (ana duyu çekirdeği–fasiyal çekirdek).</li>
+<li><b>R2:</b> İki taraflı, ipsilateral ≤41 ms, kontralateral ≤44 ms; medulladaki spinal trigeminal çekirdek üzerinden polisinaptik yol.</li></ul>
+<table class="dt"><tr><th>Lezyon</th><th>Uyarılan tarafta</th><th>Karşı taraf uyarısında</th></tr>
+<tr><td>Afferent (trigeminal)</td><td>R1, ipsilateral R2 ve kontralateral R2 gecikir</td><td>Normal</td></tr>
+<tr><td>Efferent (fasiyal)</td><td>İpsilateral R1 ve R2 gecikir, kontralateral R2 normal</td><td>Lezyon tarafındaki R2 gecikir</td></tr>
+<tr><td>Pons (ana duyu çekirdeği)</td><td>R1 etkilenir</td><td></td></tr>
+<tr><td>Lateral medulla</td><td>R2 etkilenir</td><td></td></tr></table>
+<p>Yüz sinirinde ayrıca stilomastoid foramenden uyarılıp nazalis ya da orbicularis oculi'den alınan BKAP (ENoG), Bell felcinde akson kaybını ölçer.</p>
+<h3>Frenik sinir iletimi</h3>
+<p>Boyunda sternokleidomastoidin arka kenarında uyarı, ksifoid ile kostal kenar arasından diyafram kaydı. Normal latans ~6–8 ms, amplitüd ~0,4–1 mV. Diyafram güçsüzlüğü, ALS'de solunum değerlendirmesi, kardiyak cerrahi sonrası frenik hasar. İğne EMG ile diyaframa girmek pnömotoraks riski taşır ve deneyim gerektirir.</p>
+<h3>Çarpışma (collision) tekniği</h3>
+<p>Aynı sinir iki noktadan kısa aralıkla uyarılır; distalden yukarı giden antidromik volley proksimalden aşağı gelen volleyle çarpışır ve sönmüş olur. Kullanım: Martin-Gruber anastomozunda geçiş liflerini ayırmak, yavaş iletimli lif gruplarının hızını ölçmek, ileti hızı dağılımını çıkarmak.</p>
+<h3>Motor ünite sayısı tahmini (MUNE, MUNIX, MScan)</h3>
+<p>Maksimal BKAP, ortalama tek motor ünite potansiyeli büyüklüğüne bölünerek ünite sayısı tahmin edilir. Reinnervasyon BKAP amplitüdünü koruyabildiği için ünite kaybını BKAP'tan daha erken gösterir. ALS ve SMA'da hastalık ilerlemesinin ve tedavi yanıtının izlenmesinde kullanılır.</p>
+<h3>Diğer duyu çalışmaları</h3>
+<ul><li><b>Medial antebrakiyal kutanöz (T1, alt trunkus/medial kord):</b> Nörojenik torasik çıkış sendromunda en duyarlı duyu çalışması.</li>
+<li><b>Lateral antebrakiyal kutanöz (C6, üst trunkus/lateral kord, muskulokutan).</b></li>
+<li><b>Safen sinir (L4):</b> L4 radikülopati–lumbar pleksopati–femoral nöropati ayrımı.</li>
+<li><b>Lateral femoral kutanöz (L2–3):</b> Meraljia parestetika; teknik olarak zordur, iki taraflı karşılaştırılır.</li>
+<li><b>Medial ve lateral plantar:</b> Tarsal tünel; yaşla yanıt alınamayabilir.</li></ul>`},
+{id:'rns',p:'III',t:'Nöromüsküler kavşak: tekrarlayıcı uyarı ve tek lif EMG',lv:'İleri',h:()=>`
+<p class="lead">Kavşak hastalıklarında aksonlar ve kas lifleri sağlamdır; sorun impulsun sinirden kasa geçişindedir. Bu geçişin "güvenlik payını" zorlayan testler kullanılır: düşük frekanslı tekrarlayıcı uyarı (RNS), egzersiz ve tek lif EMG.</p>
+<h3>Fizyoloji</h3>
+<p>Sinir terminaline gelen AP voltaj kapılı Ca²⁺ kanallarını (P/Q tipi) açar; Ca²⁺ girişi asetilkolin (ACh) içeren veziküllerin (kuantum) salınımını tetikler. Her impuls normalde 50–300 kuantum salar. ACh postsinaptik reseptörlere bağlanarak <b>son plak potansiyeli (EPP)</b> oluşturur. EPP, kas lifinde AP başlatmak için gereken eşiğin çok üstündedir: bu fazlalık <b>güvenlik faktörüdür</b>.</p>
+<ul><li><b>Düşük frekanslı uyarı (2–3 Hz):</b> Hemen salınabilir vezikül deposu ilk 4–5 uyarıda azalır; her impuls daha az kuantum salar. Normal kişide EPP yine eşiğin üstünde kalır, BKAP değişmez.</li>
+<li><b>Yüksek frekanslı uyarı (20–50 Hz) ya da kısa maksimal egzersiz:</b> Terminalde Ca²⁺ birikir, salınım geçici olarak artar (fasilitasyon).</li></ul>
+<table class="dt"><tr><th></th><th>Postsinaptik (miyasteni gravis)</th><th>Presinaptik (LEMS, botulizm)</th></tr>
+<tr><td>Sorun</td><td>Reseptör sayısı azalmış (AChR, MuSK, LRP4 antikorları)</td><td>Salınan kuantum az (VGCC antikoru; botulinum toksini)</td></tr>
+<tr><td>İstirahat BKAP</td><td>Normal</td><td>Düşük (çoğu zaman &lt;%50 alt sınır)</td></tr>
+<tr><td>2–3 Hz RNS</td><td>Dekrement</td><td>Dekrement</td></tr>
+<tr><td>10 sn egzersiz / 50 Hz</td><td>Dekrementte düzelme (hafif artış)</td><td>Belirgin artış: LEMS'de ≥%60 (klasik eşik ≥%100)</td></tr></table>
+${DF('rns','Şekil 16 · Normal, miyasteni (dekrement, en derin 4.–5. yanıtta, ardından hafif toparlanma) ve LEMS (düşük başlangıç, egzersizle belirgin artış).')}
+<h3>RNS tekniği</h3>
+<ul><li>Ekstremite sıkıca sabitlenir (hareket artefaktı en sık yalancı dekrement nedenidir).</li>
+<li>El ısısı ≥33 °C: soğuk asetilkolinesterazı yavaşlatır ve dekrementi gizler.</li>
+<li>Güvenliyse piridostigmin testten 12–24 saat önce kesilir.</li>
+<li>Supramaksimal uyarı, 3 Hz'te 5–10 uyarılık diziler.</li>
+<li>Dekrement = (1. yanıt − 4. ya da 5. yanıt) ÷ 1. yanıt × 100. <b>&gt;%10</b> anormaldir ve tekrarlanabilir olmalıdır.</li>
+<li>Önce distal (ADM, APB), sonra proksimal ve yüz kasları (trapez–aksesuar, deltoid–aksiller, nazalis–fasiyal). Yüz ve proksimal kaslar MG'de daha duyarlıdır.</li></ul>
+<h3>Egzersiz protokolü</h3>
+<ol><li>Dinlenme dizisi.</li><li>10 saniye maksimal kasılma, hemen ardından dizi: <b>aktivasyon sonrası fasilitasyon</b> (LEMS'de BKAP artışı; MG'de dekrementin onarımı).</li>
+<li>1 dakika maksimal kasılma, ardından 1., 2., 3. ve 4. dakikalarda dizi: <b>aktivasyon sonrası tükenme</b>, 2–4. dakikada dekrement en derin hale gelir ve MG'de duyarlılığı artırır.</li></ol>
+<h3>Duyarlılık</h3>
+<p>Jeneralize MG'de RNS duyarlılığı birden fazla kas test edildiğinde ~%75, oküler MG'de &lt;%50'dir. MuSK-MG'de yüz ve boyun kasları tercih edilir. Normal RNS miyasteniyi dışlamaz.</p>
+<h3>Tek lif EMG (SFEMG)</h3>
+${DF('jit','Şekil 17 · Jitter: aynı motor üniteye ait iki kas lifinin potansiyelleri arasındaki zamanlamanın ateşlemeden ateşlemeye oynaması. İleti hiç geçemezse blok görülür.')}
+<p>Özel elektrot (25 µm yan port) ya da yüksek geçiren filtreli konsantrik iğne ile aynı üniteye ait iki lif kaydedilir. İki potansiyel arasındaki aralığın değişkenliği <b>jitter</b>dir ve ardışık farkların ortalaması (MCD) ile ölçülür. Normal EDC MCD yaklaşık &lt;35 µs (yaşa göre). 20 lif çiftinden ortalama MCD artmışsa ya da &gt;%10'unda jitter yüksekse anormaldir.</p>
+<ul><li>MG'de en duyarlı test (&gt;%95). Normal jitter, zayıf bir kasta MG'yi büyük ölçüde dışlar.</li>
+<li><b>Özgül değildir:</b> Aktif reinnervasyonda (ALS, nöropati, miyopati) da jitter artar. Sinir iletimi ve iğne EMG normal olmalıdır.</li></ul>
+${BX('clin','Diğer kavşak bulguları','<b>Tek uyarıya tekrarlayıcı BKAP</b> (ilk yanıtı birkaç ms sonra izleyen küçük ikinci yanıt): asetilkolinesteraz eksikliği, yavaş kanal konjenital miyastenik sendromu, organofosfat zehirlenmesi, aşırı piridostigmin. <b>Botulizm:</b> düşük BKAP, yüksek frekansta %30–100 artış, uzamış fasilitasyon; iğne EMG\'de küçük kısa MUP\'lar ve fibrilasyon görülebilir.')}`},
+
+{id:'igne',p:'IV',t:'İğne EMG: elektrotlar, teknik ve güvenlik',lv:'Temel',h:()=>`
+<p class="lead">İğne EMG kasın kendi elektriksel aktivitesini kaydeder. Akson kaybının varlığını, ne kadar yeni olduğunu, reinnervasyonu ve kas lifinin kendi hastalığını gösteren tek yöntemdir.</p>
+${DF('igne','Şekil 18 · İğne EMG\'nin dört aşaması: giriş aktivitesi, istirahat, minimal kasılmada MUP analizi, artan kasılmada rekrutman ve interferans.')}
+<h3>Elektrot tipleri</h3>
+<table class="dt"><tr><th></th><th>Konsantrik</th><th>Monopolar</th><th>Tek lif</th></tr>
+<tr><td>Yapı</td><td>Kanül referans, merkezdeki tel aktif</td><td>Teflon kaplı, uç aktif; ayrı yüzey referansı</td><td>Yan portta 25 µm yüzey</td></tr>
+<tr><td>Kayıt alanı</td><td>Küçük, yönlü (eğik yüzey)</td><td>Daha geniş, çok yönlü</td><td>Çok küçük (~300 µm)</td></tr>
+<tr><td>MUP</td><td>Referans değerlerin çoğu bu elektrotla</td><td>Amplitüd daha yüksek, daha polifazik</td><td>Tek lif potansiyeli</td></tr>
+<tr><td>Hasta konforu</td><td>Biraz daha ağrılı</td><td>Daha az ağrılı</td><td></td></tr></table>
+<p>Hangi elektrotla çalışıyorsanız o elektrota ait referans değerleri kullanın.</p>
+<h3>Ayarlar</h3>
+<ul><li>Filtre 10–20 Hz – 10 kHz.</li>
+<li>Spontan aktivite için 50–100 µV/bölme, 10 ms/bölme.</li>
+<li>MUP için 200 µV – 1 mV/bölme, 10 ms/bölme. Amplitüd ve süre ölçümü için tetik ve gecikme hattı kullanın.</li>
+<li><b>Ses</b> çok önemlidir: deneyimli bir EMG'ci çoğu potansiyeli ekrana bakmadan sesinden tanır.</li></ul>
+<h3>Sistematik inceleme</h3>
+<ol><li><b>Giriş aktivitesi:</b> İğne her ilerletildiğinde kısa bir patlama (&lt;300 ms). Artmış: erken denervasyon, miyotoni, enflamatuvar miyopati. Azalmış: fibrozis, yağlı dejenerasyon, periyodik paralizi atağı.</li>
+<li><b>İstirahat:</b> Kasın en az 4 kadranında, her yönde birkaç derinlikte (her adımda 1–2 saniye bekleyerek) spontan aktivite aranır; fasikülasyon için kasa en az 30–60 saniye dinlenerek bakılır.</li>
+<li><b>Minimal kasılma:</b> İlk rekrüte olan üniteler (tip I) incelenir: süre, amplitüd, faz, stabilite. Nicel analiz için en az 20 farklı MUP.</li>
+<li><b>Artan kasılma:</b> Rekrutman (ateşleme hızı ile ünite sayısı ilişkisi) ve maksimal kasılmada interferans paterni.</li></ol>
+<h3>Kas seçimi</h3>
+<ul><li>Klinik olarak güçsüz kaslar.</li>
+<li>Ayırıcı tanıya göre seçilen "karar kasları": örneğin peroneal nöropati ile L5 radikülopati ayrımında tibialis posterior, gluteus medius ve biceps femoris kısa başı.</li>
+<li>Kök lezyonunda paraspinal kaslar.</li>
+<li>Kas biyopsisi düşünülüyorsa iğnelenen kasın karşı tarafındaki homolog kas biyopsi için ayrılır (iğne travması lokal enflamasyon yapar).</li></ul>
+<h3>Güvenlik</h3>
+<ul><li><b>Antikoagülan:</b> Terapötik düzeyde genellikle güvenlidir; bası uygulanamayan derin kaslarda (tibialis posterior, iliopsoas, paraspinal derin) dikkat ve gerekirse ultrason rehberliği.</li>
+<li><b>Pnömotoraks riski:</b> Serratus anterior, rhomboid, supraspinatus, alt servikal/üst torasik paraspinal, interkostal ve diyafram. Kısa ve kontrollü girişler; ince yapılı hastada ultrason.</li>
+<li>Lenfödemli ekstremite, aktif cilt enfeksiyonu ve protez bölgesinden kaçının.</li>
+<li>İğne EMG sonrası CK hafif yükselebilir; CK ölçümünü EMG'den önce isteyin.</li></ul>
+${TRY('needle:ins','Giriş aktivitesini iğneyi oynatarak deneyin')}`},
+
+{id:'spon',p:'IV',t:'Spontan aktivite: kaynakları, sesleri ve anlamları',lv:'Orta',h:()=>`
+<p class="lead">Tamamen gevşemiş normal bir kas son plak bölgesi dışında elektriksel olarak sessizdir. Spontan aktivite, kaynağının nerede olduğuna göre sınıflanır: kas lifi, motor ünite (akson/motor nöron), ya da normal son plak.</p>
+<h3>Normal spontan aktivite: son plak</h3>
+<ul><li><b>Son plak gürültüsü:</b> Minyatür son plak potansiyelleri. Küçük (10–50 µV), monofazik negatif, düzensiz ve çok sık; deniz kabuğu sesi. Hasta derin, künt bir ağrı hisseder.</li>
+<li><b>Son plak dikenleri:</b> İğnenin intramüsküler sinir terminalini uyarmasıyla ateşleyen tek lif. 100–200 µV, 3–4 ms, <b>ilk faz negatif</b>, <b>düzensiz</b> ateşleme (5–50 Hz); cızırtı sesi.</li></ul>
+${BX('warn','En sık hata: son plak dikenini fibrilasyon sanmak','Son plak dikeni: negatif başlar, düzensizdir, son plak gürültüsüyle birlikte görülür, ağrılıdır ve iğne biraz çekilince kaybolur. Fibrilasyon: pozitif başlar, saat gibi düzenlidir. İğne ucu lifi hafifçe hasarlarsa son plak dikeni pozitif dalga şeklinde görülebilir; düzensizliği ele verir.')}
+<h3>Kas lifi kaynaklı: fibrilasyon ve pozitif keskin dalga</h3>
+<p>Denerve kas lifinde son plak dışındaki zara da ACh reseptörleri ve TTX'e dirençli Na⁺ kanalları yayılır; membran potansiyeli kendiliğinden salınır ve eşiği aştıkça lif ateşler. Bu yüzden ateşleme <b>çok düzenlidir</b> (0,5–15, nadiren 30 Hz).</p>
+<table class="dt"><tr><th></th><th>Fibrilasyon</th><th>Pozitif keskin dalga (PSW)</th></tr>
+<tr><td>Şekil</td><td>Bi/trifazik, ilk faz pozitif, 1–5 ms</td><td>Keskin pozitif başlangıç, yavaş negatif dönüş, 10–30 ms</td></tr>
+<tr><td>Amplitüd</td><td>20–200 µV (kronikleştikçe küçülür)</td><td>20–200 µV, bazen 1 mV</td></tr>
+<tr><td>Ses</td><td>Çatıya düşen yağmur, saat tik-takı</td><td>Künt "pop"</td></tr>
+<tr><td>Oluşum</td><td>Yayılan AP iğneye yaklaşıp uzaklaşır</td><td>AP iğne ucunda bloke olur (hasarlı lif)</td></tr></table>
+<p><b>Derecelendirme:</b> 0 yok · 1+ en az iki bölgede kalıcı tek tük · 2+ birçok bölgede orta sayıda · 3+ her bölgede çok · 4+ ekranı dolduran.</p>
+<p><b>Nedenleri:</b> Herhangi bir akson kaybı (radikülopati, pleksopati, nöropati, motor nöron hastalığı); kas lifinin segmental nekrozu ile son plaktan kopması (enflamatuvar ve nekrotizan miyopatiler, distrofiler, inklüzyon cisimcikli miyozit, toksik miyopatiler, trişinoz, Pompe); ağır kavşak hastalığı (botulizm, nadiren MG).</p>
+<p><b>Yalancı pozitif kaynaklar:</b> Asemptomatik kişilerde ayak intrinsik kasları, ileri yaşta alt lumbal paraspinaller, laminektomi sonrası paraspinaller, son haftalarda iğnelenmiş ya da enjeksiyon yapılmış bölge.</p>
+<h3>Motor ünite kaynaklı</h3>
+<table class="dt"><tr><th>Potansiyel</th><th>Kaynak</th><th>Ateşleme</th><th>Ses</th><th>Anlamı</th></tr>
+<tr><td>Fasikülasyon</td><td>Tek bir ünitenin istemsiz deşarjı (motor nöron ya da aksonun herhangi bir yeri)</td><td>Düzensiz, yavaş (çoğu &lt;1 Hz)</td><td>Patlamış mısır</td><td>Benign olabilir; fibrilasyon ve nörojenik MUP ile birlikteyse ALS. Awaji kriterlerinde kronik nörojenik değişiklikle birlikte fibrilasyon ile eşdeğer</td></tr>
+<tr><td>Miyokimi</td><td>Aynı ünitenin gruplar halinde deşarjı (ektopik akson)</td><td>Burst içinde 20–150 Hz, burstler 0,1–10 Hz</td><td>Uygun adım asker</td><td>Radyasyon pleksopatisi (tümör infiltrasyonundan ayırıcı), GBS, CIDP, MS ve beyin sapı tümörü (yüz), Isaacs</td></tr>
+<tr><td>Nöromiyotoni</td><td>Akson hipereksitabilitesi</td><td>150–300 Hz, dekremental amplitüd</td><td>Yüksek perdeli "ping"</td><td>Isaacs, Morvan (CASPR2), kramp-fasikülasyon sendromu; uykuda sürer</td></tr>
+<tr><td>Kramp deşarjı</td><td>Çok sayıda ünite, motor nöron/akson</td><td>Yüksek frekans (≤150 Hz), düzensiz</td><td></td><td>Normal kramplar, ALS, metabolik</td></tr>
+<tr><td>Dublet, multiplet</td><td>Aynı ünitenin 2–3 kez çok kısa aralıkla ateşlemesi</td><td></td><td></td><td>Hipokalsemi, tetani, hipereksitabilite</td></tr></table>
+<h3>Kas lifi grubu kaynaklı</h3>
+<ul><li><b>Kompleks tekrarlayıcı deşarj (KTD):</b> Bir "pacemaker" lif komşu lifleri efaptik olarak uyarır, döngü kendini sürdürür. Çok fazlı, tekrarlarda birebir aynı şekil, 5–100 Hz, ani başlar ve ani durur; motor sesi. Kronik nörojenik (radikülopati, SMA, kronik nöropati) ya da kronik miyopatik süreçler (IBM, polimiyozit, distrofiler). Kronikliği gösterir, tanıya özgül değildir.</li>
+<li><b>Miyotonik deşarj:</b> Tek lif potansiyelleri (fibrilasyon ya da PSW şeklinde) 20–150 Hz'te, frekans ve amplitüdü artıp azalan (waxing–waning) deşarj; pike yapan uçak sesi.</li></ul>
+<table class="dt"><tr><th>Miyotoni nedeni</th><th>İpucu</th></tr>
+<tr><td>Miyotonik distrofi tip 1 (DMPK)</td><td>Distal belirgin miyotoni, miyopatik MUP'lar</td></tr>
+<tr><td>Miyotonik distrofi tip 2 (CNBP)</td><td>Proksimal, seyrek ve "waning only" deşarjlar; kolay gözden kaçar</td></tr>
+<tr><td>Miyotonia konjenita (CLCN1)</td><td>Yaygın yoğun miyotoni, MUP'lar normal; kısa egzersiz testinde geçici BKAP düşüşü</td></tr>
+<tr><td>Paramiyotonia konjenita (SCN4A)</td><td>Soğukla artan miyotoni ve güçsüzlük</td></tr>
+<tr><td>Pompe hastalığı (asit maltaz)</td><td>Klinik miyotoni olmadan özellikle paraspinal kaslarda miyotonik deşarj</td></tr>
+<tr><td>Diğer</td><td>Hiperkalemik periyodik paralizi, miyotübüler miyopati, hipotiroidi, ilaçlar (kolşisin, statin, klorokin)</td></tr></table>
+${TRY('needle:fib','Fibrilasyonun sesini dinleyin')} ${TRY('needle:myot','Miyotonik deşarjı dinleyin')} ${TRY('needle:crd','KTD\'yi dinleyin')}`},
+
+{id:'mup',p:'IV',t:'MUP analizi: süre, amplitüd, faz ve stabilite',lv:'İleri',h:()=>`
+<p class="lead">Motor ünite potansiyeli (MUP), iğnenin kayıt alanındaki aynı üniteye ait kas liflerinin toplam potansiyelidir. Bir MUP'ın şekli ünitenin büyüklüğünü, liflerin dağılımını ve uç plakların senkronunu yansıtır.</p>
+${DF('mupm','Şekil 19 · MUP ölçümleri: süre (ilk sapmadan bazale dönüşe), amplitüd (tepe–tepe), faz sayısı (bazal çizgi geçişi + 1), yükselme zamanı.')}
+<h3>Parametreler ve neyi yansıttıkları</h3>
+<table class="dt"><tr><th>Parametre</th><th>Neyi yansıtır</th><th>Ölçüm notu</th></tr>
+<tr><td>Süre</td><td>Ünitedeki lif sayısı ve uç plakların yayılımı; iğneye ~2,5 mm mesafedeki liflerin katkısı</td><td>Nörojenik–miyopatik ayrımında en önemli parametre. Normal 5–15 ms; kasa ve yaşa göre değişir; soğukla uzar</td></tr>
+<tr><td>Amplitüd</td><td>İğne ucuna &lt;0,5 mm uzaklıktaki az sayıda lif; lif yoğunluğu</td><td>Tepe–tepe. Ancak <b>yükselme zamanı &lt;500 µs</b> ise (tercihen 100–200 µs) ölçülür; uzak bir MUP yanlışlıkla "küçük, miyopatik" sanılır</td></tr>
+<tr><td>Faz</td><td>Liflerin senkronu</td><td>Bazal çizgi geçişi + 1. Normal 2–4. &gt;4 polifazik. Normal kaslarda %5–15, deltoid gibi bazı kaslarda %25'e kadar polifazik MUP olabilir</td></tr>
+<tr><td>Dönüş (turn)</td><td>Senkron bozukluğu</td><td>Bazali geçmeyen yön değişimleri (serrasyon)</td></tr>
+<tr><td>Satellit</td><td>Yeni sahiplenilmiş, yavaş iletimli ince filiz</td><td>Ana MUP'tan sonra zamana kilitli geç bileşen; erken reinnervasyon</td></tr>
+<tr><td>Stabilite</td><td>Kavşak iletiminin güvenilirliği</td><td>Ardışık ateşlemelerde şeklin değişmesi: olgunlaşmamış uç plak (erken reinnervasyon, aktif ALS) ya da kavşak hastalığı</td></tr></table>
+${DF('mupt','Şekil 20 · Normal, nörojenik ve miyopatik MUP.')}
+<h3>Nörojenik MUP</h3>
+<ul><li><b>Erken dönem (haftalar):</b> Kollateral filizler henüz olgunlaşmamıştır: polifazik, satellitli, uzun süreli, <b>instabil</b> MUP'lar; amplitüd henüz büyümemiş olabilir.</li>
+<li><b>Geç dönem (aylar–yıllar):</b> Filizler olgunlaşır, lif yoğunluğu artar: <b>uzun süreli, yüksek amplitüdlü</b> (kol kaslarında &gt;3–4 mV, bazen 10 mV'u aşar), stabil MUP'lar.</li>
+<li>Her zaman <b>azalmış rekrutman</b> ile birlikte değerlendirilir.</li></ul>
+<h3>Miyopatik MUP</h3>
+<ul><li>Ünitedeki çalışan lif sayısı azalmıştır: <b>kısa süreli, düşük amplitüdlü, polifazik</b>; "çıtırtılı" ses.</li>
+<li><b>Erken rekrutman</b>: küçük bir kuvvet için çok sayıda ünite.</li>
+<li>Enflamatuvar/nekrotizan miyopatilerde fibrilasyon ve PSW ile birlikte ("irritabl miyopati").</li></ul>
+${BX('warn','Kronik miyopati tuzağı','Uzun süreli miyopatilerde (IBM, kronik polimiyozit, distrofiler) lif yarılması, rejenerasyon ve sekonder denervasyon nedeniyle aynı kasta hem kısa küçük hem de uzun büyük MUP\'lar görülebilir. Yalnızca büyük MUP\'lara bakıp "nörojenik" demek hatadır. IBM\'de fleksör digitorum profundus ve kuadriseps tutulumu, karışık MUP\'lar ve fibrilasyon tipiktir.')}
+<h3>Nicel MUP analizi</h3>
+<p>En az 20 farklı MUP örneklenir; ortalama süre ve amplitüd, o kas ve yaş için referans değerle karşılaştırılır. Ortalama süre referansın <b>%20'sinden fazla uzun</b> ise nörojenik, <b>%20'sinden fazla kısa</b> ise miyopatik lehine kabul edilir. Polifazi oranı da hesaplanır. Sınırda olgularda ve miyopati şüphesinde nitel değerlendirmeden daha güvenilirdir.</p>
+${TRY('needle:mupN','Normal MUP')} ${TRY('needle:mupR','Nörojenik MUP')} ${TRY('needle:mupM','Miyopatik MUP')}`},
+
+{id:'rek',p:'IV',t:'Rekrutman ve interferans paterni',lv:'İleri',h:()=>`
+<p class="lead">Rekrutman, kasılma arttıkça yeni ünitelerin devreye girme düzenidir. MUP şeklinden bağımsız olarak, işleyen motor ünite sayısı hakkında en doğrudan bilgiyi verir. Doğru değerlendirmek için ateşleme hızlarını saymak gerekir.</p>
+${DF('rek','Şekil 21 · Normal, azalmış ve erken rekrutman. Her renk ayrı bir ünitenin ateşleme dizisi.')}
+<h3>Normal fizyoloji</h3>
+<p>İlk ünite ~5 Hz (4–7 Hz) ile ateşlemeye başlar. Kuvvet arttıkça hızı artar; yaklaşık 10 Hz'e ulaştığında ikinci ünite katılır (<b>rekrutman frekansı</b>). Bu böyle sürer: her yeni ünite, önceki üniteler belirli bir hıza ulaşınca devreye girer.</p>
+${BX('def','Rekrutman oranı ve "beşler kuralı"','Rekrutman oranı = en hızlı ateşleyen ünitenin hızı ÷ ateşleyen ünite sayısı. Normalde &lt;5: 10 Hz\'te 2 ünite, 15 Hz\'te 3 ünite, 20 Hz\'te 4 ünite. Oran &gt;5 azalmış rekrutman, &gt;10 kesin anormal kabul edilir.')}
+<h3>Ateşleme hızını ölçmek</h3>
+<p>10 ms/bölme taramada ekran 100 ms'dir. Aynı MUP ekranda 2 kez görülüyorsa ~20 Hz, 1 kez görülüyorsa ~10 Hz ile ateşliyordur. Tetik ve gecikme hattı kullanarak bir üniteyi kilitlemek ölçümü kolaylaştırır.</p>
+<h3>Anormal rekrutman tipleri</h3>
+<table class="dt"><tr><th>Tip</th><th>Görünüm</th><th>Neden</th></tr>
+<tr><td>Azalmış rekrutman</td><td>Az sayıda ünite yüksek hızda (ör. tek ünite 20–25 Hz)</td><td>Motor ünite kaybı (nörojenik) ya da ileti bloğu. <b>Akut lezyonda ilk ve tek bulgu</b> olabilir: MUP şekli henüz değişmemiştir</td></tr>
+<tr><td>Erken rekrutman</td><td>Hafif kasılmada çok sayıda küçük ünite; interferans kısa sürede dolar</td><td>Miyopati (her ünite zayıf); ağır kavşak hastalığı</td></tr>
+<tr><td>Azalmış aktivasyon</td><td>Az sayıda ünite <b>düşük hızda</b> (5–10 Hz); oran normal</td><td>Üst motor nöron lezyonu, ağrı, işbirliği eksikliği, konversiyon</td></tr></table>
+${BX('warn','Rekrutmanı kuvvetle birlikte değerlendirin','Erken rekrutman, üretilen kuvvete göre tanımlanır: hasta neredeyse hiç kuvvet üretmediği halde ekran doluyorsa erkendir. Azalmış aktivasyon ile azalmış rekrutman ayrımı ancak ateşleme hızına bakılarak yapılır: yavaş ateşleyen az ünite santraldir, hızlı ateşleyen az ünite periferiktir.')}
+<h3>İnterferans paterni</h3>
+<p>Maksimal kasılmada normalde bazal çizgi görülmez (tam interferans). Azalmış interferans: bazal çizgi kısmen görünür; tek ünite paterni: yalnızca bir–iki ünite hızla ateşler. Miyopatide interferans tamdır ama <b>amplitüdü düşüktür</b>. İnterferans kaba bir ölçümdür ve hasta eforundan çok etkilenir; tanıda rekrutman oranı daha güvenilirdir.</p>
+${TRY('needle:mupN','Kasılmayı artırıp rekrutmanı izleyin')}`},
+{id:'lok',p:'V',t:'Lokalizasyon mantığı',lv:'İleri',h:()=>`
+<p class="lead">EMG yorumu bir bulmacadır: duyu yanıtlarının durumu, motor yanıtlar, paraspinal kaslar ve tutulan kasların dağılımı birlikte lezyonun düzeyini gösterir.</p>
+<table class="dt"><tr><th>Düzey</th><th>SNAP</th><th>BKAP</th><th>İğne EMG dağılımı</th><th>Paraspinal</th></tr>
+<tr><td>Ön boynuz</td><td>Normal</td><td>Düşük olabilir</td><td>Birden çok segment ve bölgede yaygın nörojenik</td><td>Anormal (torasik dahil)</td></tr>
+<tr><td>Kök</td><td>Normal</td><td>Çoğu zaman normal</td><td>Tek miyotom, farklı sinirler</td><td>Sıklıkla anormal</td></tr>
+<tr><td>Pleksus</td><td>İlgili bölgede düşük</td><td>Düşük olabilir</td><td>Birden çok sinir, tek kök değil</td><td>Normal</td></tr>
+<tr><td>Periferik sinir</td><td>Sinir dağılımında düşük</td><td>Lezyon yerinde blok/yavaşlama ya da düşük</td><td>Tek sinir, lezyonun distalindeki kaslar</td><td>Normal</td></tr>
+<tr><td>Nöromüsküler kavşak</td><td>Normal</td><td>Normal (presinaptikte düşük)</td><td>İnstabil MUP'lar; RNS/SFEMG anormal</td><td>Normal</td></tr>
+<tr><td>Kas</td><td>Normal</td><td>Normal ya da düşük</td><td>Proksimal ağırlıklı miyopatik</td><td>Sık anormal (enflamatuvarda)</td></tr></table>
+<h3>Paraspinal kasların değeri</h3>
+<p>Spinal sinirin arka ramusu foramenin hemen dışında ayrılır ve paraspinal kasları innerve eder. Paraspinal denervasyon lezyonun bu ayrılma noktasının proksimalinde (kök ya da ön boynuz) olduğunu gösterir ve pleksopatiyi dışlamaya yardım eder. Ancak paraspinaller çok segmentli innervasyon aldığından seviye belirlemede güvenilir değildir; normal paraspinal bulgu radikülopatiyi dışlamaz.</p>
+<h3>Pleksusa göre duyu sinirleri</h3>
+<table class="dt"><tr><th>Bölge</th><th>Duyu sinirleri</th></tr>
+<tr><td>Üst trunkus (C5–6)</td><td>Lateral antebrakiyal kutanöz, median D1, radial yüzeyel</td></tr>
+<tr><td>Orta trunkus (C7)</td><td>Median D2–D3, radial yüzeyel (kısmen)</td></tr>
+<tr><td>Alt trunkus / medial kord (C8–T1)</td><td>Ulnar D5, dorsal ulnar kutanöz, <b>medial antebrakiyal kutanöz</b></td></tr>
+<tr><td>Lateral kord</td><td>Lateral antebrakiyal kutanöz, median D1–D3</td></tr>
+<tr><td>Posterior kord</td><td>Radial yüzeyel</td></tr>
+<tr><td>Lumbal pleksus</td><td>Safen (L4), lateral femoral kutanöz (L2–3)</td></tr>
+<tr><td>Sakral pleksus</td><td>Yüzeyel peroneal (L5), sural (S1)</td></tr></table>
+<h3>Kök–kas tablosu (seçilmiş)</h3>
+<table class="dt"><tr><th>Kök</th><th>Kaslar (sinir)</th></tr>
+<tr><td>C5</td><td>Rhomboid (dorsal skapular), supraspinatus/infraspinatus (supraskapular), deltoid (aksiller), biceps (muskulokutan)</td></tr>
+<tr><td>C6</td><td>Biceps, brakioradialis (radial), pronator teres (median), ekstansör karpi radialis</td></tr>
+<tr><td>C7</td><td>Triceps (radial), pronator teres ve fleksör karpi radialis (median), ekstansör digitorum (PIN)</td></tr>
+<tr><td>C8</td><td>Ekstansör indicis (PIN), fleksör pollicis longus (AIN), FDP 4–5 (ulnar), FDI ve ADM</td></tr>
+<tr><td>T1</td><td>APB (median), FDI (ulnar)</td></tr>
+<tr><td>L2–L4</td><td>İliopsoas (femoral + lumbal pleksus), adduktörler (obturator), vastus medialis (femoral)</td></tr>
+<tr><td>L5</td><td>Tibialis anterior ve EHL (derin peroneal), peroneus longus (yüzeyel peroneal), <b>tibialis posterior</b> (tibial), <b>gluteus medius</b> ve TFL (süperior gluteal), biceps femoris kısa başı</td></tr>
+<tr><td>S1</td><td>Gastroknemius medial başı ve soleus (tibial), biceps femoris uzun başı, gluteus maksimus (inferior gluteal), abductor hallucis</td></tr></table>
+${BX('pearl','Örnek: düşük ayak','Peroneal nöropati (fibula başı): TA, EHL, peroneus longus anormal; tibialis posterior, gluteus medius, biceps femoris kısa başı ve paraspinal normal; yüzeyel peroneal SNAP düşük; fibula başında blok ya da yavaşlama. L5 radikülopati: tibialis posterior ve gluteus medius da anormal, paraspinal anormal olabilir, SNAP normal. Siyatik nöropati (peroneal bölüm ağırlıklı): biceps femoris kısa başı anormal, gluteus medius normal.')}`},
+
+{id:'tuzakn',p:'V',t:'Tuzak nöropatiler: KTS, ulnar, peroneal, radial',lv:'İleri',h:()=>`
+<p class="lead">Tuzak nöropatiler EMG laboratuvarına en sık gönderilen sorunlardır. Amaç yalnızca tanı değil, lokalizasyonun kesinleştirilmesi, şiddetin derecelendirilmesi ve eşlik eden bir polinöropati ya da radikülopatinin dışlanmasıdır.</p>
+<h3>Karpal tünel sendromu</h3>
+<p>İlk bozulan, en kalın miyelinli duyu lifleridir. Bu yüzden duyu latansları motor latanslardan önce uzar. Tek bir median değeri yerine, aynı mesafede ve aynı ısıda karşılaştırma yapan testler daha duyarlıdır.</p>
+<table class="dt"><tr><th>Test</th><th>Anormal</th></tr>
+<tr><td>Median D2 duyu tepe latansı (14 cm)</td><td>&gt;3,5 ms</td></tr>
+<tr><td>Palmar mikst: median − ulnar (8 cm)</td><td>≥0,4 ms</td></tr>
+<tr><td>D4 halka: median − ulnar (14 cm)</td><td>≥0,5 ms</td></tr>
+<tr><td>Başparmak: median − radial (10 cm)</td><td>≥0,5 ms</td></tr>
+<tr><td>Kombine duyu indeksi (CSI: üç farkın toplamı)</td><td>≥1,0 ms</td></tr>
+<tr><td>2. lumbrikal − interosseöz motor latans farkı</td><td>≥0,5 ms (SNAP'lar alınamadığında bile değerli)</td></tr>
+<tr><td>Median distal motor latans (APB, 8 cm)</td><td>&gt;4,4 ms</td></tr></table>
+<p><b>Şiddet (pratik sınıflama):</b> <b>Hafif:</b> yalnızca duyu ya da karşılaştırma testleri anormal. <b>Orta:</b> duyu anormal + distal motor latans uzamış. <b>Ağır:</b> SNAP alınamıyor ya da BKAP amplitüdü düşük, APB'de fibrilasyon/nörojenik MUP.</p>
+${BX('warn','KTS tuzakları','1) Soğuk el yalancı uzama yapar; karşılaştırma testleri bu hatayı azaltır. 2) Martin-Gruber anastomozu önkol hızını yapay olarak yükseltir. 3) Eşlik eden polinöropatide karşılaştırma testlerini kullanın. 4) Proksimal median lezyonunda (pronator, AIN) bilek düzeyinde fokal yavaşlama yoktur; AIN sendromu saf motordur (FPL, FDP 2–3, pronator quadratus).')}
+<h3>Dirsekte ulnar nöropati</h3>
+<p>Teknik: dirsek <b>70–90° fleksiyonda</b>, bilek, dirsek altı (medial epikondilin ~3–4 cm distali) ve dirsek üstü (~6–7 cm proksimali; dirsek segmenti ~10 cm). ADM ile birlikte FDI'dan kayıt (FDI daha duyarlıdır).</p>
+<p><b>AANEM kriterleri</b> (biri ya da birkaçı):</p>
+<ol><li>Dirsek segmenti iletim hızı &lt;50 m/s.</li>
+<li>Dirsek segmenti önkol segmentinden &gt;10 m/s daha yavaş.</li>
+<li>Dirsek altından dirsek üstüne BKAP amplitüdünde &gt;%20–25 düşüş (Martin-Gruber dışlanmalı).</li>
+<li>Dirsek boyunca BKAP şeklinde belirgin değişiklik.</li>
+<li>İnching'de fokal latans sıçraması ya da amplitüd düşüşü.</li></ol>
+<p><b>Dorsal ulnar kutanöz SNAP:</b> Bileğin proksimalinde ayrılır; dirsek lezyonunda düşük, Guyon lezyonunda normaldir. <b>Ulnar lezyon ile C8/alt trunkus ayrımı:</b> Medial antebrakiyal kutanöz SNAP (alt trunkus/medial kordda düşük, ulnar lezyonda normal), APB ve ekstansör indicis gibi ulnar olmayan C8–T1 kasları ve paraspinaller.</p>
+<p><b>Guyon kanalı tipleri:</b> I (duyu + motor), II (yalnızca derin motor dal: FDI etkilenir, ADM korunabilir), III (yalnızca yüzeyel duyu dalı).</p>
+<h3>Fibula başında peroneal nöropati</h3>
+<ul><li>EDB kaydının yanında <b>tibialis anterior</b> kaydı yapın: blok TA'da daha sık görülür ve EDB atrofisi (yaş, ayakkabı) yanıltıcı olabilir.</li>
+<li>Fibula başı boyunca blok ya da yavaşlama; yüzeyel peroneal SNAP (aksonal ise düşük).</li>
+<li>Biceps femoris kısa başı normal olmalıdır (anormalse siyatik düzeyi).</li></ul>
+<h3>Radial nöropati</h3>
+<ul><li><b>Spiral oluk (Satürday gecesi felci):</b> Triceps korunur, brakioradialis ve ekstansörler tutulur; spiral oluk boyunca blok; yüzeyel radial SNAP akson kaybı varsa düşük.</li>
+<li><b>Posterior interosseöz sinir:</b> Duyu tutulumu yok (SNAP normal); ECRL ve brakioradialis korunur, el bileği radiale deviasyonla kalkar.</li></ul>
+<h3>Tarsal tünel</h3>
+<p>Medial ve lateral plantar mikst/duyu yanıtları ve abductor hallucis/abductor digiti quinti pedis motor latansları; iki taraflı karşılaştırma şarttır. Yaşla ve ayak deformitesiyle yanıtlar alınamayabilir; tanısal güvenilirliği sınırlıdır.</p>
+${TRY('motor:tuzak','Tuzak nöropati senaryolarını deneyin')}`},
+
+{id:'radik',p:'V',t:'Radikülopati',lv:'İleri',h:()=>`
+<p class="lead">EMG radikülopatide ancak <b>motor akson kaybını</b> gösterebilir. Ağrı ve duyu bulgularının ağırlıkta olduğu, demiyelinizan ya da yalnızca duyu liflerini etkileyen kök basılarında iğne EMG normal olabilir. Bu nedenle EMG radikülopatiyi doğrular, dışlamaz.</p>
+<h3>İletim çalışmaları</h3>
+<ul><li><b>SNAP'lar normaldir</b> (lezyon DRG proksimalinde). Düşük SNAP pleksopati, nöropati ya da yaşa bağlı değişiklik düşündürür (L5 istisnası için duyu iletim bölümüne bakın).</li>
+<li>BKAP genellikle normaldir; ağır akson kaybında ilgili kasta düşebilir.</li>
+<li>H refleksi S1 için yardımcıdır; F dalgasının değeri sınırlıdır.</li></ul>
+<h3>İğne EMG kriterleri</h3>
+<ol><li>Aynı kökten, <b>en az iki farklı sinirle</b> innerve edilen en az iki kasta nörojenik bulgu.</li>
+<li>Komşu köklere ait kasların normal olması (çok kök tutulumunu ve pleksopatiyi ayırmak için).</li>
+<li>Paraspinal kaslarda fibrilasyon destekleyicidir ama şart değildir.</li></ol>
+<h3>Zamanlama</h3>
+<table class="dt"><tr><th>Süre</th><th>Beklenen bulgu</th></tr>
+<tr><td>İlk 1–2 hafta</td><td>Yalnızca azalmış rekrutman (lezyon motor aksonları etkilediyse); paraspinal fibrilasyon 7–10. günden itibaren</td></tr>
+<tr><td>2–6 hafta</td><td>Proksimalden distale doğru fibrilasyon ve PSW</td></tr>
+<tr><td>2–6 ay</td><td>Polifazik, satellitli, instabil MUP'lar (reinnervasyon); fibrilasyon azalabilir</td></tr>
+<tr><td>Aylar–yıllar</td><td>Büyük, uzun süreli, stabil MUP'lar; fibrilasyon yok. "Eski, kronik, aktif olmayan" radikülopati</td></tr></table>
+${BX('warn','Tuzaklar','1) Paraspinal kaslarda yaşla, laminektomi sonrası ya da tam gevşeyemeyen hastada yalancı bulgular. 2) Tek kasta hafif değişikliklerden radikülopati tanısı koymayın. 3) Diyabetik hastada polinöropati ve radikülopati birlikte olabilir; distal kas bulguları her iki tarafta da varsa yorum güçleşir. 4) Ağrının kendisi azalmış aktivasyon yapar; rekrutman değerlendirmesinde ateşleme hızına bakın.')}
+<h3>Sık kök sendromları (kas örüntüsü)</h3>
+<ul><li><b>C6:</b> Pronator teres, fleksör karpi radialis, biceps, brakioradialis.</li>
+<li><b>C7 (en sık servikal):</b> Triceps, pronator teres, fleksör karpi radialis, ekstansör digitorum.</li>
+<li><b>C8:</b> FDI, ADM, ekstansör indicis, FPL; APB (T1 katkısı). Ulnar ve median sinir kasları birlikte.</li>
+<li><b>L5 (en sık lumbosakral):</b> TA, tibialis posterior, peroneus longus, EHL, gluteus medius.</li>
+<li><b>S1:</b> Gastroknemius medial başı, soleus, biceps femoris uzun başı, gluteus maksimus; H refleksi.</li></ul>`},
+
+{id:'pnp',p:'V',t:'Polinöropatiler ve GBS/CIDP kriterleri',lv:'İleri',h:()=>`
+<p class="lead">Polinöropati değerlendirmesinde EMG şu dört soruyu yanıtlar: Gerçekten nöropati var mı? Motor mu, duyu mu, ikisi mi? Aksonal mı, demiyelinizan mı? Uzunluğa bağımlı ve simetrik mi, yoksa multifokal mi?</p>
+<h3>Asgari çalışma</h3>
+<ul><li>Bir bacakta sural ve yüzeyel peroneal SNAP, peroneal ve tibial BKAP ile F dalgaları.</li>
+<li>Bir kolda median ve ulnar motor ve duyu.</li>
+<li>Anormallik varsa karşı tarafa ve proksimal segmentlere genişletin.</li>
+<li>İğne EMG: distal bacak kası (TA, gastroknemius), gerekirse proksimal kas ve bir kol kası.</li></ul>
+<h3>Desenler ve olası nedenler</h3>
+<table class="dt"><tr><th>Desen</th><th>Bulgular</th><th>Örnekler</th></tr>
+<tr><td>Uzunluğa bağımlı aksonal sensorimotor</td><td>Önce sural/yüzeyel peroneal SNAP, sonra peroneal/tibial BKAP; distal denervasyon</td><td>Diyabet, alkol, kemoterapi, B12, böbrek yetmezliği, idiyopatik</td></tr>
+<tr><td>Ganglionopati</td><td>Yaygın SNAP kaybı, kolda bacaktan kötü ya da asimetrik; motor normal</td><td>Sjögren, paraneoplastik (anti-Hu), sisplatin, B6</td></tr>
+<tr><td>Küçük lif</td><td>Rutin EMG normal</td><td>Diyabet, glukoz intoleransı, amiloid, Fabry</td></tr>
+<tr><td>Edinsel demiyelinizan</td><td>Blok, dispersiyon, nonuniform yavaşlama, uzun F</td><td>GBS (AIDP), CIDP, anti-MAG, POEMS</td></tr>
+<tr><td>Kalıtsal demiyelinizan</td><td>Uniform yavaşlama, blok yok</td><td>CMT1</td></tr>
+<tr><td>Multipl mononöropati</td><td>Asimetrik, farklı sinirlerde aksonal</td><td>Vaskülit (acil!), diyabet, lepra, sarkoidoz</td></tr>
+<tr><td>Saf motor multifokal blok</td><td>Tuzak bölgesi dışında motor blok, aynı segmentte duyu normal</td><td>MMN (anti-GM1)</td></tr></table>
+<h3>Guillain-Barré sendromu</h3>
+<p>İlk günlerde çalışma normal olabilir; 1–2 hafta sonra tekrarlamak tanı oranını artırır. Erken bulgular:</p>
+<ul><li>F dalgalarının yokluğu ya da uzaması, H refleksinin kaybı (kök düzeyinde demiyelinizasyon).</li>
+<li><b>Sural koruması (sural sparing):</b> Median/ulnar SNAP anormal, sural normal. Uzunluğa bağımlı aksonal nöropatide bunun tersi beklenir.</li>
+<li>Uzamış distal latanslar, distal BKAP süresinde uzama, A dalgaları.</li></ul>
+<table class="dt"><tr><th>Alt tip</th><th>Elektrofizyoloji</th><th>Antikor</th></tr>
+<tr><td>AIDP</td><td>Demiyelinizan: yavaşlama, blok, dispersiyon</td><td>Genellikle yok</td></tr>
+<tr><td>AMAN</td><td>Düşük BKAP, SNAP normal; geri dönüşlü ileti yetmezliği nedeniyle başta blok gibi görünüp hızla düzelebilir</td><td>Anti-GM1, anti-GD1a</td></tr>
+<tr><td>AMSAN</td><td>Motor ve duyu aksonal</td><td>Anti-GM1, anti-GD1a</td></tr>
+<tr><td>Miller Fisher</td><td>Çoğu zaman düşük SNAP'lar, motor iletim normal</td><td>Anti-GQ1b</td></tr></table>
+<p><b>Prognoz:</b> Distal BKAP ortalamasının alt sınırın %20'sinin altına inmesi ve yaygın fibrilasyon, uzun ve eksik iyileşmeyi gösterir.</p>
+<h3>CIDP: elektrodiagnostik kriterler (EAN/PNS 2021, özet)</h3>
+<p><b>Motor iletimde demiyelinizasyonu güçlü destekleyen bulgular</b> (en az iki sinirde, ya da bir sinirde + başka bir sinirde bir başka parametre):</p>
+<ol><li>Distal motor latans ≥%50 üst sınır (KTS'ye bağlı median uzaması hariç).</li>
+<li>Motor iletim hızı ≥%30 alt sınırın altında.</li>
+<li>F latansı ≥%20 üst sınır (distal BKAP &lt;%80 alt sınırsa ≥%50).</li>
+<li>F dalgalarının yokluğu (distal BKAP ≥%20 alt sınır olan iki sinirde) + bir başka demiyelinizasyon parametresi.</li>
+<li>Motor ileti bloğu: proksimal/distal amplitüdde ≥%30 düşüş (tibial hariç; distal BKAP ≥%20 alt sınır).</li>
+<li>Anormal temporal dispersiyon: proksimal/distal süre artışı &gt;%30 (en az iki sinirde).</li>
+<li>Distal BKAP süresinin uzaması (filtre ayarına bağlı eşikler; ör. median ≥6,6 ms, ulnar ≥6,7 ms, peroneal ≥7,6 ms, tibial ≥8,8 ms).</li></ol>
+<p>Tipik CIDP için ayrıca en az iki sinirde duyu iletim anormalliği aranır. Elektrofizyoloji yetersizse BOS proteini, MR'da kök hipertrofisi, ultrason ve tedavi yanıtı destekleyici kriterlerdir.</p>
+${BX('clin','Varyantlar','<b>Distal CIDP (DADS):</b> Orantısız uzun distal latanslar; anti-MAG\'ı mutlaka arayın (IgM paraproteinemi). <b>Multifokal CIDP (Lewis-Sumner):</b> Asimetrik, blok + duyu tutulumu. <b>Saf motor CIDP:</b> MMN\'den ayırmak gerekir (MMN\'de IVIG, CIDP\'de steroid de etkilidir). <b>Nodo-paranodopatiler</b> (anti-NF155, anti-CNTN1/Caspr1): ağır, tremorlu, IVIG\'e dirençli; rituksimab.')}`},
+
+{id:'mnd',p:'V',t:'Motor nöron hastalığı ve miyopatiler',lv:'İleri',h:()=>`
+<p class="lead">Yaygın güçsüzlükte EMG'nin işi alt motor nöron tutulumunun yaygınlığını göstermek, taklitçileri (MMN, servikal miyeloradikülopati, Kennedy hastalığı, IBM) dışlamak ve miyopatiyi nörojenik süreçten ayırmaktır.</p>
+<h3>ALS: elektrodiagnostik bulgular</h3>
+<ul><li><b>İletim çalışmaları:</b> Duyu yanıtları normal (Kennedy hastalığında SNAP'lar düşüktür). BKAP'lar etkilenen kaslarda düşük. İleti bloğu yok (varsa MMN düşünülmeli). Hafif yavaşlama akson kaybıyla uyumlu.</li>
+<li><b>Ayrık el (split hand):</b> APB ve FDI, ADM'ye göre orantısız düşük. Split-hand indeksi (APB × FDI ÷ ADM) düşer.</li>
+<li><b>İğne EMG:</b> Aktif denervasyon (fibrilasyon, PSW, <b>fasikülasyon</b>) ile kronik nörojenik değişikliklerin (büyük, uzun, <b>instabil</b> MUP; azalmış rekrutman) aynı kasta birlikte bulunması.</li></ul>
+<h3>Awaji (ve Gold Coast) yaklaşımı</h3>
+<p>Vücut dört bölgeye ayrılır: bulber, servikal, torasik, lumbosakral. Bir bölgenin alt motor nöron tutulumu için:</p>
+<ul><li><b>Servikal ve lumbosakral:</b> Farklı kök ve farklı sinirlerle innerve edilen en az iki kasta bulgu.</li>
+<li><b>Bulber ve torasik:</b> En az bir kasta bulgu (bulber: dil, masseter, fasiyal; torasik: T6 altı paraspinal ya da karın kasları).</li>
+<li>Kronik nörojenik değişiklik varlığında <b>fasikülasyon potansiyelleri fibrilasyon/PSW ile eşdeğer</b> sayılır (Awaji).</li></ul>
+${BX('pearl','Torasik paraspinaller','T6–T12 paraspinal kaslar spondilozdan nadiren etkilenir. Bu kaslarda denervasyon bulunması, servikal ve lumbal spondiloz kombinasyonu yerine yaygın bir ön boynuz hastalığını destekler. Dil kası iyi gevşetilemediği için yorumu zordur.')}
+<h3>Taklitçiler</h3>
+<table class="dt"><tr><th>Hastalık</th><th>Ayırıcı EMG bulgusu</th></tr>
+<tr><td>MMN</td><td>Tuzak bölgesi dışında motor ileti bloğu, duyu normal; üst motor nöron bulgusu yok</td></tr>
+<tr><td>Kennedy (SBMA)</td><td>Düşük SNAP'lar, yüz ve dilde fasikülasyon, jinekomasti</td></tr>
+<tr><td>Servikal miyeloradikülopati</td><td>Bulgular servikal segmentlerle sınırlı; torasik ve bulber normal</td></tr>
+<tr><td>İnklüzyon cisimcikli miyozit</td><td>Karışık kısa/uzun MUP'lar, FDP ve kuadriseps tutulumu</td></tr>
+<tr><td>Benign fasikülasyon sendromu</td><td>Fasikülasyonlar basit ve stabil; fibrilasyon ve nörojenik MUP yok</td></tr></table>
+<h3>Miyopatilerde EMG</h3>
+<ul><li>SNAP'lar normal; BKAP'lar genellikle normal (distal miyopatilerde ve ağır olgularda düşük).</li>
+<li>Proksimal güçsüz kaslarda kısa süreli, düşük amplitüdlü, polifazik MUP'lar; erken rekrutman.</li>
+<li>Enflamatuvar (dermatomiyozit, polimiyozit, immün aracılı nekrotizan) ve toksik miyopatilerde fibrilasyon/PSW: aktivite göstergesi.</li>
+<li>Paraspinal kaslar çoğu zaman en duyarlı bölgedir.</li></ul>
+<table class="dt"><tr><th>Klinik soru</th><th>EMG ipucu</th></tr>
+<tr><td>Steroid tedavisi alan miyozitli hastada yeni güçsüzlük</td><td>Fibrilasyon yoksa steroid miyopatisi (tip 2 lif atrofisi, EMG çoğu zaman normal); fibrilasyon artmışsa hastalık aktivasyonu</td></tr>
+<tr><td>Yoğun bakım güçsüzlüğü</td><td>Kritik hastalık miyopatisi: düşük ve <b>uzun süreli</b> BKAP, SNAP normal, doğrudan kas uyarısına yanıtsızlık. Kritik hastalık polinöropatisi: düşük SNAP ve BKAP</td></tr>
+<tr><td>Periyodik paralizi</td><td>Uzun egzersiz testi: 5 dk egzersiz sonrası 40 dk içinde BKAP'ta &gt;%40 düşüş</td></tr>
+<tr><td>Biyopsi yeri</td><td>Bulgu olan kasın karşı tarafındaki homolog kas</td></tr></table>
+${TRY('needle:mupM','Miyopatik MUP\'u dinleyin')}`},
+
+{id:'tuzak',p:'V',t:'Teknik hatalar, istatistik ve tuzaklar',lv:'İleri',h:()=>`
+<p class="lead">EMG'de yanlış tanının en sık nedeni hastalık değil, teknik hatadır. Beklenmeyen bir bulgu görüldüğünde ilk soru "hasta mı, teknik mi?" olmalıdır.</p>
+<h3>Sinir iletiminde kontrol listesi</h3>
+<table class="dt"><tr><th>Hata</th><th>Sonuç</th><th>Çözüm</th></tr>
+<tr><td>Soğuk ekstremite</td><td>Uzun latans, düşük hız, büyük amplitüd</td><td>El ≥32 °C, ayak ≥30 °C; ısıtın</td></tr>
+<tr><td>Submaksimal uyarı</td><td>Düşük amplitüd, yalancı blok</td><td>Yanıt artmayana kadar akımı artırın, +%20–30</td></tr>
+<tr><td>Aşırı uyarı</td><td>Komşu sinir uyarılır, sanal katot ile kısa latans</td><td>Akımı düşürün, şekli izleyin</td></tr>
+<tr><td>G1 motor noktada değil</td><td>Başlangıçta pozitif sapma, düşük amplitüd</td><td>G1'i kaydırın</td></tr>
+<tr><td>Mesafe ölçüm hatası</td><td>Yanlış hız (özellikle kısa segmentte)</td><td>Ulnar için dirsek fleksiyonda, sinir seyrini izleyerek ölçün</td></tr>
+<tr><td>Antidromik SNAP'ta kas artefaktı</td><td>Yanlış latans ve amplitüd</td><td>Ortodromik kayıt, uyarıyı düşürme</td></tr>
+<tr><td>Elektrotlar arası mesafe &lt;3 cm (duyu)</td><td>Düşük SNAP amplitüdü</td><td>3–4 cm</td></tr>
+<tr><td>Ödem, obezite, kalın cilt</td><td>Düşük amplitüd, submaksimal uyarı</td><td>Uyarı süresini uzatın, iğne uyarı/kayıt</td></tr>
+<tr><td>İnervasyon anomalisi</td><td>Yalancı blok, yüksek hız</td><td>Anomaliyi doğrulayan ek uyarı</td></tr></table>
+<h3>İğne EMG'de kontrol listesi</h3>
+<ul><li>Son plak dikeni ↔ fibrilasyon.</li>
+<li>Tam gevşemeyen kasta istemli MUP ↔ fasikülasyon.</li>
+<li>Uzaktaki bir MUP (yükselme zamanı uzun) ↔ miyopatik küçük MUP.</li>
+<li>Ağrı ya da yetersiz efor ↔ azalmış rekrutman (ateşleme hızına bakın).</li>
+<li>Normal kişide ayak kaslarında ve yaşlı paraspinallerde fibrilasyon.</li></ul>
+<h3>Referans değerler ve istatistik</h3>
+<p>Normal sınırlar sağlıklı bireylerin ortalama ±2–2,5 SS'si ya da 2,5–97,5 persentilleriyle tanımlanır. Bu, normal bir bireyde her ölçümün yaklaşık %2,5–5 olasılıkla "anormal" çıkabileceği demektir. 20–30 ölçüm yapılan bir incelemede en az bir değerin sınırda anormal çıkması şaşırtıcı değildir.</p>
+<ul><li>Tek bir sınırda değere dayanarak tanı koymayın.</li>
+<li>Bulgular bir örüntü oluşturmalı ve klinikle uyumlu olmalıdır.</li>
+<li>Yaşa, boya ve ısıya uygun referans kullanın.</li>
+<li>Karşı tarafla ve komşu sinirle karşılaştırma iç kontrol sağlar.</li></ul>
+${BX('def','Yorumun sırası','1) Teknik geçerlilik (ısı, uyarı, elektrot). 2) Hangi değerler kesin anormal? 3) Örüntü: tek sinir, kök, pleksus, yaygın? 4) Patofizyoloji: aksonal, demiyelinizan, kavşak, miyopatik. 5) Zamanlama ve şiddet. 6) Klinik soruyla uyum.')}
+${TRY('motor:tuzak','Tuzakları canlı deneyin')}`},
+
+{id:'rapor',p:'V',t:'Rapor yazımı',lv:'İleri',h:()=>`
+<p class="lead">Rapor, istemi yapan hekimin sorusunu net bir şekilde yanıtlamalıdır. Ham veriler, bulguların özeti ve yorum ayrı tutulmalıdır.</p>
+<h3>Raporun bölümleri</h3>
+<ol><li><b>Kimlik ve klinik soru:</b> Yaş, cinsiyet, kısa öykü, istem nedeni.</li>
+<li><b>Teknik bilgi:</b> Ekstremite ısısı, kullanılan elektrot tipi, olağan dışı koşullar (ödem, işbirliği güçlüğü).</li>
+<li><b>Sinir iletim tablosu:</b> Her sinir için latans, amplitüd, iletim hızı, F ve H; referans değerler ve anormallerin işaretlenmesi.</li>
+<li><b>İğne EMG tablosu:</b> Her kas için giriş aktivitesi, fibrilasyon/PSW, fasikülasyon, diğer spontan aktivite, MUP süre/amplitüd/polifazi, rekrutman.</li>
+<li><b>Bulguların özeti:</b> Nesnel, yorum içermeyen cümleler.</li>
+<li><b>Yorum (sonuç):</b> Normal mi anormal mi; lokalizasyon; patofizyoloji (aksonal/demiyelinizan); şiddet; zamanlama (akut, aktif, kronik); klinik soruyla ilişkisi.</li>
+<li><b>Sınırlar ve öneriler:</b> Testin yapılamayan kısımları, kontrol çalışmasının zamanı.</li></ol>
+${BX('def','Örnek yorum: KTS','Sağ median sinirin bilek düzeyinde fokal, duyu ve motor lifleri etkileyen demiyelinizan nöropatisiyle uyumlu elektrofizyolojik bulgular (orta derecede karpal tünel sendromu). Akson kaybını gösteren bulgu saptanmadı. Polinöropati ya da servikal radikülopatiyi düşündüren bulgu yoktur.')}
+${BX('def','Örnek yorum: L5 radikülopati','Sol L5 kök dağılımında (tibialis anterior, tibialis posterior, gluteus medius, L5 paraspinal) aktif denervasyon ve erken reinnervasyon bulguları; sol L5 radikülopatisiyle uyumludur, subakut evrede. Yüzeyel peroneal SNAP\'ın normal olması lezyonun DRG proksimalinde olduğunu destekler. Peroneal nöropati lehine bulgu yoktur.')}
+<h3>Kaçınılacak ifadeler</h3>
+<ul><li>"Klinik korelasyon önerilir" ile biten ama soruyu yanıtlamayan raporlar.</li>
+<li>Ölçülmemiş bir şeye dair kesin hüküm ("radikülopati yoktur" yerine "radikülopati lehine elektrofizyolojik bulgu saptanmadı").</li>
+<li>Tek bir sınırda değerden tanı.</li>
+<li>Nöropati ile polinöropati, bloğu ile yavaşlama gibi terimlerin karıştırılması.</li></ul>`},
+{id:'sozluk',p:'VI',t:'A\'dan Z\'ye sözlük',lv:'Sözlük',h:()=>{const G=[
+['A dalgası','M ile F arasında, latansı ve şekli sabit küçük yanıt; akson refleksi ya da efaptik geçiş.'],['CMRR','Ortak mod reddi oranı: amplifikatörün iki girişe ortak sinyali bastırma gücü (iyi cihazda >90–100 dB).'],['Çarpışma tekniği','İki noktadan uyarılan karşıt yönlü volleylerin birbirini söndürmesinden yararlanan yöntem.'],['Dekrement','Tekrarlayıcı uyarıda BKAP amplitüdünün 1. yanıttan 4.–5. yanıta azalması; >%10 anormal.'],['Faz iptali','Farklı hızdaki liflerin potansiyellerinin zıt fazlarının çakışarak birbirini silmesi.'],['Güvenlik faktörü','Üretilen akımın (ya da EPP\'nin) eşiği aşmak için gerekene oranı; ileti ve kavşakta güvenlik payı.'],['Henneman ilkesi','Motor ünitelerin küçükten büyüğe doğru sırayla devreye girmesi.'],['İnching','Şüpheli segmentin 1–2 cm\'lik adımlarla uyarılarak lezyonun tam yerinin bulunması.'],['Jitter','Aynı üniteye ait iki lif potansiyeli arasındaki aralığın ateşlemeden ateşlemeye değişkenliği.'],['Kronik nörojenik değişiklik','Uzun süreli, yüksek amplitüdlü, polifazik MUP ve azalmış rekrutman.'],['Lif yoğunluğu','İğne ucunun kayıt alanındaki aynı üniteye ait lif sayısı; reinnervasyonda artar.'],['Martin-Gruber anastomozu','Önkolda medianden ulnara geçen motor lifler; yalancı blok ve yanıltıcı hızlar yapar.'],['MUNE','Motor ünite sayısı tahmini.'],['Nascent MUP','Rejenerasyonun ilk döneminde görülen küçük, kısa, polifazik "doğan" üniteler.'],['Nöropraksi','Aksonun sağlam olduğu fokal demiyelinizan blok; distal yanıt korunur.'],['Rekrutman oranı','En hızlı ateşleyen ünitenin hızı ÷ ateşleyen ünite sayısı; normal <5.'],['Satellit potansiyel','MUP\'tan sonra zamana kilitli geç bileşen; erken reinnervasyon.'],['Split hand','ALS\'de APB ve FDI\'nın ADM\'ye göre orantısız tutulumu.'],['Terminal latans indeksi','Distal mesafe ÷ (İH × distal latans); düşükse distal ağırlıklı demiyelinizasyon.'],['Uzak alan potansiyeli','Geniş alanda aynı anda görülen, latansı elektrot yerinden bağımsız duran potansiyel.'],['Yakın alan potansiyeli','Kaynak elektrota yaklaştıkça büyüyen, latansı elektrot yerine göre değişen potansiyel.'],['Aksiyon potansiyeli','Uyarılabilir zarda eşik aşılınca oluşan, kendini yayan kısa depolarizasyon.'],['Aksonal hasar','Akson sayısının azalması; esas olarak amplitüd düşer.'],['Alan','BKAP\'ın negatif fazının altındaki alan; dispersiyondan amplitüde göre daha az etkilenir.'],['Amplitüd','Yanıtın büyüklüğü (mV ya da µV); akson/lif sayısını yansıtır.'],['Anot','Uyarıcının pozitif ucu; altında zar hiperpolarize olur.'],['Antidromik','Sinirin doğal ileti yönünün tersine giden uyarı.'],
 ['BKAP','Bileşik kas aksiyon potansiyeli; motor iletimde kastan kaydedilen yanıt.'],['DRG','Dorsal kök gangliyonu; duyusal hücre gövdelerinin yeri.'],['Demiyelinizasyon','Miyelin hasarı; latans uzar, hız düşer, blok ve dispersiyon olur.'],['Duyarlılık','Ekranda bir dikey karenin değeri (kazanç).'],
 ['Efaptik iletim','Bir lifin komşu lifi doğrudan elektriksel olarak uyarması.'],['F dalgası','Motor nöronların antidromik volleyle geri ateşlemesiyle oluşan geç yanıt.'],['Fasikülasyon','Tek bir motor ünitenin istemsiz ateşlemesi.'],['Fibrilasyon','Denerve tek kas lifinin düzenli spontan ateşlemesi.'],
 ['G1 / G2','Aktif ve referans kayıt elektrotları.'],['H refleksi','Ia afferent ile başlayan monosinaptik refleks yanıt.'],['İleti bloğu','Aksiyon potansiyelinin bir segmentten geçememesi.'],['İletim hızı','İki nokta arası mesafe ÷ latans farkı; en hızlı liflerin hızı.'],['İnsersiyonel aktivite','İğne ilerlerken oluşan kısa potansiyel patlaması.'],['İnterferans paterni','Maksimal kasılmada bazal hattı kapatan MUP toplamı.'],
@@ -1703,21 +2305,23 @@ ${BX('def','Örnek sonuç cümlesi','"Bulgular, bilek düzeyinde median nöropat
 ['Reinnervasyon','Sağ kalan aksonların filizlenerek denerve lifleri sahiplenmesi.'],['Rekrutman','Kuvvet artarken yeni ünitelerin devreye girmesi.'],['Saltatorik ileti','Miyelinli aksonda düğümden düğüme atlayan ileti.'],['SNAP','Duyusal sinir aksiyon potansiyeli.'],['Son plak','Sinir terminali ile kas lifinin buluştuğu bölge.'],['Supramaksimal','Tüm aksonları uyaran, maksimalin ~%20 üzerindeki akım.'],['Süre','Yanıtın bazal hattan ayrılıp geri dönmesine kadar geçen zaman.'],
 ['Temporal dispersiyon','Lifler arası hız farkı nedeniyle yanıtın yayılıp basıklaşması.'],['Uyarı artefaktı','Uyarı anında ekranda görülen elektriksel iz.'],['Ünite stabilitesi','MUP şeklinin taramadan taramaya sabit kalması.'],
 ['Wallerian dejenerasyon','Kesilen aksonun distal parçasının günler içinde dejenere olması.'],['Yükselme zamanı','MUP\'ın pozitif tepeden negatif tepeye çıkış süresi; iğnenin yakınlığını gösterir.'],['Zaman tabanı','Ekranda bir yatay karenin süresi (tarama hızı).']];
-let h='<div class="gl">',L='';G.forEach(([t,d])=>{const f=t[0].toLocaleUpperCase('tr');if(f!==L){L=f;h+=`<div class="gll">${f}</div>`}h+=`<p><b>${t}</b>${d}</p>`});return h+'</div>'}}];
+let h='<div class="gl">',L='';G.sort((a,b)=>a[0].localeCompare(b[0],'tr')).forEach(([t,d])=>{const f=t[0].toLocaleUpperCase('tr');if(f!==L){L=f;h+=`<div class="gll">${f}</div>`}h+=`<p><b>${t}</b>${d}</p>`});return h+'</div>'}}];
 
+const PARTS={I:'Temeller',II:'Sinir iletim çalışmaları',III:'Nöromüsküler kavşak',IV:'İğne EMG',V:'Klinik uygulama',VI:'Başvuru'};
 const LVC={Temel:'t',Orta:'o','İleri':'i','Sözlük':'s'};let dersBuilt=false;
 function buildDers(){if(dersBuilt)return;dersBuilt=true;const sv=seed;
-$('toc').innerHTML='<div class="toch">İçindekiler</div>'+DERS.map((c,i)=>`<a href="#d-${c.id}"><span class="tn">${i+1}</span><span class="tt">${c.t}</span><span class="lv lv-${LVC[c.lv]}">${c.lv}</span></a>`).join('');
+const pt=(c,i)=>c.p&&(i===0||DERS[i-1].p!==c.p);
+$('toc').innerHTML='<div class="toch">İçindekiler</div>'+DERS.map((c,i)=>`${pt(c,i)?`<div class="tocp">Kısım ${c.p} · ${PARTS[c.p]}</div>`:''}<a href="#d-${c.id}"><span class="tn">${i+1}</span><span class="tt">${c.t}</span><span class="lv lv-${LVC[c.lv]}">${c.lv}</span></a>`).join('');
 $('dart').innerHTML=`<div class="dprog"><i id="dprog"></i></div><header class="dhead"><div class="dhi"><span class="dkick">Konu anlatımı</span><h1>EMG'yi A'dan Z'ye öğrenin</h1><p>Temel fizyolojiden klinik yoruma kadar, şekillerle ve uygulamalı örneklerle. Bölümlerdeki <b>▶</b> düğmeleri, anlatılan konuyu atölyenin diğer sekmelerinde canlı olarak açar.</p>
-<div class="dleg"><span class="lv lv-t">Temel</span><span class="lv lv-o">Orta</span><span class="lv lv-i">İleri</span><span class="dmeta">${DERS.length} bölüm · ~45 dakika okuma</span></div></div></header>`+
-DERS.map((c,i)=>`<section class="ch" id="d-${c.id}"><div class="chh"><span class="chn">${String(i+1).padStart(2,'0')}</span><div><span class="lv lv-${LVC[c.lv]}">${c.lv}</span><h2>${c.t}</h2></div></div>${c.h()}</section>`).join('')+
+<div class="dleg"><span class="lv lv-t">Temel</span><span class="lv lv-o">Orta</span><span class="lv lv-i">İleri</span><span class="dmeta">${DERS.length} bölüm · ~${Math.round(DERS.reduce((n,c)=>n+c.h().replace(/<[^>]+>/g,' ').split(/\s+/).length,0)/180/10)*10} dakika okuma</span></div></div></header>`+
+DERS.map((c,i)=>`${pt(c,i)?`<div class="dpart" data-part="${c.p}"><span>Kısım ${c.p}</span>${PARTS[c.p]}</div>`:''}<section class="ch" id="d-${c.id}" data-part="${c.p||''}"><div class="chh"><span class="chn">${String(i+1).padStart(2,'0')}</span><div><span class="lv lv-${LVC[c.lv]}">${c.lv}</span><h2>${c.t}</h2></div></div>${c.h()}</section>`).join('')+
 `<footer class="dfoot">Bu anlatım eğitim amaçlıdır. Referans değerler ve kriterler laboratuvara ve kullanılan kılavuza göre değişir.</footer>`;seed=sv;
 $('toc').addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();const t=document.getElementById(a.getAttribute('href').slice(1)),A=$('dart');A.scrollTo({top:t.offsetTop-6,behavior:'smooth'})});
 $('dart').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;const[m,p]=b.dataset.go.split(':');goTab(m,p)});
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const id=en.target.id;$('toc').querySelectorAll('a').forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.classList.toggle('act',on);if(on&&a.scrollIntoViewIfNeeded)a.scrollIntoViewIfNeeded(false)})}}),{root:$('dart'),rootMargin:'-15% 0px -75% 0px'});
 document.querySelectorAll('#dart .ch').forEach(x=>io.observe(x));
 $('dart').addEventListener('scroll',()=>{const a=$('dart');$('dprog').style.width=(a.scrollTop/Math.max(1,a.scrollHeight-a.clientHeight)*100).toFixed(1)+'%'})}
-function goTab(m,p){if(m==='motor'||m==='sensory'){if(p){if(m==='motor'){edu.pm=p;if(p==='tuzak'){edu.m='medM';edu.limb='U'}}else edu.ps=p}}else if(p)pat[m]=p;setMode(m)}
+function goTab(m,p){if(m==='motor'||m==='sensory'){if(p){if(m==='motor'){edu.pm=p;if(p==='tuzak'){edu.m='medM';edu.limb='U'}}else edu.ps=p}}else if(p){pat[m]=p;if(m==='needle')eduNP=p}setMode(m)}
 
 /* ================= PRATİK: iğne EMG ================= */
 const MUS={U:[['del','Deltoid','C5–C6 · aksiller sinir'],['bic','Biceps brachii','C5–C6 · muskulokutan sinir'],['tri','Triceps brachii','C6–C8 (esas C7) · radial sinir'],['edc','Ekstansör digitorum','C7–C8 · posterior interosseöz sinir'],['apb','Abductor pollicis brevis','C8–T1 · median sinir'],['fdi','Birinci dorsal interosseöz','C8–T1 · ulnar sinir'],['adm','Abductor digiti minimi','C8–T1 · ulnar sinir'],['cps','Servikal paraspinal','servikal arka ramuslar']],
@@ -1828,7 +2432,11 @@ if(c.id==='pScope'){if(col)stopLoop();else if(isNd()&&soundOn)startLoop()}})});
 const _bd=buildDers;buildDers=function(){const first=!dersBuilt;_bd();if(!first)return;
 document.querySelectorAll('#dart .ch').forEach(ch=>{const h=ch.querySelector('.chh'),b=document.createElement('div');b.className='chb';while(h.nextSibling)b.appendChild(h.nextSibling);ch.appendChild(b);ch.classList.add('cl');
 h.setAttribute('role','button');h.setAttribute('tabindex','0');
-h.addEventListener('click',()=>{const was=ch.classList.contains('cl');ch.classList.toggle('cl');if(was)requestAnimationFrame(()=>ch.scrollIntoView({behavior:'smooth',block:'start'}))})})};
+h.addEventListener('click',()=>{const was=ch.classList.contains('cl');ch.classList.toggle('cl');if(was)requestAnimationFrame(()=>ch.scrollIntoView({behavior:'smooth',block:'start'}))})});
+document.querySelectorAll('#dart .dpart').forEach(dp=>{const w=document.createElement('div');w.className='prt cl';dp.parentNode.insertBefore(w,dp);w.appendChild(dp);const bx=document.createElement('div');bx.className='prb';w.appendChild(bx);
+let n=w.nextElementSibling,k=0;while(n&&n.classList.contains('ch')){const x=n.nextElementSibling;bx.appendChild(n);k++;n=x}
+const c=document.createElement('small');c.textContent=k+' bölüm';dp.appendChild(c);dp.setAttribute('role','button');
+dp.addEventListener('click',()=>{const was=w.classList.contains('cl');w.classList.toggle('cl');if(was)requestAnimationFrame(()=>w.scrollIntoView({behavior:'smooth',block:'start'}))})})};
 /* dokunmatik: iğneyi sürüklerken sayfa kaymasın, büyütülmüş şemada iki parmakla yakınlaştır */
 const sv=$('srcsvg'),P=new Map();let pd=0;
 sv.addEventListener('touchstart',e=>{if((isNd()&&e.target.closest('[data-n]'))||(dlg.open&&e.touches.length>1))e.preventDefault()},{passive:false});
@@ -1842,6 +2450,50 @@ try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
 document.addEventListener('visibilitychange',()=>{if(typeof AC==='undefined'||!AC)return;if(document.hidden){AC.suspend&&AC.suspend()}else if(soundOn){AC.resume&&AC.resume()}});
 /* başlangıç: tüm bölümler kapalı */
 SECS.forEach(s=>s.classList.remove('open'));stopLoop();
+})();
+
+
+/* ================= ARAMA: uygulama içi + dış arama motorları ================= */
+(function(){
+const q=$('q'),R=$('qres');if(!q||!R)return;
+const TRM={'ı':'i','ş':'s','ğ':'g','ü':'u','ö':'o','ç':'c','â':'a','î':'i','û':'u'};
+const norm=s=>{let o='';for(let i=0;i<s.length;i++){let c=s[i].toLocaleLowerCase('tr');if(c.length!==1)c=c[0];o+=TRM[c]||c}return o};
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+const SEL='h3,p,li,tr,.bx,figcaption';
+let IX=null;
+function build(){IX=[];const sv=seed,tmp=document.createElement('div');
+DERS.forEach(c=>{tmp.innerHTML=c.h().replace(/<\/b>/g,'</b> ');let sub='';tmp.querySelectorAll(SEL).forEach((el,k)=>{if(el.tagName==='H3')sub=el.textContent;
+if(el.closest('.bx')&&el!==el.closest('.bx'))return;const t=el.textContent.replace(/\s+/g,' ').replace(/ ([,.;:)])/g,'$1').trim();if(t.length<3)return;
+IX.push({kind:'d',cid:c.id,k,title:c.t,sub:el.tagName==='H3'?'':sub,t,n:norm(c.t+' '+sub+' '+t),nt:norm(c.t),nb:norm(t),ns:norm(el.tagName==='H3'?t:sub)})})});
+Object.keys(NP).forEach(k=>{const p=NP[k];if(!p.n||p.g==='hid')return;const t=[p.sum||'',...(p.i||[]).map(r=>r[0]+': '+r[1])].join(' · ');IX.push({kind:'n',key:k,title:'İğne EMG örneği · '+p.n,sub:'',t,n:norm(p.n+' '+t),nt:norm(p.n),nb:norm(t),ns:norm(p.n)})});
+Object.keys(LP).forEach(k=>{const p=LP[k];const t=[p.sum||'',...(p.i||[]).map(r=>r[0]+': '+r[1])].join(' · ');IX.push({kind:'l',key:k,title:'F / H örneği · '+p.n,sub:'',t,n:norm(p.n+' '+t),nt:norm(p.n),nb:norm(t),ns:norm(p.n)})});
+seed=sv}
+function snip(t,terms){const n=norm(t);let at=-1;for(const w of terms){const i=n.indexOf(w);if(i>=0&&(at<0||i<at))at=i}
+let a=Math.max(0,at-70),b=Math.min(t.length,(at<0?0:at)+150);if(a>0){const sp=t.lastIndexOf(' ',a+12);if(sp>a-20&&sp>0)a=sp+1}
+const s=t.slice(a,b),sn=n.slice(a,b),mk=new Array(s.length).fill(0);
+terms.forEach(w=>{let i=sn.indexOf(w);while(i>=0){for(let j=i;j<i+w.length;j++)mk[j]=1;i=sn.indexOf(w,i+w.length)}});
+let h='',on=0;for(let i=0;i<s.length;i++){if(mk[i]&&!on){h+='<mark>';on=1}if(!mk[i]&&on){h+='</mark>';on=0}h+=esc(s[i])}if(on)h+='</mark>';
+return(a>0?'…':'')+h+(b<t.length?'…':'')}
+const ENG=[['Google','https://www.google.com/search?q='],['Yandex','https://yandex.com.tr/search/?text='],['Google Akademik','https://scholar.google.com/scholar?q='],['PubMed','https://pubmed.ncbi.nlm.nih.gov/?term=']];
+let hits=[];
+function run(){const v=q.value.trim();if(!v){R.hidden=true;R.innerHTML='';return}if(!IX)build();
+const terms=norm(v).split(/\s+/).filter(w=>w.length>1);
+hits=terms.length?IX.map(e=>{let sc=0;for(const w of terms){if(e.n.indexOf(w)<0)return null;sc+=(e.nb.includes(w)?3:0)+(e.ns.includes(w)?3:0)+(e.nt.includes(w)?2:0);if(new RegExp('(^|[^a-z0-9])'+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).test(e.n))sc+=1}return sc+(e.kind!=='d'?1:0)?{e,sc:sc+(e.kind!=='d'?1:0)}:null}).filter(Boolean).sort((a,b)=>b.sc-a.sc):[];
+const seen={},sc2={};hits=hits.filter(h=>{const id=h.e.kind+(h.e.cid||h.e.key)+(h.e.sub||''),c=h.e.kind+(h.e.cid||h.e.key);seen[id]=(seen[id]||0)+1;sc2[c]=(sc2[c]||0)+1;return seen[id]<=2&&sc2[c]<=4}).slice(0,30);
+const eq=encodeURIComponent(v),off=navigator.onLine===false;
+R.innerHTML=`<div class="qeng"><span>${off?'İnternete bağlanınca:':'Web\'de ara:'}</span>${ENG.map(([n,u])=>`<a href="${u}${eq}" target="_blank" rel="noopener noreferrer">${n}</a>`).join('')}</div>`+
+(hits.length?`<div class="qh">Uygulamada ${hits.length} sonuç</div>`+hits.map((h,i)=>`<button class="qr" data-i="${i}"><b>${esc(h.e.title)}</b>${h.e.sub?`<small>${esc(h.e.sub)}</small>`:''}<span>${snip(h.e.t,terms)}</span></button>`).join(''):`<div class="qh">Uygulamada sonuç yok. Yukarıdaki arama motorlarını deneyin.</div>`);
+R.hidden=false}
+function go(h){R.hidden=true;q.blur();const e=h.e;
+if(e.kind==='n'){goTab('needle',e.key);return}if(e.kind==='l'){goTab('late',e.key);return}
+setMode('ders');requestAnimationFrame(()=>{const ch=document.getElementById('d-'+e.cid);if(!ch)return;ch.classList.remove('cl');const pt=ch.closest('.prt');if(pt)pt.classList.remove('cl');
+const el=ch.querySelectorAll(SEL)[e.k]||ch;setTimeout(()=>{el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('qflash');setTimeout(()=>el.classList.remove('qflash'),2200)},60)})}
+let to;q.addEventListener('input',()=>{clearTimeout(to);to=setTimeout(run,120)});
+q.addEventListener('focus',()=>{if(q.value.trim())run()});
+q.addEventListener('keydown',e=>{if(e.key==='Escape'){R.hidden=true;q.blur()}if(e.key==='Enter'&&hits[0]){e.preventDefault();go(hits[0])}});
+R.addEventListener('click',e=>{const b=e.target.closest('.qr');if(b)go(hits[+b.dataset.i])});
+document.addEventListener('pointerdown',e=>{if(!R.hidden&&!e.target.closest('.srch'))R.hidden=true});
+document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='TEXTAREA'&&!document.activeElement.isContentEditable){e.preventDefault();q.focus()}});
 })();
 
 let instEv=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();instEv=e;$('inst').hidden=false});
